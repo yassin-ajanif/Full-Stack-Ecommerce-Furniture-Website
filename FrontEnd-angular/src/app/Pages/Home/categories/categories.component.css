@@ -1,0 +1,50 @@
+.categories-section {
+    text-align: center;
+    padding: 2rem;
+  }
+  
+  .section-title {
+    font-size: 2rem;
+    margin-bottom: 1rem;
+  }
+  
+  .section-description {
+    font-size: 1rem;
+    margin-bottom: 2rem;
+    color: #333333;
+  }
+  
+  .grid-container {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr); /* Create 3 equal columns */
+    gap: 2rem; /* Space between items */
+  }
+  
+  
+  .grid-item {
+    padding: 1rem;
+    border-radius: 8px;
+    text-align: center;
+    transition: transform 0.3s ease; /* Smooth transition for scaling */
+  }
+  
+  .grid-item:hover {
+    transform: scale(1.05); /* Slightly scale the item when hovered */
+  }
+  
+  
+  .category-image {
+    width: 100%;
+    height: auto;
+    border-radius: 5px;
+    margin-bottom: 1rem;
+  }
+  
+  .category-title {
+    font-size: 1.2rem;
+    font-weight: 600;
+    color: #333333;
+   
+    
+  }
+  

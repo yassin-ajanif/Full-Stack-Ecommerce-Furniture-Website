@@ -1,0 +1,86 @@
+/* General Reset */
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+  }
+  
+  body {
+    font-family: Arial, sans-serif;
+  }
+  
+  .hero-section {
+    position: relative;
+    width: 100%;
+    height: 85vh; /* Adjust height as needed */
+    background: url('../../../../../public/Assets/Home/HeroImage.jpg') no-repeat center center;
+    background-size: cover; /* Fills the section entirely */
+    display: flex;
+    justify-content: flex-end;
+    align-items: center;
+    padding: 2rem;
+    overflow: hidden;
+}
+
+
+  
+  .cta-box {
+    position: relative;
+    max-width: 45%; /* Box width, starting from middle */
+    background: #FFF3E3; /* Semi-transparent white background */
+    border-radius: 0.3rem; /* Rounded corners */
+    padding: 2rem; /* Space inside the box */
+    text-align: left;
+    
+    margin-right: 0; /* Align box to the right */
+    right: 1rem;
+   
+  }
+  
+  .new-arrival {
+    font-size: 1rem;
+    letter-spacing: 0.1875rem; /* 3px converted to rem (assuming 16px base font size) */
+    font-weight: 600; /* Semibold */
+}
+
+  .cta-box h1 {
+    font-size: 3rem; /* Adjust as needed */
+    margin-bottom: 1rem;
+    color: var(--btn-brown);
+  }
+  
+  .cta-box p {
+    font-size: 1rem;
+    margin-bottom: 1.5rem;
+    color: #666;
+  }
+  
+  .cta-btn {
+    padding: 1.5625rem 4.5rem; /* Top-Bottom: 25px, Left-Right: 72px */
+    font-size: 1rem; /* Default text size (16px) */
+    font-weight: bold; /* Make the text bold */
+    color: #fff; /* White text */
+  
+    border: none; /* Remove default border */
+    border-radius: 0.1rem; /* Rounded corners (8px) */
+    cursor: pointer; /* Pointer cursor for interactivity */
+    text-transform: uppercase; /* Convert text to uppercase */
+   
+    transition: all 0.3s ease; /* Smooth transition for hover effects */
+}
+
+/* Add hover effects */
+.cta-btn:hover {
+    
+    box-shadow: 0 6px 8px rgba(0, 0, 0, 0.2); /* Slightly deeper shadow */
+    transform: translateY(-2px); /* Move button slightly up */
+}
+
+/* Add focus effect for accessibility */
+.cta-btn:focus {
+    
+    outline-offset: 2px; /* Add space between the button and outline */
+}
+
+
+  
