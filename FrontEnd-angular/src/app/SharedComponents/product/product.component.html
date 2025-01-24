@@ -1,0 +1,29 @@
+<div class="product-card">
+ 
+  <div class="product-image">
+    <img src= {{product.imageUrl}} alt="Product Image">
+  </div>
+  
+  <!-- Black Mask -->
+  <div class="product-mask"></div>
+
+  <div class="product-info">
+    <h3 class="product-title">{{product.name}}</h3>
+    <p class="product-category">{{product.category}}</p>
+    <div class="product-pricing">
+      <span class="current-price">{{'$ '+product.price}}</span>
+      <span class="old-price">{{ '$ '+product.oldPrice }}</span>
+
+    </div>
+  </div>
+  <!-- Action Buttons -->
+  <div class="product-actions">
+    
+    <button class="action-button addToCart">Add to Cart</button>
+    <button class="action-button moreProductInfo">More Info</button>
+    
+  </div>
+
+  
+
+</div>

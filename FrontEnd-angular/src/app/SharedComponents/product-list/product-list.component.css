@@ -1,0 +1,26 @@
+.product-grid {
+    display: grid;
+    grid-template-columns: repeat(4, 1fr); /* Creates 4 equal-width columns */
+    gap: 1.5rem; /* Space between the items */
+    padding: 1rem 5rem;
+  }
+  
+  .product-item {
+    background-color: #fff; /* Optional background for product items */ 
+    
+  }
+  
+  .centerBtn{
+  
+    display: block;       /* Makes the button a block-level element */
+    margin: 1rem auto; 
+    padding-inline: 5rem;      /* Full viewport height */
+    font-weight: bold;
+    
+  }
+  
+  .centerBtn:hover {
+    transform: translateY(-2px); /* Moves the button slightly up on hover */
+  }
+  
+  

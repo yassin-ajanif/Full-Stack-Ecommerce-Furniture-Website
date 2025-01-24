@@ -1,0 +1,121 @@
+/* Product Card Container */
+.product-card {
+  position: relative; /* Required for absolute positioning of the mask and buttons */
+  background-color: #F4F5F7;
+  transition: transform 0.3s ease;
+  overflow: hidden; /* Prevents overflow of content outside the card */
+  width: 100%; /* Ensures the card takes full width of its container */
+}
+
+/* Hover effect */
+.product-card:hover {
+  transform: scale(1.05);
+}
+
+/* Black Mask */
+.product-card:hover .product-mask {
+  opacity: 0.7; /* Make the mask visible on hover */
+}
+
+/* Black Mask Styling */
+.product-mask {
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background-color: rgba(0, 0, 0, 0.7); /* Black mask with transparency */
+  opacity: 0; /* Hidden by default */
+  transition: opacity 0.3s ease;
+  z-index: 2; /* Ensures the mask is above the image */
+}
+
+/* Product Image */
+.product-image {
+  max-width: 10rem; /* Ensures the image scales to fit its container */
+  height: auto; /* Maintains the aspect ratio */
+  object-fit: cover; /* Ensures the image covers the container proportionally */
+}
+
+/* Product Info (Title, Category, Pricing) */
+.product-info {
+  margin-left: 1rem;
+}
+
+/* Product Title */
+.product-title {
+  font-size: 1.5rem;
+  font-weight: 600;
+  margin: 0.5rem 0;
+  color: #333333;
+  text-align: left;
+}
+
+/* Product Category */
+.product-category {
+  font-size: 1rem;
+  color: #898989;
+  margin: 0.25rem 0 0.75rem;
+  text-align: left;
+}
+
+/* Product Pricing */
+.product-pricing {
+  font-size: 1.2rem;
+  text-align: left;
+  color: #3A3A3A;
+  margin: 0;
+}
+
+.current-price {
+  font-weight: bold;
+}
+
+.old-price {
+  color: #B0B0B0;
+  text-decoration: line-through;
+  margin-left: 1rem;
+  font-size: 1rem;
+}
+
+/* Action Buttons */
+.product-actions {
+  position: absolute;
+  top: 50%; /* Center vertically */
+  left: 50%; /* Center horizontally */
+  transform: translate(-50%, -50%); /* Adjust for exact centering */
+  z-index: 3; /* Ensure buttons are above the mask */
+  opacity: 0;
+  transition: opacity 0.3s ease;
+  display: grid;
+  align-items: center;
+  gap: 1rem;
+}
+
+.product-card:hover .product-actions {
+  opacity: 1; /* Show the action buttons when hovered */
+}
+
+.action-button {
+  padding: 0.5rem 1rem;
+  background-color: transparent;
+  color: white;
+  font-size: 1rem;
+  border-radius: 2px;
+  cursor: pointer;
+  transition: transform 0.2s ease-out, background-color 0.3s ease; /* Smooth movement and color change */
+  border: none;
+  position: relative; /* Ensure proper positioning for the movement */
+  font-weight: bold;
+}
+
+.action-button:hover {
+  transform: translateY(-2px); /* Move the button upward by 5px */
+}
+
+
+.addToCart{
+
+  background-color: white;
+  color: var(--btn-brown);
+}
