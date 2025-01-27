@@ -78,3 +78,12 @@ body {
   background-color: var(--btn-brown);
   color: var(--btn-white);
 }
+
+.btn-hover-up {
+  transition: transform 0.3s ease; /* Smooth transition */
+}
+
+.btn-hover-up:hover {
+  transform: translateY(-5px); /* Moves the button 5px up */
+  transition: transform 0.3s ease; /* Smooth transition */
+}

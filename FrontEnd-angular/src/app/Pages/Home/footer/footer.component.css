@@ -1,0 +1,167 @@
+
+
+.straight-top-line {
+    height: 1px;
+    background-color: #9F9F9F;
+    width: 100%;
+    margin-top: 3rem;
+    opacity: .5;
+  }
+  
+
+.footer-parent {
+    padding: 1.25rem 7rem; /* 20px = 1.25rem */
+}
+
+.footer {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(12.5rem, 1fr)); /* 200px = 12.5rem */
+    gap: 1.25rem; /* 20px = 1.25rem */
+    background-color: white;
+    color: #000000;
+    
+  }
+  
+  .footer-section {
+    margin-bottom: 1.25rem; /* 20px = 1.25rem */
+    
+  }
+
+  
+  
+  .footer-section h3 {
+    font-size: 1rem; /* 16px = 1rem */
+    margin-bottom: 0.625rem; /* 10px = 0.625rem */
+    font-weight :500;
+    padding-bottom: 2rem;
+  }
+
+ 
+
+  .gray-font-color{
+    
+    color: #9F9F9F;
+  }
+   
+  .footer-section p{
+
+    color: #9F9F9F;
+  }
+ 
+  
+  .footer-section ul {
+    list-style: none;
+    padding: 0;
+    
+  }
+  
+  .footer-section ul li {
+    margin-bottom: 0.5rem; /* 8px = 0.5rem */
+  }
+  
+  .footer-section ul li a {
+    color: #000000;
+    text-decoration: none;
+    font-weight: 500;
+  }
+  
+  .footer-section ul li a:hover {
+    text-decoration: underline;
+  }
+  
+  .newsletter-input {
+    width: 100%;
+    padding: 0.5rem; /* 8px = 0.5rem */
+    border: none;
+    border-radius: 0.25rem; /* 4px = 0.25rem */
+  }
+  
+  .subscribe-btn {
+    padding: 0.5rem 1rem; /* 8px x 16px = 0.5rem x 1rem */
+    background-color: #f04e30;
+    color: #fff;
+    border: none;
+    border-radius: 0.25rem; /* 4px = 0.25rem */
+    cursor: pointer;
+  }
+  
+  .subscribe-btn:hover {
+    background-color: #c03e28;
+  }
+  
+  .newsletter-form {
+  display: flex;
+  align-items: center;
+  gap: 0.5rem; /* Add space between the input and button */
+}
+
+.newsletter-input {
+    flex: 1; /* Allow the input to take up remaining space */
+    padding: 0.3rem; /* Add comfortable spacing inside the input */
+    border: none; /* Remove all borders */
+    border-radius: 0; /* Ensure no rounded corners */
+    outline: none; /* Remove default focus outline */
+    border-bottom: 2px solid #000000; /* Add a black underline */
+    font-size: 1rem; /* Ensure text is legible */
+    min-width: 10rem;
+  }
+  
+  .newsletter-input::placeholder {
+    font-family: poppins;
+    color: #9F9F9F; /* Placeholder color */
+    font-size: .8rem;
+  }
+
+.newsletter-input:focus {
+    
+    border-color: #9F9F9F; 
+    box-shadow: 0 0 4px rgba(159, 159, 159, 0.5); 
+   
+  }
+
+.no-border-top-left-right {
+    border-top: none;
+    border-left: none;
+    border-right: none;
+  }
+  
+
+  .subscribe-btn {
+    padding: 0.39rem 1rem; /* Horizontal padding */
+    background-color: transparent;
+    color: #000000;
+    border: none; /* Remove any existing borders */
+    border-bottom: 2px solid #000000; /* Add a black underline */
+    border-radius: 0; /* Ensure no rounded corners for the bottom border */
+    cursor: pointer;
+    font-weight:bolder;
+  }
+  
+
+.subscribe-btn:hover {
+  background-color: var(--btn-brown);
+  color : white
+}
+
+li{
+    padding-bottom: 1rem;
+}
+
+ 
+.footer-section .logo-style {
+    margin-top: 1rem;
+    font-size: 1.5rem ;
+    font-weight: bold;
+  }
+
+  .straight-bottom-line {
+    height: 1px;
+    background-color: #9F9F9F;
+    width: 100%;
+    margin-bottom: 4rem;
+    opacity: .5;
+  }
+
+  .copyRight{
+    font-weight: 500;
+  }

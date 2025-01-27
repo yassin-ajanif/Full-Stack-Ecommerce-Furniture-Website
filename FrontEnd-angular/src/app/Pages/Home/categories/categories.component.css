@@ -1,6 +1,6 @@
 .categories-section {
     text-align: center;
-    padding: 2rem;
+    padding: 2rem 5rem;
   }
   
   .section-title {
@@ -22,7 +22,7 @@
   
   
   .grid-item {
-    padding: 1rem;
+    padding: 0rem;
     border-radius: 8px;
     text-align: center;
     transition: transform 0.3s ease; /* Smooth transition for scaling */

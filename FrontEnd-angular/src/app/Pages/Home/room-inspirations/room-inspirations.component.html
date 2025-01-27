@@ -1,1 +1,78 @@
-<p>room-inspirations works!</p>
+
+<section class="rooms-inspiration">
+    <div class="column first-colum">
+      <h2>50+ Beautifaul Rooms Inspiration</h2>
+      <p>Our designer already made a lot of prototypes of rooms that inspire you</p>
+      <button class="btn-Bronw-background btn-inspire">Explore More</button>
+    </div>
+    
+    <div class="column">
+      <div class="container">
+        <div class="image-container">
+          <img src={{actualImageUrlToDisplay}}>
+        </div>
+        <div class="info-bar">
+           
+          <div class="info-square">
+              <span class="room-title">
+                01
+                <hr style="border: none; border-top: 2px solid black; width: 30px; margin: 0 10px;">
+                Bed Room
+              </span>
+                <span class ="room-description">Inner Peace</span>
+            </div>
+            
+            <button class="expand-btn">
+              
+              <div class="search-icon">
+              <svg   xmlns="http://www.w3.org/2000/svg" 
+              viewBox="0 0 24 24" 
+              fill="none" 
+              stroke="white" 
+              stroke-width="2" 
+              stroke-linecap="round" 
+              stroke-linejoin="round">
+           <circle cx="11" cy="11" r="8" />
+           <line x1="16.5" y1="16.5" x2="22" y2="22" />
+         </svg>
+        </div>
+            </button>         
+
+            </div>
+    </div>
+    </div>
+
+    <div class="column third-column">
+      <div class="column third-column">
+      
+        <!-- Image Gallery -->
+        <div class="images-container" #imageContainer>
+         
+            <img *ngFor="let imgSrc of imageSources.slice(1)"  [src]="imgSrc" alt="Room Image" />
+          
+        </div>
+              
+        <button class="next-btn" (click)="OnscrollImages()">
+           
+          <svg data-name="1-Arrow Up" xmlns="http://www.w3.org/2000/svg"
+           viewBox="0 0 32 32" width="16" height="16" style="transform: rotate(90deg);">
+            <path 
+
+      d="m26.71 10.29-10-10a1 1 0 0 0-1.41 0l-10 10 1.41 1.41L15 3.41V32h2V3.41l8.29 8.29z"
+      
+              fill="#FFFFFF"               
+              stroke="#FFFFFF"         
+              stroke-width="1.5"       
+              stroke-linecap="round"   
+              stroke-linejoin="round">
+            </path>
+          </svg>
+          
+          
+          
+
+          </button>
+      </div>
+      
+    </div>
+  </section>

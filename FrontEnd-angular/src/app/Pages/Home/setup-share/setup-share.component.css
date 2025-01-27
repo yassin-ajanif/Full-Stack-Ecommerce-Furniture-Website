@@ -1,0 +1,87 @@
+.image-gallery {
+    position: relative; /* Set the container to relative for positioning of child elements */
+    width: 100%; /* Full width of the container */
+    height: 150vh; /* Use the full height of the viewport */
+    overflow: hidden;
+  }
+
+  .center-div {
+    width: 100%; /* Make the div take full width */
+    height: 100vh; /* Full viewport height */
+    text-align: center; /* Center the text inside the div */
+    margin-top: 5rem;
+  }
+  
+  .center-div h4,
+  .center-div h1 {
+    display: block; /* Ensure each header is treated as a block */
+    margin: 0 auto; /* Center the block elements horizontally */
+  }
+  
+  .center-div h4 {
+    font-size: 20px; /* Set font size */
+    color: #616161; /* Set color */
+    margin-bottom: 10px; /* Add spacing between h4 and h1 */
+  }
+  
+  .center-div h1 {
+    font-size: 40px; /* Set font size */
+    font-weight: bold; /* Make it bold */
+    color: #3A3A3A; /* Set color */
+  }
+  
+  
+  .image-gallery img {
+    position: absolute; /* Allow absolute positioning */
+    
+    height: auto; /* Maintain aspect ratio */
+    
+  }
+  
+  .image1 {
+    top: 75px; /* No change */
+    left: -189px;
+}
+
+.image2 {
+    top: 595px; /* 505px + 90px */
+    left: -187px;
+}
+
+.image3 {
+    top: 270px; /* 180px + 90px */
+    left: 101px;
+}
+
+.image4 {
+    top: 595px; /* 505px + 90px */
+    left: 201px;
+}
+
+.image5 {
+    top: 225px; /* 135px + 90px */
+    left: 568px;
+}
+
+.image6 {
+    top: 300px; /* 210px + 90px */
+    left: 877px;
+}
+
+.image7 {
+    top: 656px; /* 566px + 90px */
+    left: 877px;
+}
+
+.image8 {
+    top: 21px; /* No change */
+    left: 1180px;
+}
+
+.image9 {
+    top: 689px; /* 599px + 90px */
+    left: 1084px;
+}
+
+
+  
