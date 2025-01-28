@@ -1,0 +1,88 @@
+
+.dropDowContainer{
+
+  display: flex;
+  padding: 10px;
+  position: absolute;
+  z-index: 10;
+}
+
+.dropDowContainer label{
+
+margin-top: 0.4375rem;
+margin-right: 0.625rem;
+
+}
+
+.dropdown {
+    
+    display: inline-block; /* Ensure it's aligned properly */
+    font-family: Arial, sans-serif;
+}
+
+/* Dropdown header */
+.dropdown-header {
+    padding: 10px;
+    background-color: #fff; /* Set the background color */
+    cursor: pointer;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+  
+}
+
+/* Arrow icon */
+.arrow {
+    border: solid #333;
+    border-width: 0 2px 2px 0;
+    display: inline-block;
+    padding: 3px;
+    transform: rotate(45deg);
+    transition: transform 0.3s ease;
+    margin-left: .4rem;
+}
+
+/* Rotate arrow on hover */
+.dropdown-header:hover .arrow {
+    transform: rotate(-135deg);
+}
+
+/* Dropdown menu */
+.dropdown-menu {
+    position: absolute;
+    top: 100%; /* Align the menu directly below the header */
+    left: 0;
+    width: 100%; /* Ensure it matches the width of the header */
+    border: 1px solid #ccc;
+    background-color: #fff; /* Set the same background color as the header */
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+    border-radius: 4px;
+    max-height: 200px;
+    overflow-y: auto;
+    z-index: 10;
+    display: none; /* Initially hidden */
+    
+}
+
+/* Show the dropdown menu when the dropdown is active */
+.dropdown.open .dropdown-menu {
+    display: block;
+    
+}
+
+.dropdown-menus{
+    background-color: white;
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+    
+}
+
+/* Dropdown options */
+.dropdown-option {
+    padding: .9rem;
+    cursor: pointer;
+}
+
+/* Hover effect for options */
+.dropdown-option:hover {
+    background-color: #f0f0f0;
+}

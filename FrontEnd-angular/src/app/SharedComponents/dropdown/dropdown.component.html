@@ -1,0 +1,27 @@
+
+<div class="dropDowContainer">
+
+<label #dropdownLabel>{{ label }} :</label>
+
+<div class="dropdown" (clickOutside)="closeDropdown()" #dropdown>
+   
+    <div class="dropdown-header" (click)="toggleDropdown()">
+      <span>{{ selectedOption || label }}</span>
+      <span class="arrow"></span>
+    </div>
+      
+    <div *ngIf="isOpen" class="dropdown-menus">
+      
+        
+        <div *ngFor="let option of items" class="dropdown-option" (click)="selectOption(option)">
+        {{ option }}
+      </div>
+        
+          <div *ngFor="let item of options; let i = index" >
+             {{item}}  <!-- Display the index + 1 -->
+          </div>
+    </div>
+ 
+</div>
+
+</div>

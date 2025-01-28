@@ -1,0 +1,47 @@
+.page-header {
+    background-image: url('../../../../../public/Assets/Shop/shopHeroImage.png'); /* Set your image path here */
+    background-size: cover; /* Ensures the background image covers the entire div */
+    background-position: center; /* Centers the image */
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    
+    text-align: center;
+    /*padding: 1.3rem;*/
+    height: 19rem;
+  }
+  
+  .page-title {
+    
+    font-size: 3rem;
+    font-weight: 500;
+    color: #000000;
+    
+  }
+  
+  .breadcrumb {
+
+    display: flex;
+    font-size: 1rem;
+    font-weight: normal;
+    gap: .7rem;
+  }
+  
+  .home {
+    
+    font-weight: 500;
+    text-decoration: none; /* Removes underline */
+    color: #000000;
+  }
+  
+  .shop {
+    font-weight: lighter; /* Makes "Shop" lighter */
+  }
+
+
+  .home:hover {
+    transition: color 0.3s ease, transform 0.3s ease; /* Smooth transition effect */
+    transform: scale(1.05); /* Slight scale effect on hover */
+  }
+  

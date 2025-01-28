@@ -10,11 +10,15 @@ import { CommonModule } from '@angular/common';
 import { SetupShareComponent } from "./Pages/Home/setup-share/setup-share.component";
 import { FooterComponent } from "./Pages/Home/footer/footer.component";
 import { RoomInspirationsComponent } from "./Pages/Home/room-inspirations/room-inspirations.component";
+import { ShopHeroComponent } from './Pages/Shop/shop-hero/shop-hero.component';
+import { ShowingProductsParamsComponent } from "./Pages/Shop/showing-products-params/showing-products-params.component";
+
 
 @Component({
   selector: 'app-root',
   imports: [RouterOutlet, NavbarComponent, HeroComponent, CategoriesComponent,
-    ProductListComponent, CommonModule, SetupShareComponent, FooterComponent, RoomInspirationsComponent],
+    ProductListComponent, CommonModule, SetupShareComponent, FooterComponent,
+    RoomInspirationsComponent, ShopHeroComponent, ShowingProductsParamsComponent],
   templateUrl: './app.component.html',
   styleUrl: './app.component.css'
 })
