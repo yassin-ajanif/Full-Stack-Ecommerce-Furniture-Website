@@ -3,14 +3,18 @@
     <div class="column first-colum">
       <h2>50+ Beautifaul Rooms Inspiration</h2>
       <p>Our designer already made a lot of prototypes of rooms that inspire you</p>
-      <button class="btn-Bronw-background btn-inspire">Explore More</button>
+      <button class="btn-Bronw-background btn-inspire" >Explore More</button>
     </div>
     
     <div class="column">
       <div class="container">
+       
         <div class="image-container">
           <img src={{actualImageUrlToDisplay}}>
         </div>
+
+        
+
         <div class="info-bar">
            
           <div class="info-square">
@@ -22,7 +26,7 @@
                 <span class ="room-description">Inner Peace</span>
             </div>
             
-            <button class="expand-btn">
+            <button class="expand-btn"(click)="OnExpandImage()">
               
               <div class="search-icon">
               <svg   xmlns="http://www.w3.org/2000/svg" 
@@ -39,7 +43,8 @@
             </button>         
 
             </div>
-    </div>
+    
+          </div>
     </div>
 
     <div class="column third-column">
@@ -75,4 +80,13 @@
       </div>
       
     </div>
+
+    
+  
+    <div  *ngIf = "UserWantOExpandImage" class="overlay" >
+      <img src={{actualImageUrlToDisplay}} alt="Expanded Image">
+      <button class="close-btn" (click)="OnCloseExpandedImage()">X</button>
+    </div>
+    
+
   </section>

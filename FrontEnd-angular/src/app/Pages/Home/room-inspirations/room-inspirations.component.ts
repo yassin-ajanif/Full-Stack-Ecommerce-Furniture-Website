@@ -1,6 +1,5 @@
 import { CommonModule } from '@angular/common';
-import { Component, ViewChild,ElementRef, AfterViewInit, AfterViewChecked  } from '@angular/core';
-import { from } from 'rxjs';
+import { Component, ViewChild,ElementRef, Renderer2   } from '@angular/core';
 
 @Component({
   selector: 'room-inspirations',
@@ -9,6 +8,8 @@ import { from } from 'rxjs';
   styleUrl: './room-inspirations.component.css'
 })
 export class RoomInspirationsComponent {
+   
+  constructor(private renderer: Renderer2) {}
    
    imageSources : string[]= [
     "Assets/RommInspirations/room1.png",
@@ -24,15 +25,15 @@ export class RoomInspirationsComponent {
    actualImageUrlToDisplay : string = this.imageSources[0]
    // we removed the first elemtn of image from array so the array is the number of images - 1
    NumberOfImagesMinusOne : number = this.imageSources.length - 1
-   
-
+   UserWantOExpandImage : Boolean = false
   
    scrolleImagesByOneImageToLeft(){
 
       const container = this.imageContainerRef.nativeElement;
       const imageWidthToScroll = this.gapBetweenImages + (this.imageContainerRef.nativeElement.offsetWidth)/this.NumberOfImagesMinusOne;
-      container.style.transform += `translateX(${-imageWidthToScroll}px)`;
-      container.style.transition = 'transform 0.5s ease';  // Optional: adds smooth scrolling effect
+       // Use Renderer2 to set styles and avoid direct DOM manipulation
+      this.renderer.setStyle(container, 'transform', `translateX(${-imageWidthToScroll}px)`);
+      this.renderer.setStyle(container, 'transition', 'transform 0.5s ease'); // Optional: adds smooth scrolling effect
    }
 
    goToInitialPositionOfImagesContainer(){
@@ -59,5 +60,26 @@ export class RoomInspirationsComponent {
       this.actualImageUrlToDisplay = this.imageSources[++this.imageUrlIndex]
       this.scrolleImagesByOneImageToLeft()
 
-   }
-}
+   
+   
+    }
+
+    OnExpandImage(){
+      this.UserWantOExpandImage = true
+      this.disableScrolling() 
+    }
+
+    OnCloseExpandedImage(){
+      this.UserWantOExpandImage = false
+      this.enableScrolling()
+    }
+
+    disableScrolling() {
+      this.renderer.setStyle(document.body, 'overflow', 'hidden');
+    }
+  
+    enableScrolling() {
+      this.renderer.setStyle(document.body, 'overflow', 'auto');
+    }
+
+  }
