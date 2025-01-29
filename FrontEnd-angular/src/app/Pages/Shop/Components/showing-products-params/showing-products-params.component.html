@@ -1,0 +1,51 @@
+<section class="product-section">
+   
+    <div class="navbar">
+
+      <div class="selectContainer">
+
+      <label>Filter by :</label>
+  
+      <dropdown label="Filter by" 
+      widthInRem="10rem"
+      heightInRem="1.5rem"
+      labelWidthInRem="1.1rem"
+      [options]="['Not Filtred', 'Cheap', 'Popular']"
+      selectedOption = "Not Filtred"
+       ></dropdown>
+    
+
+    </div>
+
+     <div class="filters-wrapper">
+ 
+  <div class="category-filter">
+
+     <label>Categories :</label>
+
+     <dropdown label="Filter by" 
+               [options]="['All', 'Dining', 'Bedroom', 'LivingRoom']"
+               selectedOption = "All"
+               widthInRem="10rem" 
+               heightInRem="1.5rem"
+               labelWidthInRem="1.1rem">
+              </dropdown>
+</div>
+
+<div class="search-container">
+    <input type="text" id="productSearch" class="search-input" 
+    placeholder="Search for products..." />
+    <button class="search-btn">Search</button>
+  </div>
+
+</div>
+
+  
+      
+    </div>
+  
+    <div class="product-list">
+      <!-- Product cards go here -->
+    </div>
+  </section>
+  

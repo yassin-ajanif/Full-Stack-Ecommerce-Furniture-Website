@@ -15,11 +15,11 @@ export class DropdownComponent implements AfterViewInit {
   @Input() selectedOption: string = '';
   // set default width of the dropdownMenu
   @Input() widthInRem : string = '3rem';
-  @Input() labelWidthInRem : string = '1rem';
+  @Input() heightInRem : string = '1.5rem';
   @ViewChild('dropdown') dropdownElement!: ElementRef; 
-  @ViewChild('dropdownLabel') dropdownLableElement!: ElementRef; 
   
-  items = ['Apple', 'Banana', 'Cherry', 'Date'];  
+
+  //items = ['Apple', 'Banana', 'Cherry', 'Date'];  
   
   @Output() optionSelected: EventEmitter<string> = new EventEmitter<string>();
 
@@ -30,7 +30,7 @@ export class DropdownComponent implements AfterViewInit {
   ngAfterViewInit(): void {
     // Set the width of the dropdown element programmatically using Renderer2
     this.setTheWidthOfDropDown()
-    this.setTheFontSizeOfLabel()
+   // this.setTheFontSizeOfLabel()
   }
 
   setTheWidthOfDropDown(){ 
@@ -38,13 +38,7 @@ export class DropdownComponent implements AfterViewInit {
     this.renderer.setStyle(this.dropdownElement.nativeElement, 'width', this.widthInRem);
   }
 
-  setTheFontSizeOfLabel(){
-    if (this.dropdownLableElement === undefined) return;
-
-    // Dynamically set the font size of the label using Renderer2
-    this.renderer.setStyle
-    ( this.dropdownLableElement.nativeElement,'font-size',this.labelWidthInRem);
-  }
+ 
   // Method to toggle dropdown visibility
   toggleDropdown() {
     this.isOpen = !this.isOpen;

@@ -1,0 +1,51 @@
+.features {
+    display: grid;
+    grid-template-columns: repeat(4, 1fr); /* Two columns */
+    gap: 20px;
+    background-color: #FAF3EA;
+    padding: 3rem 2rem;
+  }
+  
+  .feature-block {
+    display: grid;
+    grid-template-columns: auto auto; /* Icon and text have equal width */
+    align-items: center;
+    gap: 1rem;
+  }
+  
+  .icon-container {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    height: 100%;
+  }
+  
+  .icon {
+    width: 60px; 
+    height: 60px;
+  }
+  
+  .text-container {
+    display: grid;
+    grid-template-rows: auto auto; /* Title and description */
+    align-items: center;
+    
+  }
+  
+  .title {
+    color: #242424;
+    font-size: 1.2rem;
+    font-weight: 600;
+    margin:0;
+    padding:0;
+  }
+  
+  .description {
+    color:#898989;
+    font-size: .8;
+    color: #666;
+    margin:0;
+    padding:0;
+    font-weight: 500;
+  }
+  

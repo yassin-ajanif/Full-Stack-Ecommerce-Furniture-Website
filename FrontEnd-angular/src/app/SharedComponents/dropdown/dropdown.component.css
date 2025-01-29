@@ -3,7 +3,6 @@
 
   display: flex;
   padding: 10px;
-  position: absolute;
   z-index: 10;
 }
 
@@ -49,19 +48,8 @@ margin-right: 0.625rem;
 
 /* Dropdown menu */
 .dropdown-menu {
-    position: absolute;
-    top: 100%; /* Align the menu directly below the header */
-    left: 0;
-    width: 100%; /* Ensure it matches the width of the header */
-    border: 1px solid #ccc;
-    background-color: #fff; /* Set the same background color as the header */
-    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
-    border-radius: 4px;
-    max-height: 200px;
-    overflow-y: auto;
-    z-index: 10;
-    display: none; /* Initially hidden */
-    
+
+   
 }
 
 /* Show the dropdown menu when the dropdown is active */
@@ -73,7 +61,8 @@ margin-right: 0.625rem;
 .dropdown-menus{
     background-color: white;
     box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
-    
+    position: absolute;
+    z-index: 2;
 }
 
 /* Dropdown options */

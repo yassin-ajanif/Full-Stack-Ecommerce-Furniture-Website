@@ -1,5 +1,5 @@
 import { Component } from '@angular/core';
-import { DropdownComponent } from '../../../SharedComponents/dropdown/dropdown.component';
+import { DropdownComponent } from '../../../../SharedComponents/dropdown/dropdown.component';
 
 @Component({
   selector: 'showing-products-params',

@@ -8,13 +8,28 @@
     justify-content: space-between;  /* Distributes space evenly */
     height: 4rem;
   }
+
+  .wrap-componenet{
+
+    position: relative;
+  }
   
   .selectContainer{
 
-    /*display: flex;
-    gap: 2rem;*/
+    display: flex;
+    gap: .2rem;
+    align-items: center;
   }
 
+  label{
+    font-size: 1.15rem;
+  }
+
+  .category-filter{
+    display: flex;
+    gap: 0.2rem;
+    align-items: center;
+  }
   .filters-wrapper{
 
     display: flex;
