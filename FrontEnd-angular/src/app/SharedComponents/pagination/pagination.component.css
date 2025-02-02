@@ -1,0 +1,29 @@
+.pagination-container {
+    display: flex;
+    gap: 2rem;
+    justify-content: center;
+    padding:4rem;
+  }
+  .page-button {
+    width: 3.75rem;
+    height: 3.75rem;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    background-color: #F9F1E7;
+    border: none;
+    cursor: pointer;
+    font-size: 1.1rem;
+    transition: transform 0.3s ease;
+    border-radius: .6rem;
+  }
+  .page-button:hover {
+
+    transform: translateY(-2px); /* Moves the button up by 2px */
+  }
+
+  .page-button.active {
+    background-color: var(--btn-brown);
+    color: white;
+    
+  }

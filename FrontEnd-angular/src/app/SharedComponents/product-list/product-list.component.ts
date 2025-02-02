@@ -24,5 +24,5 @@ export class ProductListComponent {
     imageUrl: string;
   }[] ;
   
-  
+   
 }
