@@ -1,0 +1,23 @@
+
+
+.related-products-container {
+    
+    display: grid;
+    place-items: center; 
+    row-gap: 1rem;
+    margin-bottom: 2rem;
+}
+
+.related-products-container h3{
+   
+    padding: 0;
+    margin: 0;
+    font-weight: 500;
+    font-size: 1.5rem;
+}
+
+.btn-white-background:hover {
+
+    transform: translateY(-5px);
+}
+
