@@ -1,7 +1,9 @@
 
+<div *ngIf="cartVisible" class="overlay no-scroll " (click)="closeCart()"></div>
+
 <nav class="navbar">
     <!-- Logo Section -->
-    <div class="logo-container">
+    <div class="logo-container" >
       <img src="Assets/Home/logo.png" alt="Logo" class="logo">
       <span class="brand-name">Furniro</span>
     </div>
@@ -19,15 +21,20 @@
       <a href="#" class="icon">
         <img src="Assets/Home/logIcon.png" alt="LogIn" class="navbar-icon-img">
       </a>
-      <a href="#" class="icon">
-        <img src="Assets/Home/SearchIcon.png" alt="Cart" class="navbar-icon-img">
-      </a>
+      <div  class="icon">
+        <img src="Assets/Home/SearchIcon.png" alt="Search" class="navbar-icon-img">
+      </div>
       <a href="#" class="icon">
         <img src="Assets/Home/LoveIcon.png" alt="User" class="navbar-icon-img">
       </a>
       <a href="#" class="icon">
-        <img src="Assets/Home/CartIcon.png" alt="Phone" class="navbar-icon-img">
+        <img src="Assets/Home/CartIcon.png" alt="Cart" (click)="DisplayCart()" 
+        class="navbar-icon-img">
       </a>
     </div>
     
   </nav>
+
+  <div *ngIf="cartVisible" class="cart-container">
+    <shopping-cart (closeCartEvent)="closeCart()"></shopping-cart>
+</div>

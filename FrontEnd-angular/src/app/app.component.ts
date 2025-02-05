@@ -6,13 +6,15 @@ import { FooterComponent } from "./footer/footer.component";
 import { HomePageComponent } from "./Pages/Home/home-page/home-page.component";
 import { ShopPageComponent } from './Pages/Shop/shop-page/shop-page.component';
 import { SelectedProductInfoPageComponent } from "./Pages/SelectedProductInfo/SelectedProductInfoPage/selected-product-info-page/selected-product-info-page.component";
+import { CartComponent } from "./Pages/Cart/cart/cart.component";
 
 
 @Component({
   selector: 'app-root',
 
   imports: [RouterOutlet, NavbarComponent, CommonModule, FooterComponent,
-    HomePageComponent, ShopPageComponent, SelectedProductInfoPageComponent],
+    HomePageComponent, ShopPageComponent, SelectedProductInfoPageComponent, 
+    CartComponent],
 
   
   templateUrl: './app.component.html',

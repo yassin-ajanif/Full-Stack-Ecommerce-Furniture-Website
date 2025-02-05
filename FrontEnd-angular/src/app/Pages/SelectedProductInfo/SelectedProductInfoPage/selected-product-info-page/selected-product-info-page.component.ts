@@ -5,7 +5,8 @@ import { RelatedProductsComponent } from "../../Components/related-products/rela
 
 @Component({
   selector: 'selected-product-info-page',
-  imports: [ProductSelectedInfoComponent, ReviewSectionComponent, RelatedProductsComponent],
+  imports: [ProductSelectedInfoComponent, ReviewSectionComponent, 
+    RelatedProductsComponent],
   templateUrl: './selected-product-info-page.component.html',
   styleUrl: './selected-product-info-page.component.css'
 })
