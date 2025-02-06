@@ -1,4 +1,4 @@
-import { Component } from '@angular/core';
+import { Component, Input } from '@angular/core';
 
 @Component({
   selector: 'shop-hero',
@@ -7,5 +7,6 @@ import { Component } from '@angular/core';
   styleUrl: './shop-hero.component.css'
 })
 export class ShopHeroComponent {
-
+   
+  @Input() pageName:string =""
 }

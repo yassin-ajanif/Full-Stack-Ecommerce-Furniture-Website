@@ -1,0 +1,112 @@
+body {
+    font-family: Arial, sans-serif;
+    background-color: #f9f9f9;
+    margin: 0;
+    padding: 0;
+}
+
+.container {
+    width: 60%;
+    margin: auto;
+    background: white;
+    padding: 20px;
+    padding-bottom: 53px;
+  
+}
+
+.container h2 {
+
+    margin-top: 3rem;
+    text-align: center;
+}
+
+.container p {
+    text-align: center;
+    width: 80%;  /* Set the width of the paragraph */
+    max-width: 650px;  /* Optional: limit the maximum width */
+    margin: 0 auto;  /* Center the paragraph */
+}
+
+.wrapper-contact p {
+    text-align: left;
+    width: auto;
+}
+
+h2 {
+    color: #333;
+}
+h3{font-weight: 600;}
+
+p {
+    color: #777;
+}
+
+.wrapper-contact{
+
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    margin-top: 4rem;
+}
+
+.contact-details {
+    display: grid;
+    justify-content: space-around;
+   
+}
+
+.detail {
+    display: flex;
+    max-width: 20rem;
+    gap: 2rem;
+    
+}
+
+.icon {
+    font-size: 24px;
+    margin-right: 10px;
+}
+
+.contact-form {
+    display: flex;
+    flex-direction: column;
+    gap: 15px;
+    max-width: 500px;
+}
+
+.form-field {
+    display: flex;
+    flex-direction: column;
+}
+
+label {
+    font-size: 14px;
+    margin-bottom: 5px;
+    color: #333;
+}
+
+input, textarea {
+    padding: 10px;
+    font-size: 14px;
+    border: 1px solid #ccc;
+    border-radius: 4px;
+}
+
+button {
+    margin-top: 15px;
+    padding: 12px;
+    background-color: var(--btn-brown);
+    color: white;
+    border: none;
+    font-size: 16px;
+    cursor: pointer;
+    border-radius: 5px;
+    max-width: 10rem;
+    transition: transform 0.3s ease; /* Smooth transition */
+
+}
+
+button:hover {
+   
+    transform: translateY(-3px);
+}
+

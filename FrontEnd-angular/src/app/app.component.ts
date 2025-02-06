@@ -7,14 +7,16 @@ import { HomePageComponent } from "./Pages/Home/home-page/home-page.component";
 import { ShopPageComponent } from './Pages/Shop/shop-page/shop-page.component';
 import { SelectedProductInfoPageComponent } from "./Pages/SelectedProductInfo/SelectedProductInfoPage/selected-product-info-page/selected-product-info-page.component";
 import { CartComponent } from "./Pages/Cart/cart/cart.component";
+import { CheckoutPageComponent } from "./Pages/Checkout/checkout-page/checkout-page.component";
+import { ContactPageComponent } from "./Pages/Contact/contact-page/contact-page.component";
 
 
 @Component({
   selector: 'app-root',
 
   imports: [RouterOutlet, NavbarComponent, CommonModule, FooterComponent,
-    HomePageComponent, ShopPageComponent, SelectedProductInfoPageComponent, 
-    CartComponent],
+    HomePageComponent, ShopPageComponent, SelectedProductInfoPageComponent,
+    CartComponent, CheckoutPageComponent, CheckoutPageComponent, ContactPageComponent],
 
   
   templateUrl: './app.component.html',

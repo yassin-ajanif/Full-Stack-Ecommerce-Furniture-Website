@@ -1,5 +1,5 @@
 import { AfterViewInit, Component, Input, OnInit } from '@angular/core';
-import { ShopHeroComponent } from "../Components/shop-hero/shop-hero.component";
+import { ShopHeroComponent } from "../../../SharedComponents/shop-hero/shop-hero.component";
 import { ShowingProductsParamsComponent } from '../Components/showing-products-params/showing-products-params.component';
 import { ProductListComponent } from "../../../SharedComponents/product-list/product-list.component";
 import { ProductService } from '../../../Services/product.service';

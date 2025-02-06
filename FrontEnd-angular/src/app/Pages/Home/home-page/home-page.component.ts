@@ -9,7 +9,7 @@ import { ShowingProductsParamsComponent } from '../../Shop/Components/showing-pr
 import { HeroComponent } from '../Components/hero/hero.component';
 import { RouterOutlet } from '@angular/router';
 import { ProductService } from '../../../Services/product.service';
-import { ShopHeroComponent } from '../../Shop/Components/shop-hero/shop-hero.component';
+import { ShopHeroComponent } from '../../../SharedComponents/shop-hero/shop-hero.component';
 
 
 @Component({
