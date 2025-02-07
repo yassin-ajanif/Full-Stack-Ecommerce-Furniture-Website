@@ -9,6 +9,8 @@ import { SelectedProductInfoPageComponent } from "./Pages/SelectedProductInfo/Se
 import { CartComponent } from "./Pages/Cart/cart/cart.component";
 import { CheckoutPageComponent } from "./Pages/Checkout/checkout-page/checkout-page.component";
 import { ContactPageComponent } from "./Pages/Contact/contact-page/contact-page.component";
+import { LoginPageComponent } from "./Pages/Login/login-page/login-page.component";
+import { ProductAndCategoryPageComponent } from "./Pages/ProductAndCategoryPage/product-and-category-page/product-and-category-page.component";
 
 
 @Component({
@@ -16,7 +18,7 @@ import { ContactPageComponent } from "./Pages/Contact/contact-page/contact-page.
 
   imports: [RouterOutlet, NavbarComponent, CommonModule, FooterComponent,
     HomePageComponent, ShopPageComponent, SelectedProductInfoPageComponent,
-    CartComponent, CheckoutPageComponent, CheckoutPageComponent, ContactPageComponent],
+    CartComponent, CheckoutPageComponent, CheckoutPageComponent, ContactPageComponent, LoginPageComponent, ProductAndCategoryPageComponent],
 
   
   templateUrl: './app.component.html',

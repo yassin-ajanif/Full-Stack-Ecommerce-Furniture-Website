@@ -1,0 +1,270 @@
+
+.wrapper-parent{
+
+  background-color: #FAF3EA;
+}
+
+.search-section {
+    
+   
+    margin-top: 10px;
+    text-align: center;
+  }
+  
+  .search-container {
+    margin-top: 10px;
+    
+    /* background: white; */
+    display: grid
+;
+grid-template-columns: auto auto;
+    
+  }
+  
+  .search-input {
+    width: 80%;
+    padding: 0.5rem;
+    border: 1px solid #ccc;
+    border-radius: 5px;
+    justify-self: end;
+  }
+  
+  .results-container {
+    margin-top: 10px;
+    text-align: left;
+  }
+  
+  .results-container ul {
+    list-style: none;
+    padding: 0;
+  }
+  
+  .results-container li {
+    padding: 5px;
+    background: #eee;
+    border-radius: 5px;
+    margin: 5px 0;
+  }
+  
+
+.add-product-container{
+    
+    display: grid;
+    background-color: #FAF3EA;
+    padding: 2rem;
+    
+}
+
+
+.category-management-grid {
+        display: flex;
+        gap: 1rem;
+        padding: 2rem;
+        justify-content: center;
+  }
+
+  .updateCategory{
+    margin-bottom: .5rem;
+  }
+
+  .form-section{
+    width: 70%;
+    margin: auto;
+  }
+  
+  .category-block {
+    display: flex;
+    flex-direction: column;
+    gap: 0.5rem;
+    background: #f9f9f9;
+    padding: 1.5rem;
+   
+   
+    align-items: center;
+  }
+
+  .CategoryAction_Wrapper{
+    display: grid;
+    justify-content: center;
+  }
+  
+  
+  .toggle-btn {
+    padding: 0.5rem 1rem;
+    font-size: 1rem;
+    border: none;
+    cursor: pointer;
+    color: white;
+    background-color: var(--btn-brown);
+    height: 3rem;
+    font-family: Poppins;
+  }
+
+  .toggle-btn:hover {
+    cursor: pointer;
+    transform: translateY(-1px); 
+  }
+  
+  
+  .category-label {
+    font-size: 1rem;
+    font-weight: 600;
+  }
+  
+  .category-input, .category-select {
+    width: 100%;
+    padding: 0.5rem;
+    border: 1px solid #ccc;
+    border-radius: 4px;
+  }
+  
+  .btn-add, .btn-update, .btn-delete {
+    padding: 0.5rem 1rem;
+    font-size: 1rem;
+    
+    border-radius: 4px;
+    transition: all 0.3s ease;
+    width: 70%;
+    font-weight: 600;
+    color: #2916089c;
+    background-color: transparent; 
+    border: 2px solid var(--btn-brown);
+    margin-top: 1rem;
+  }
+  
+
+  
+  .btn-add:hover, .btn-update:hover, .btn-delete:hover {
+    opacity: 0.8;
+    cursor: pointer;
+    transform: translateY(-3px); 
+  }
+
+
+  
+  .page-title{
+    display: flex
+    ;
+        justify-content: center;
+        margin-bottom: 2rem;
+  }
+  .section-title{
+    display: flex
+;
+    justify-content: center;
+    margin-bottom: 2rem;
+  }
+
+  .btns-grid{display: flex
+    ;
+        justify-content: center;
+        gap: 1rem;}
+
+   
+
+.form-group {
+    display: flex;
+    align-items: center;
+    gap: 1rem; /* Adds spacing between elements */
+    margin-bottom: 1.5rem;
+  }
+  
+  .form-label {
+    flex: 1; /* Allows label to take proper width */
+  
+    margin-right: 0.5rem;
+  }
+  
+  .form-input {
+    flex: 3; /* Gives more space to input fields */
+    width: 100%; /* Ensures they take full width */
+    padding: 0.75rem;
+    border: none;
+    font-size: 1rem;
+  }
+
+  .form-input:focus {
+    border: 1px solid #80808073; /* Increased to 2px for better visibility */
+    outline: none; /* Removes default browser outline */
+}
+  
+  .category-group {
+    display: flex;
+    align-items: center;
+    gap: 0.5rem;
+  }
+  
+  .category-group select {
+    flex: 3;
+    padding: 0.75rem;
+    border: 1px solid gray;
+    border-radius: 0.25rem;
+    font-size: 1rem;
+  }
+  
+  .btn-add-category {
+    flex: 1;
+    background-color: var(--btn-brown);
+    color: var(--btn-white);
+    padding: 0.75rem;
+    border: none;
+    cursor: pointer;
+    font-size: 1rem;
+    border-radius: 0.25rem;
+    transition: all 0.3s ease;
+  }
+  
+  .btn-add-category:hover {
+    opacity: 0.8;
+  }
+  
+  .submitBtn{ display: block; margin: auto; font-weight: 600;}
+ 
+  .upload-section {
+    
+    margin-top: 10px;
+    text-align: center;
+    margin-bottom: 20px;
+  }
+  
+  .upload-content {
+    margin-top: 10px;
+    padding: 1rem;
+    background: white;
+
+    margin: 0px auto;
+  }
+  
+  .file-input {
+    display: block;
+    margin: 10px auto;
+  }
+  
+  .image-preview {
+    max-width: 60%;
+    max-height: 200px;
+    margin-top: 10px;
+    border-radius: 5px;
+  }
+  
+  .upload-btn, .remove-btn {
+    background-color: var(--btn-brown);
+    color: white;
+    border: none;
+    padding: 0.5rem 1rem;
+    cursor: pointer;
+    margin-top: 10px;
+  }
+  
+  .upload-btn:hover, .remove-btn:hover {
+    background-color: #8b4513;
+  }
+  
+  .remove-btn {
+    background-color: red;
+    margin-left: 10px;
+    display: block;
+    margin: auto;
+  }
+  
+  

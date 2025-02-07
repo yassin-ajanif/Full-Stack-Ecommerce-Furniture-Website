@@ -14,8 +14,8 @@ export class DropdownComponent implements AfterViewInit {
   @Input() options: string[] = [];  
   @Input() selectedOption: string = '';
   // set default width of the dropdownMenu
-  @Input() widthInRem : string = '3rem';
-  @Input() heightInRem : string = '1.5rem';
+  @Input() width : string = '3rem';
+  @Input() height : string = '1.5rem';
   @ViewChild('dropdown') dropdownElement!: ElementRef; 
   
 
@@ -35,7 +35,7 @@ export class DropdownComponent implements AfterViewInit {
 
   setTheWidthOfDropDown(){ 
     if(this.dropdownElement===undefined) return
-    this.renderer.setStyle(this.dropdownElement.nativeElement, 'width', this.widthInRem);
+    this.renderer.setStyle(this.dropdownElement.nativeElement, 'width', this.width);
   }
 
  

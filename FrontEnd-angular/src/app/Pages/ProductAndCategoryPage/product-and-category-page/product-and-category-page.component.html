@@ -1,0 +1,225 @@
+
+<div class="wrapper-parent">
+<div class="add-product-container">
+    <h2 class="page-title">Product Manager</h2>
+    <form class="add-product-form" (ngSubmit)="onSubmit()">
+      
+        <!-- category Section -->
+        <div class="category-management-grid">
+  
+            <!-- Add Category -->
+             <div class="CategoryAction_Wrapper">
+            <button (click)="toggleSection('add')" class="toggle-btn">Add Category</button>
+            <div class="category-block" *ngIf="showAdd">
+              <input type="text" [(ngModel)]="newCategoryName" class="category-input" placeholder="Enter category name">
+              <button (click)="addCategory()" class="btn-add">Add</button>
+            </div>
+            </div> 
+          
+            <!-- Update Category -->
+            <div class="CategoryAction_Wrapper">
+            <button (click)="toggleSection('update')" class="toggle-btn">Update Category</button>
+            <div class="category-block" *ngIf="showUpdate">
+              <dropdown label="select Category" 
+                        [options]="categories" 
+                        width="10rem">
+                    </dropdown>
+                    <label class="updateCategory">updated Category :</label>
+                <input type="text" [(ngModel)]="updatedCategoryName" 
+                class="category-input" placeholder="Enter New Category Name">
+              <button (click)="updateCategory()" class="btn-update">Update</button>
+            </div>
+            </div>
+          
+            <!-- Delete Category -->
+            <div class="CategoryAction_Wrapper">
+            <button (click)="toggleSection('delete')" class="toggle-btn">Delete Category</button>
+            <div class="category-block" *ngIf="showDelete">
+                <dropdown label="select Category" 
+                [options]="categories" 
+                width="10rem">
+            </dropdown>
+              <button (click)="deleteCategory()" class="btn-delete">Delete</button>
+            </div>
+            </div>
+          </div>
+          
+          <div class="product-management">
+            <div class="btns-grid">
+                <button class="toggle-btn" [class.active]="activeSection === 'add'"
+                    (click)="setActiveSection('add')">Add Product</button>
+                <button class="toggle-btn" [class.active]="activeSection === 'update'"
+                    (click)="setActiveSection('update')">Update Product</button>
+                <button class="toggle-btn" [class.active]="activeSection === 'delete'"
+                    (click)="setActiveSection('delete')">Delete Product</button>
+            </div>
+        
+            <!-- Add Product Section -->
+            <div class="form-section" *ngIf="activeSection === 'add'">
+                <h3 class="section-title">Add Product</h3>
+        
+                <!-- Upload Section Wrapper -->
+                <section class="upload-section">
+                    <!-- Image Upload Content -->
+                    <div class="upload-content">
+                      <h3>Upload Product Image</h3>
+                  
+                      <!-- File Input -->
+                      <input type="file"
+                       (change)="onImageSelected($event)" 
+                       accept="image/*" class="file-input" />
+                  
+                      <!-- Image Preview & Remove Button -->
+                      <div *ngIf="selectedImage">
+                        <p>Image Preview:</p>
+                        <img [src]="selectedImage" alt="Uploaded Image" class="image-preview" />
+                  
+                        <!-- Remove Image Button -->
+                        <button class="remove-btn" (click)="removeImage()">Remove Image</button>
+                      </div>
+                  
+                      <!-- Upload Button -->
+                      <button class="upload-btn">Upload</button>
+                    </div>
+                  </section>
+                  
+  
+                <div class="form-group">
+                    <label for="productName" class="form-label">Product Name</label>
+                    <input type="text" id="productName" class="form-input"
+                        placeholder="Enter product name" [(ngModel)]="productName"
+                        name="productName" required />
+                </div>
+        
+                <div class="form-group">
+                    <label for="productPrice" class="form-label">Product Price</label>
+                    <input type="number" id="productPrice" class="form-input"
+                        placeholder="Enter product price" [(ngModel)]="productPrice"
+                        name="productPrice" required min="0" />
+                </div>
+        
+                <div class="form-group">
+                    <label class="form-label">Product Category</label>
+                    <dropdown label="Select Category" [options]="categories"
+                        [(ngModel)]="selectedCategory" name="productCategory"
+                        width="10rem"></dropdown>
+                </div>
+        
+                <div class="form-group">
+                    <label for="productDescription" class="form-label">Product Description</label>
+                    <textarea id="productDescription" class="form-input"
+                        placeholder="Enter product description" [(ngModel)]="productDescription"
+                        name="productDescription" required></textarea>
+                </div>
+        
+                <button type="submit" class="btn-Bronw-background btn-hover-up submitBtn">Add Product</button>
+            </div>
+        
+            <!-- Update Product Section -->
+            <div class="form-section" *ngIf="activeSection === 'update'">
+                <h3 class="section-title">Update Product</h3>
+
+                <section class="search-section">
+                    <div class="search-container">
+                      <h4>Search for a Product</h4>
+                  
+                      <!-- Search Input -->
+                      <input type="text" [(ngModel)]="searchQuery" (input)="onSearch()"
+                        placeholder="Enter product name" class="search-input" />
+                  
+                      <!-- Search Results -->
+                      <div *ngIf="filteredProducts.length > 0" class="results-container">
+                        <p>Results:</p>
+                        <ul>
+                          <li *ngFor="let product of filteredProducts">{{ product.name }}</li>
+                        </ul>
+                      </div>
+                  
+                      <!-- No Results Message -->
+                      <p *ngIf="filteredProducts.length === 0 && searchQuery !== ''">No products found.</p>
+                    </div>
+                  </section>
+                  
+        <!-- Upload Section Wrapper -->
+        <section class="upload-section">
+            <!-- Image Upload Content -->
+            <div class="upload-content">
+              <h3>Upload Product Image</h3>
+          
+              <!-- File Input -->
+              <input type="file"
+               (change)="onImageSelected($event)" 
+               accept="image/*" class="file-input" />
+          
+              <!-- Image Preview & Remove Button -->
+              <div *ngIf="selectedImage">
+                <p>Image Preview:</p>
+                <img [src]="selectedImage" alt="Uploaded Image" class="image-preview" />
+          
+                <!-- Remove Image Button -->
+                <button class="remove-btn" (click)="removeImage()">Remove Image</button>
+              </div>
+          
+              <!-- Upload Button -->
+              <button class="upload-btn">Upload</button>
+            </div>
+          </section>
+                <div class="form-group">
+                    <label for="productName" class="form-label">Product Name</label>
+                    <input type="text" id="productName" class="form-input"
+                        placeholder="Enter product name" [(ngModel)]="productName"
+                        name="productName" required />
+                </div>
+        
+                <div class="form-group">
+                    <label for="productPrice" class="form-label">Product Price</label>
+                    <input type="number" id="productPrice" class="form-input"
+                        placeholder="Enter product price" [(ngModel)]="productPrice"
+                        name="productPrice" required min="0" />
+                </div>
+        
+                <div class="form-group">
+                    <label class="form-label">Product Category</label>
+                    <dropdown label="Select Category" [options]="categories"
+                        [(ngModel)]="selectedCategory" name="productCategory"
+                        width="10rem"></dropdown>
+                </div>
+        
+                <div class="form-group">
+                    <label for="productDescription" class="form-label">Product Description</label>
+                    <textarea id="productDescription" class="form-input"
+                        placeholder="Enter product description" [(ngModel)]="productDescription"
+                        name="productDescription" required></textarea>
+                </div>
+        
+                <button type="submit" class="btn-Bronw-background btn-hover-up submitBtn">Update Product</button>
+            </div>
+        
+            <!-- Delete Product Section -->
+            <div class="form-section" *ngIf="activeSection === 'delete'">
+                <h3 class="section-title">Delete Product</h3>
+        
+                <div class="form-group">
+                    <label for="productName" class="form-label">Product Name</label>
+                    <input type="text" id="productName" class="form-input"
+                        placeholder="Enter product name" [(ngModel)]="productName"
+                        name="productName" required />
+                </div>
+        
+                <div class="form-group">
+                    <label class="form-label">Product Category</label>
+                    <dropdown label="Select Category" [options]="categories"
+                        [(ngModel)]="selectedCategory" name="productCategory"
+                        width="10rem"></dropdown>
+                </div>
+        
+                <button type="submit" class="btn-Bronw-background btn-hover-up submitBtn">Delete Product</button>
+            </div>
+        </div>
+         
+
+</form>
+
+</div>
+
+

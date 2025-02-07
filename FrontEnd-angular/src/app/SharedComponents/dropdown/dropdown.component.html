@@ -3,12 +3,12 @@
 
 <div class="dropdown" (clickOutside)="closeDropdown()" #dropdown>
    
-    <div class="dropdown-header" (click)="toggleDropdown()" [style.Height]="heightInRem">
+    <div class="dropdown-header" (click)="toggleDropdown()" [style.Height]="height">
       <span>{{ selectedOption || label }}</span>
       <span class="arrow"></span>
     </div>
       
-    <div *ngIf="isOpen" class="dropdown-menus" [style.width]="widthInRem ">
+    <div *ngIf="isOpen" class="dropdown-menus" [style.width]="width ">
          
         <div *ngFor="let option of options" class="dropdown-option" (click)="selectOption(option)">
         {{ option }}

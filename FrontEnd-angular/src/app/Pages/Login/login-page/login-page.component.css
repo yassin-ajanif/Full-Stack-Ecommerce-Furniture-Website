@@ -1,0 +1,105 @@
+
+
+/* Global styles */
+.login-page{
+
+    display: flex
+;
+    justify-content: center;
+    background-color: #FAF3EA;
+}
+
+/* Login container */
+.login-container { 
+  background-color: var(--btn-white);
+  padding: 2rem;
+  border-radius: 0.5rem;
+  box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+  width: 100%;
+  max-width: 400px;
+  margin: 5rem;
+}
+
+.login-form{ }
+/* Login box */
+.login-box {
+  text-align: center;
+}
+
+/* Login title */
+.login-title {
+  color: var(--product-title);
+  font-size: 1.75rem; /* 28px converted to rem */
+  font-weight: 600;
+  margin-bottom: 1.5rem;
+}
+
+/* Form group */
+.form-group {
+  margin-bottom: 1.5rem;
+  text-align: left;
+  display: grid;
+}
+
+/* Form label */
+.form-label {
+  color: var(--product-price);
+  font-size: 1rem; /* 16px converted to rem */
+  font-weight: 500;
+  display: block;
+  margin-bottom: 0.5rem;
+}
+
+/* Form input */
+.form-input {
+    padding: 0.75rem;
+    border: 1px solid #f5eeee;
+    border-radius: 0.25rem;
+    font-size: 1rem;
+    color: var(--product-title);
+    transition: border-color 0.3s ease;
+}
+
+.form-input:focus {
+  border-color: var(--input-focus-border);
+  outline: none;
+}
+
+/* Button styles */
+.btn-Bronw-background {
+  background-color: var(--btn-brown);
+  color: var(--btn-white);
+  border: none;
+  padding: 0.75rem 1.5rem;
+  cursor: pointer;
+  font-size: 1rem;
+  font-weight: 500;
+  border-radius: 0.25rem;
+  transition: all 0.3s ease;
+  width: 100%;
+}
+
+.btn-Bronw-background:hover {
+  opacity: 0.8;
+}
+
+.btn-hover-up:hover {
+  transform: translateY(-5px);
+}
+
+/* Sign up text */
+.signup-text {
+  color: var(--product-category);
+  font-size: 0.875rem; /* 14px converted to rem */
+  margin-top: 1rem;
+}
+
+.signup-link {
+  color: var(--link-color);
+  text-decoration: none;
+  font-weight: 500;
+}
+
+.signup-link:hover {
+  text-decoration: underline;
+}
