@@ -43,6 +43,47 @@ export class ProductAndCategoryPageComponent {
     { name: 'Mouse' }
   ]; // Example products list (replace with actual data)
   
+  productsCategories : string[]=[]
+
+  ngOnInit(): void {
+    this.fetchCategoryProducts();
+    this.fetchProducts()
+  }
+
+  // Define the method directly inside the component
+  async fetchCategoryProducts(): Promise<void> {
+    try {
+      const response = 
+      await fetch('https://localhost:7023/api/CategoryProducts/ProductsCategories');
+
+      if (!response.ok) {
+        throw new Error(`HTTP error! Status: ${response.status}`);
+      }
+
+      const categories: string[] = await response.json();
+      this.productsCategories = categories;  // Assign the result to the component property
+      console.log("Product Categories:", this.productsCategories);
+    } catch (error) {
+      console.error("Error fetching categories:", error);
+    }
+  }
+
+  async fetchProducts(): Promise<void> {
+    try {
+      const response = 
+      await fetch('https://localhost:7023/api/Products/products');
+
+      if (!response.ok) {
+        throw new Error(`HTTP error! Status: ${response.status}`);
+      }
+
+      const products: string[] = await response.json();
+      //this.productsCategories = categories;  // Assign the result to the component property
+      console.log("Product Categories:", products);
+    } catch (error) {
+      console.error("Error fetching categories:", error);
+    }
+  }
   onSearch() {
     if (this.searchQuery.trim() === '') {
       this.filteredProducts = []; // Clear results if input is empty
@@ -111,7 +152,6 @@ onImageSelected(event: any) {
     this.editingCategory = null;
     this.isCategoryModalOpen = true;
   }
-  
   
   
   // Open Edit Mode
