@@ -1,7 +1,20 @@
 {
   "Version": 1,
   "WorkspaceRootPath": "C:\\Users\\yassin\\source\\repos\\FullStackEcommerceWebsite\\Backend-.NetCore\\",
-  "Documents": [],
+  "Documents": [
+    {
+      "AbsoluteMoniker": "D:0:0:{6CB273F8-A822-417F-92C9-979A4358685A}|DataAccessLayer\\DataAccessLayer.csproj|c:\\users\\yassin\\source\\repos\\fullstackecommercewebsite\\backend-.netcore\\dataaccesslayer\\productrepository.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{6CB273F8-A822-417F-92C9-979A4358685A}|DataAccessLayer\\DataAccessLayer.csproj|solutionrelative:dataaccesslayer\\productrepository.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{1784F4AB-838A-40A1-A297-41B3A1B342DB}|DataBusinessLayer\\DataBusinessLayer.csproj|c:\\users\\yassin\\source\\repos\\fullstackecommercewebsite\\backend-.netcore\\databusinesslayer\\productsservice.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{1784F4AB-838A-40A1-A297-41B3A1B342DB}|DataBusinessLayer\\DataBusinessLayer.csproj|solutionrelative:databusinesslayer\\productsservice.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{ED5648BB-11D0-4B65-9C50-AB958609788B}|EcommerceApis\\EcommerceApis.csproj|c:\\users\\yassin\\source\\repos\\fullstackecommercewebsite\\backend-.netcore\\ecommerceapis\\controllers\\productscontroller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{ED5648BB-11D0-4B65-9C50-AB958609788B}|EcommerceApis\\EcommerceApis.csproj|solutionrelative:ecommerceapis\\controllers\\productscontroller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    }
+  ],
   "DocumentGroupContainers": [
     {
       "Orientation": 0,
@@ -9,7 +22,7 @@
       "DocumentGroups": [
         {
           "DockedWidth": 200,
-          "SelectedChildIndex": -1,
+          "SelectedChildIndex": 4,
           "Children": [
             {
               "$type": "Bookmark",
@@ -26,6 +39,45 @@
             {
               "$type": "Bookmark",
               "Name": "ST:0:0:{3ae79031-e1bc-11d0-8f78-00a0c9110057}"
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 0,
+              "Title": "ProductRepository.cs",
+              "DocumentMoniker": "C:\\Users\\yassin\\source\\repos\\FullStackEcommerceWebsite\\Backend-.NetCore\\DataAccessLayer\\ProductRepository.cs",
+              "RelativeDocumentMoniker": "DataAccessLayer\\ProductRepository.cs",
+              "ToolTip": "C:\\Users\\yassin\\source\\repos\\FullStackEcommerceWebsite\\Backend-.NetCore\\DataAccessLayer\\ProductRepository.cs",
+              "RelativeToolTip": "DataAccessLayer\\ProductRepository.cs",
+              "ViewState": "AQIAAAkAAAAAAAAAAAAIwFkAAAA4AAAA",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2025-02-09T13:46:28.853Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 1,
+              "Title": "ProductsService.cs",
+              "DocumentMoniker": "C:\\Users\\yassin\\source\\repos\\FullStackEcommerceWebsite\\Backend-.NetCore\\DataBusinessLayer\\ProductsService.cs",
+              "RelativeDocumentMoniker": "DataBusinessLayer\\ProductsService.cs",
+              "ToolTip": "C:\\Users\\yassin\\source\\repos\\FullStackEcommerceWebsite\\Backend-.NetCore\\DataBusinessLayer\\ProductsService.cs",
+              "RelativeToolTip": "DataBusinessLayer\\ProductsService.cs",
+              "ViewState": "AQIAAAwAAAAAAAAAAAAAAA8AAAA+AAAA",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2025-02-09T12:26:00.305Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 2,
+              "Title": "ProductsController.cs",
+              "DocumentMoniker": "C:\\Users\\yassin\\source\\repos\\FullStackEcommerceWebsite\\Backend-.NetCore\\EcommerceApis\\Controllers\\ProductsController.cs",
+              "RelativeDocumentMoniker": "EcommerceApis\\Controllers\\ProductsController.cs",
+              "ToolTip": "C:\\Users\\yassin\\source\\repos\\FullStackEcommerceWebsite\\Backend-.NetCore\\EcommerceApis\\Controllers\\ProductsController.cs",
+              "RelativeToolTip": "EcommerceApis\\Controllers\\ProductsController.cs",
+              "ViewState": "AQIAAAAAAAAAAAAAAAAAAAwAAAA4AAAA",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2025-02-09T12:34:05.434Z",
+              "EditorCaption": ""
             }
           ]
         }

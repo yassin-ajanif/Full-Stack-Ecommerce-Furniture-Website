@@ -1,5 +1,7 @@
 ﻿using DataAccessLayer;
+using DataAccessLayer.Dtos;
 using DataAccessLayer.Interfaces;
+using DataAccessLayer.Models;
 using DataBusinessLayer.Interfaces;
 using System;
 using System.Collections.Generic;
@@ -17,10 +19,32 @@ namespace DataBusinessLayer
         {
             _productRepository = productRepository;
         }
-        public List<string> getAllProducts()
-        {       
-            return _productRepository.getAllProducts();
-             
+
+        public List<ProductDTO> getAllProducts()
+        {
+           return _productRepository.getAllProducts();
+
+        }
+     
+        public ProductDTO GetProductById(int productId)
+        {
+            
+            return _productRepository.GetProductById(productId);
+        }
+
+        public bool AddProduct(ProductDTO productDto)
+        {
+            return _productRepository.AddProduct(productDto);
+        }
+
+        public bool UpdateProduct(ProductDTO productDto)
+        {
+            return _productRepository.UpdateProduct(productDto);
+        }
+
+        public bool DeleteProduct(int productId)
+        {
+            return _productRepository.DeleteProduct(productId);
         }
     }
 }
