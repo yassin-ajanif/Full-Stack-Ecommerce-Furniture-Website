@@ -1,0 +1,60 @@
+  <!-- Add Product Section -->
+  <div class="form-section" *ngIf="activeSection === 'add'">
+    <h3 class="section-title">Add Product</h3>
+
+    <!-- Upload Section Wrapper -->
+    <section class="upload-section">
+        <!-- Image Upload Content -->
+        <div class="upload-content">
+          <h3>Upload Product Image</h3>
+      
+          <!-- File Input -->
+          <input type="file"
+           (change)="onImageSelected($event)" 
+           accept="image/*" class="file-input" />
+      
+          <!-- Image Preview & Remove Button -->
+          <div *ngIf="selectedImage">
+            <p>Image Preview:</p>
+            <img [src]="selectedImage" alt="Uploaded Image" class="image-preview" />
+      
+            <!-- Remove Image Button -->
+            <button class="remove-btn" (click)="removeImage()">Remove Image</button>
+          </div>
+      
+          <!-- Upload Button -->
+          <button class="upload-btn">Upload</button>
+        </div>
+      </section>
+      
+
+    <div class="form-group">
+        <label for="productName" class="form-label">Product Name</label>
+        <input type="text" id="productName" class="form-input"
+            placeholder="Enter product name" [(ngModel)]="productName"
+            name="productName" required />
+    </div>
+
+    <div class="form-group">
+        <label for="productPrice" class="form-label">Product Price</label>
+        <input type="number" id="productPrice" class="form-input"
+            placeholder="Enter product price" [(ngModel)]="productPrice"
+            name="productPrice" required min="0" />
+    </div>
+
+    <div class="form-group">
+        <label class="form-label">Product Category</label>
+        <dropdown label="Select Category" [options]="categories"
+            [(ngModel)]="selectedCategory" name="productCategory"
+            width="10rem"></dropdown>
+    </div>
+
+    <div class="form-group">
+        <label for="productDescription" class="form-label">Product Description</label>
+        <textarea id="productDescription" class="form-input"
+            placeholder="Enter product description" [(ngModel)]="productDescription"
+            name="productDescription" required></textarea>
+    </div>
+
+    <button type="submit" class="btn-Bronw-background btn-hover-up submitBtn">Add Product</button>
+</div>

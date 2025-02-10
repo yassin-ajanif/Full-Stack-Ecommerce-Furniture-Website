@@ -32,8 +32,12 @@ namespace DataAccessLayer.Dtos
         [Range(1, int.MaxValue, ErrorMessage = "Invalid Category ID.")]
         public int CategoryID { get; set; }
 
+        // Image as a byte array
+        [MaxLength(1048576)]  // 1MB limit on the byte array (Optional, for runtime validation)
+        public byte[]? ImageData { get; set; }
+
         // Constructor
-        public ProductDTO(int id, string name, string? description, int stockQuantity, decimal price, int categoryID)
+        public ProductDTO(int id, string name, string? description, int stockQuantity, decimal price, int categoryID, byte[] ImageData)
         {
             Id = id;
             Name = name;
@@ -41,6 +45,7 @@ namespace DataAccessLayer.Dtos
             StockQuantity = stockQuantity;
             Price = price;
             CategoryID = categoryID;
+            this.ImageData = ImageData;
         }
     }
 

@@ -808,7 +808,6 @@ export class ProductService  {
   ];
   
  
-  
   productsToLoadAtShopPage !: {id: number; name: string; description: string; price: number; 
     oldPrice: number; category: string; stock: number; rating: number; imageUrl:
      string; }[] ;
@@ -836,4 +835,6 @@ export class ProductService  {
       // after page click btn action
       this.productsSentFromPaginationEvent.emit(this.productsToLoadAtShopPage)
     }
+
+
   }    

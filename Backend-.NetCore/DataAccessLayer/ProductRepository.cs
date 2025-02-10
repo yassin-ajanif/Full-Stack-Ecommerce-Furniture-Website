@@ -29,7 +29,8 @@ namespace DataAccessLayer
                 p.Description,
                 p.StockQuantity,
                 p.Price,
-                p.CategoryID
+                p.CategoryID,
+                p.ImageData
             )).ToList();
 
             return productDtos;
@@ -52,8 +53,9 @@ namespace DataAccessLayer
                 product.Description,
                 product.StockQuantity,
                 product.Price,
-                product.CategoryID
-            );
+                product.CategoryID,
+                product.ImageData
+            ) ;
 
             return productDto;
         }
@@ -68,7 +70,8 @@ namespace DataAccessLayer
                     productDto.Description,
                     productDto.StockQuantity,
                     productDto.Price,
-                    productDto.CategoryID
+                    productDto.CategoryID,
+                    productDto.ImageData
                 );
 
                 _appDbContext.Products.Add(newProduct);
@@ -100,6 +103,7 @@ namespace DataAccessLayer
             productToUpdate.StockQuantity = productDto.StockQuantity;
             productToUpdate.Price = productDto.Price;
             productToUpdate.CategoryID = productDto.CategoryID;
+            productToUpdate.ImageData = productDto.ImageData;
 
             try
             {

@@ -1,0 +1,24 @@
+<!-- Add Category -->
+<div class="CategoryAction_Wrapper">
+  <button (click)="toggleSection('add')" class="toggle-btn">Add Category</button>
+  
+  <div class="category-block" *ngIf="showAdd">
+    <!-- Reactive form with formGroup -->
+    <form [formGroup]="categoryForm" (ngSubmit)="addCategory()">
+      <input 
+        type="text" 
+        formControlName="categoryName"  
+        class="category-input" 
+        placeholder="Enter category name"
+      />
+      
+      <!-- Validation error message -->
+      <div *ngIf="categoryForm.get('categoryName')?.invalid && categoryForm.get('categoryName')?.touched" class="error-message">
+        Category name is required and must be less than 50 characters.
+      </div>
+      
+      <!-- Add button (disabled when the form is invalid) -->
+      <button type="submit" class="btn-add" [disabled]="categoryForm.invalid">Add</button>
+    </form>
+  </div>
+</div>

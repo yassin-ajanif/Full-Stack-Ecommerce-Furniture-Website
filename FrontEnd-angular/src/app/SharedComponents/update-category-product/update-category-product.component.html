@@ -1,0 +1,13 @@
+<div class="CategoryAction_Wrapper">
+    <button (click)="toggleSection('update')" class="toggle-btn">Update Category</button>
+    <div class="category-block" *ngIf="showUpdate">
+      <dropdown label="select Category" 
+                [options]="categories" 
+                width="10rem">
+            </dropdown>
+            <label class="updateCategory">updated Category :</label>
+        <input type="text" [(ngModel)]="updatedCategoryName" 
+        class="category-input" placeholder="Enter New Category Name">
+      <button (click)="updateCategory()" class="btn-update">Update</button>
+    </div>
+    </div>

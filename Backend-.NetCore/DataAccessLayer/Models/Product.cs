@@ -33,17 +33,22 @@ namespace DataAccessLayer.Models
         [Range(1, int.MaxValue, ErrorMessage = "Invalid Category ID.")]
         public int CategoryID { get; set; }
 
+        // Image as a byte array
+        [MaxLength(1048576)]  // 1MB limit on the byte array (Optional, for runtime validation)
+        public byte[]? ImageData { get; set; }
+
         // Navigation property for related CategoryProduct
         public CategoryProduct CategoryProduct { get; set; }
 
         // Constructor
-        public Product(string Name, string? description, int stockQuantity, decimal price, int categoryID)
+        public Product(string Name, string? description, int stockQuantity, decimal price, int categoryID, byte[]ImageData)
         {
             this.Name = Name;
             Description = description;
             StockQuantity = stockQuantity;
             Price = price;
             CategoryID = categoryID;
+            this.ImageData = ImageData;
         }
 
         // Navigation properties for related entities

@@ -55,9 +55,13 @@ builder.Services.AddDbContext<AppDbContext>();
 
 // Register Repository (Data Access Layer)
 builder.Services.AddScoped<IProductRepository, ProductRepository>();
-
 // Register Service (Business Logic Layer)
 builder.Services.AddScoped<IProductService, ProductsService>();
+
+// Register Repository (Data Access Layer)
+builder.Services.AddScoped<IProductCategoryRepository, ProductCategoryRepository>();
+// Register Service (Business Logic Layer)
+builder.Services.AddScoped<IProductCategoryService, CategoryProductsService>();
 
 var app = builder.Build();
 
