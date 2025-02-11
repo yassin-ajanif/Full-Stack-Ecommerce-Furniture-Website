@@ -1,5 +1,6 @@
 import { Component, Input } from '@angular/core';
 import {Product} from '../../Dtos/product.dto';
+import { ActivatedRoute, Router } from '@angular/router';
 
 @Component({
   selector: 'product',
@@ -10,6 +11,15 @@ import {Product} from '../../Dtos/product.dto';
 export class ProductComponent {
 
    @Input() product!: Product 
-
    
+
+   constructor(private activatedRoute:ActivatedRoute,private route:Router) {
+    
+   }
+
+   goToProductPage(productClickedID:number){
+
+    this.route.navigate(['/Products/Product/', productClickedID]);
+    
+   }
 }

@@ -34,8 +34,9 @@
 
 <div class="search-container">
     <input type="text" id="productSearch" class="search-input" 
-    placeholder="Search for products..." />
-    <button class="search-btn">Search</button>
+    placeholder="Search for products..." #searchInput/>
+    <button class="search-btn" 
+    (click)="searchProduct(searchInput.value)">Search</button>
   </div>
 
 </div>

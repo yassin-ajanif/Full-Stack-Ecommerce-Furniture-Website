@@ -46,8 +46,6 @@ export class AddCategoryProductComponent  {
       });
   }
 
-
-   
   addCategory(): void {
 
     if (!this.categoryForm.valid) return

@@ -1,5 +1,5 @@
 import { Component } from '@angular/core';
-import { RouterOutlet } from '@angular/router';
+import { RouterLink, RouterLinkActive, RouterOutlet, Routes } from '@angular/router';
 import { NavbarComponent } from './navbar/navbar.component';
 import { CommonModule } from '@angular/common';
 import { FooterComponent } from "./footer/footer.component";
@@ -16,14 +16,20 @@ import { ProductAndCategoryPageComponent } from "./Pages/ProductAndCategoryPage/
 @Component({
   selector: 'app-root',
 
-  imports: [RouterOutlet, NavbarComponent, CommonModule, FooterComponent,
+  imports: [RouterOutlet, RouterLink,RouterLinkActive,NavbarComponent, CommonModule, FooterComponent,
     HomePageComponent, ShopPageComponent, SelectedProductInfoPageComponent,
-    CartComponent, CheckoutPageComponent, CheckoutPageComponent, ContactPageComponent, LoginPageComponent, ProductAndCategoryPageComponent],
+    CartComponent, CheckoutPageComponent, CheckoutPageComponent, 
+    ContactPageComponent, LoginPageComponent, ProductAndCategoryPageComponent,],
 
   
   templateUrl: './app.component.html',
   styleUrl: './app.component.css'
 })
+
+
+
 export class AppComponent {
   title = 'EcommerceWebApp';
+
+   
 }

@@ -87,3 +87,8 @@ body {
   transform: translateY(-5px); /* Moves the button 5px up */
   transition: transform 0.3s ease; /* Smooth transition */
 }
+
+.active-link {
+  font-weight: bolder !important;
+
+}

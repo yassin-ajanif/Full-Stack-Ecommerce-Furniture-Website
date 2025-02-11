@@ -1,10 +1,12 @@
 import { Component, Renderer2 } from '@angular/core';
 import { ShoppingCartComponent } from "./Components/shopping-cart/shopping-cart.component";
 import { CommonModule } from '@angular/common';
+import { RouterLink, RouterLinkActive, RouterOutlet } from '@angular/router';
 
 @Component({
   selector: 'navbar',
-  imports: [CommonModule,ShoppingCartComponent],
+  imports: [CommonModule,ShoppingCartComponent,
+    RouterOutlet, RouterLink, RouterLinkActive],
   templateUrl: './navbar.component.html',
   styleUrl: './navbar.component.css'
 })
