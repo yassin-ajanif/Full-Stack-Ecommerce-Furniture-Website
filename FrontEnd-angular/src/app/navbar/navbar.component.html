@@ -10,7 +10,7 @@
 
     <!-- Navigation Links -->
     <ul class="navbar-links">
-      <li><a routerLink="Home"    routerLinkActive="active-link" >Home</a></li>
+      <li><a routerLink="Home"    routerLinkActive="active-link">Home</a></li>
       <li><a routerLink="Shop"    routerLinkActive="active-link">Shop</a></li>
       <li><a routerLink="About"   routerLinkActive="active-link">About</a></li>
       <li><a routerLink="Contact" routerLinkActive="active-link">Contact</a></li>
@@ -18,16 +18,17 @@
 
     <!-- Icons -->
     <div class="navbar-icons">
-      <a href="#" class="icon">
-        <img src="Assets/Home/logIcon.png" alt="LogIn" class="navbar-icon-img">
+      <a  class="icon">
+        <img src="Assets/Home/logIcon.png" alt="LogIn" class="navbar-icon-img"
+        routerLink="Login">
       </a>
       <div  class="icon">
         <img src="Assets/Home/SearchIcon.png" alt="Search" class="navbar-icon-img">
       </div>
-      <a href="#" class="icon">
+      <a  class="icon">
         <img src="Assets/Home/LoveIcon.png" alt="User" class="navbar-icon-img">
       </a>
-      <a href="#" class="icon">
+      <a  class="icon">
         <img src="Assets/Home/CartIcon.png" alt="Cart" (click)="DisplayCart()" 
         class="navbar-icon-img">
       </a>

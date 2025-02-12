@@ -5,14 +5,19 @@
       <h2 class="login-title">Login</h2>
       <form class="login-form">
         <div class="form-group">
-          <label for="email" class="form-label">Email</label>
-          <input type="email" id="email" class="form-input" placeholder="Enter your email" required>
+          <label for="email" class="form-label"
+          >Email</label>
+          <input type="email" id="email" class="form-input" 
+          placeholder="Enter your email" required #LogedEmail>
         </div>
         <div class="form-group">
-          <label for="password" class="form-label">Password</label>
-          <input type="password" id="password" class="form-input" placeholder="Enter your password" required>
+          <label for="password" class="form-label"
+          >Password</label>
+          <input type="password" id="password" class="form-input" 
+          placeholder="Enter your password" required #LogedPassword>
         </div>
-        <button type="submit" class="btn-Bronw-background btn-hover-up">Login</button>
+        <button type="submit" class="btn-Bronw-background btn-hover-up"
+        (click)="OnLogin()">Login</button>
       </form>
       <!--
       <p class="signup-text">Don't have an account? <a href="#" class="signup-link">Sign up</a></p>

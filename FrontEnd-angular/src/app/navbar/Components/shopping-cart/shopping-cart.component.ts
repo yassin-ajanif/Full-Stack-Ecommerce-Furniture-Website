@@ -1,5 +1,6 @@
 import { CommonModule } from '@angular/common';
-import { Component, EventEmitter, Output } from '@angular/core';
+import { Component, EventEmitter, inject, Output } from '@angular/core';
+import { Route, Router } from '@angular/router';
 
 @Component({
   selector: 'shopping-cart',
@@ -10,7 +11,7 @@ import { Component, EventEmitter, Output } from '@angular/core';
 export class ShoppingCartComponent {
 
   @Output() closeCartEvent = new EventEmitter<void>(); // Event to notify parent
-
+   route:Router = inject(Router) 
   
   closeCart(): void {
     this.closeCartEvent.emit(); // Emit event when closeCart is called
@@ -47,5 +48,9 @@ export class ShoppingCartComponent {
   }
 
   
-  
+  goToCheckoutPage(){
+ 
+    this.route.navigate(['/Checkout'])
+    
+  }
 }
