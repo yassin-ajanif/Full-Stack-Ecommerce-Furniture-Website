@@ -17,7 +17,9 @@ C:\Users\yassin\source\repos\FullStackEcommerceWebsite\Backend-.NetCore\DataBusi
 C:\Users\yassin\source\repos\FullStackEcommerceWebsite\Backend-.NetCore\DataBusinessLayer\bin\Debug\net8.0\DataBusinessLayer.dll
 C:\Users\yassin\source\repos\FullStackEcommerceWebsite\Backend-.NetCore\DataBusinessLayer\bin\Debug\net8.0\DataBusinessLayer.pdb
 C:\Users\yassin\source\repos\FullStackEcommerceWebsite\Backend-.NetCore\DataBusinessLayer\bin\Debug\net8.0\DataAccessLayer.dll
+C:\Users\yassin\source\repos\FullStackEcommerceWebsite\Backend-.NetCore\DataBusinessLayer\bin\Debug\net8.0\SharedLayer.dll
 C:\Users\yassin\source\repos\FullStackEcommerceWebsite\Backend-.NetCore\DataBusinessLayer\bin\Debug\net8.0\DataAccessLayer.pdb
+C:\Users\yassin\source\repos\FullStackEcommerceWebsite\Backend-.NetCore\DataBusinessLayer\bin\Debug\net8.0\SharedLayer.pdb
 C:\Users\yassin\source\repos\FullStackEcommerceWebsite\Backend-.NetCore\DataBusinessLayer\obj\Debug\net8.0\DataBusinessLayer.csproj.AssemblyReference.cache
 C:\Users\yassin\source\repos\FullStackEcommerceWebsite\Backend-.NetCore\DataBusinessLayer\obj\Debug\net8.0\DataBusinessLayer.GeneratedMSBuildEditorConfig.editorconfig
 C:\Users\yassin\source\repos\FullStackEcommerceWebsite\Backend-.NetCore\DataBusinessLayer\obj\Debug\net8.0\DataBusinessLayer.AssemblyInfoInputs.cache

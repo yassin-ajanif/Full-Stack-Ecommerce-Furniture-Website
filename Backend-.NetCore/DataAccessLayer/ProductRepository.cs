@@ -1,4 +1,4 @@
-﻿using DataAccessLayer.Dtos;
+﻿//using DataAccessLayer.Dtos;
 using DataAccessLayer.Interfaces;
 using DataAccessLayer.Migrations;
 using DataAccessLayer.Models;
@@ -7,6 +7,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using SharedLayer.Dtos;
 
 namespace DataAccessLayer
 {
@@ -30,7 +31,7 @@ namespace DataAccessLayer
                 p.StockQuantity,
                 p.Price,
                 p.CategoryID,
-                p.ImageData
+                 FileHelper.ConvertByteArrayToIFormFile( p.ImageData)
             )).ToList();
 
             return productDtos;
@@ -54,7 +55,7 @@ namespace DataAccessLayer
                 product.StockQuantity,
                 product.Price,
                 product.CategoryID,
-                product.ImageData
+                FileHelper.ConvertByteArrayToIFormFile(product.ImageData)
             ) ;
 
             return productDto;
@@ -71,7 +72,7 @@ namespace DataAccessLayer
                     productDto.StockQuantity,
                     productDto.Price,
                     productDto.CategoryID,
-                    productDto.ImageData
+                    FileHelper.ConvertIFormFileToByteArray(productDto.ImageData)
                 );
 
                 _appDbContext.Products.Add(newProduct);
@@ -103,7 +104,7 @@ namespace DataAccessLayer
             productToUpdate.StockQuantity = productDto.StockQuantity;
             productToUpdate.Price = productDto.Price;
             productToUpdate.CategoryID = productDto.CategoryID;
-            productToUpdate.ImageData = productDto.ImageData;
+            productToUpdate.ImageData = FileHelper.ConvertIFormFileToByteArray(productDto.ImageData);
 
             try
             {

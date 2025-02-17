@@ -2,7 +2,7 @@
 using Microsoft.AspNetCore.Mvc;
 using DataBusinessLayer;
 using DataBusinessLayer.Interfaces;
-using DataAccessLayer.Dtos;
+using SharedLayer.Dtos;
 
 namespace EcommerceApis.Controllers
 {
@@ -57,7 +57,7 @@ namespace EcommerceApis.Controllers
         [ProducesResponseType(StatusCodes.Status201Created, Type = typeof(ProductDTO))]
         [ProducesResponseType(StatusCodes.Status400BadRequest)]
         [ProducesResponseType(StatusCodes.Status500InternalServerError)]
-        public ActionResult AddProduct( ProductDTO productDto)
+        public ActionResult AddProduct([FromForm] ProductDTO productDto)
         {
             // Check if the model is valid (based on validation attributes in ProductDTO)
             if (!ModelState.IsValid)
@@ -144,4 +144,5 @@ namespace EcommerceApis.Controllers
 
 
     }
+
 }

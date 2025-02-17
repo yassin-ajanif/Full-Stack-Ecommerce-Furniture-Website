@@ -110,6 +110,7 @@ C:\Users\yassin\source\repos\FullStackEcommerceWebsite\Backend-.NetCore\Ecommerc
 C:\Users\yassin\source\repos\FullStackEcommerceWebsite\Backend-.NetCore\EcommerceApis\bin\Debug\net8.0\Microsoft.Extensions.DependencyInjection.Abstractions.dll
 C:\Users\yassin\source\repos\FullStackEcommerceWebsite\Backend-.NetCore\EcommerceApis\bin\Debug\net8.0\Microsoft.Extensions.Logging.dll
 C:\Users\yassin\source\repos\FullStackEcommerceWebsite\Backend-.NetCore\EcommerceApis\bin\Debug\net8.0\Microsoft.Extensions.Logging.Abstractions.dll
+C:\Users\yassin\source\repos\FullStackEcommerceWebsite\Backend-.NetCore\EcommerceApis\bin\Debug\net8.0\Microsoft.Extensions.ObjectPool.dll
 C:\Users\yassin\source\repos\FullStackEcommerceWebsite\Backend-.NetCore\EcommerceApis\bin\Debug\net8.0\Microsoft.Extensions.Options.dll
 C:\Users\yassin\source\repos\FullStackEcommerceWebsite\Backend-.NetCore\EcommerceApis\bin\Debug\net8.0\Microsoft.Extensions.Primitives.dll
 C:\Users\yassin\source\repos\FullStackEcommerceWebsite\Backend-.NetCore\EcommerceApis\bin\Debug\net8.0\Microsoft.Identity.Client.dll
@@ -155,7 +156,9 @@ C:\Users\yassin\source\repos\FullStackEcommerceWebsite\Backend-.NetCore\Ecommerc
 C:\Users\yassin\source\repos\FullStackEcommerceWebsite\Backend-.NetCore\EcommerceApis\bin\Debug\net8.0\runtimes\win\lib\net6.0\System.Windows.Extensions.dll
 C:\Users\yassin\source\repos\FullStackEcommerceWebsite\Backend-.NetCore\EcommerceApis\bin\Debug\net8.0\DataAccessLayer.dll
 C:\Users\yassin\source\repos\FullStackEcommerceWebsite\Backend-.NetCore\EcommerceApis\bin\Debug\net8.0\DataBusinessLayer.dll
+C:\Users\yassin\source\repos\FullStackEcommerceWebsite\Backend-.NetCore\EcommerceApis\bin\Debug\net8.0\SharedLayer.dll
 C:\Users\yassin\source\repos\FullStackEcommerceWebsite\Backend-.NetCore\EcommerceApis\bin\Debug\net8.0\DataBusinessLayer.pdb
+C:\Users\yassin\source\repos\FullStackEcommerceWebsite\Backend-.NetCore\EcommerceApis\bin\Debug\net8.0\SharedLayer.pdb
 C:\Users\yassin\source\repos\FullStackEcommerceWebsite\Backend-.NetCore\EcommerceApis\bin\Debug\net8.0\DataAccessLayer.pdb
 C:\Users\yassin\source\repos\FullStackEcommerceWebsite\Backend-.NetCore\EcommerceApis\obj\Debug\net8.0\EcommerceApis.csproj.AssemblyReference.cache
 C:\Users\yassin\source\repos\FullStackEcommerceWebsite\Backend-.NetCore\EcommerceApis\obj\Debug\net8.0\EcommerceApis.GeneratedMSBuildEditorConfig.editorconfig

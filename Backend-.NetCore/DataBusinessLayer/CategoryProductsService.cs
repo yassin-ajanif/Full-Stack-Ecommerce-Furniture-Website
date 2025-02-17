@@ -1,5 +1,5 @@
 ﻿using DataAccessLayer;
-using DataAccessLayer.Dtos;
+using SharedLayer.Dtos;
 using DataAccessLayer.Interfaces;
 using DataAccessLayer.Models;
 using DataBusinessLayer.Interfaces;

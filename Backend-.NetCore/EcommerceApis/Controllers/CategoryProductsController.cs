@@ -5,7 +5,7 @@ using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
 using DataBusinessLayer;
 using DataBusinessLayer.Interfaces;
-using DataAccessLayer.Dtos;
+using SharedLayer.Dtos;
 using DataAccessLayer.Interfaces;
 
 

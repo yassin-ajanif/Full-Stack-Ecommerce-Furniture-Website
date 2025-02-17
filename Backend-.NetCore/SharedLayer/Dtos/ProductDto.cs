@@ -4,8 +4,10 @@ using System.ComponentModel.DataAnnotations;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using System.ComponentModel.DataAnnotations;
+using Microsoft.AspNetCore.Http;
 
-namespace DataAccessLayer.Dtos
+namespace SharedLayer.Dtos
 {
     public class ProductDTO
     {
@@ -33,11 +35,15 @@ namespace DataAccessLayer.Dtos
         public int CategoryID { get; set; }
 
         // Image as a byte array
-        [MaxLength(1048576)]  // 1MB limit on the byte array (Optional, for runtime validation)
-        public byte[]? ImageData { get; set; }
+        //[MaxLength(1048576)]  // 1MB limit on the byte array (Optional, for runtime validation)
+        public IFormFile? ImageData { get; set; }
 
+        public ProductDTO()
+        {
+        }
         // Constructor
-        public ProductDTO(int id, string name, string? description, int stockQuantity, decimal price, int categoryID, byte[] ImageData)
+        //  public ProductDTO(int id, string name, string? description, int stockQuantity, decimal price, int categoryID, byte[]? ImageData)
+        public ProductDTO(int id, string name, string description, int stockQuantity, decimal price, int categoryID, IFormFile? ImageData)
         {
             Id = id;
             Name = name;

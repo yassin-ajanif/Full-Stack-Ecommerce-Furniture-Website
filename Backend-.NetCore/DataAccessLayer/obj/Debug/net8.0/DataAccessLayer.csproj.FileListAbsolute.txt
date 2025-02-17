@@ -16,12 +16,15 @@ C:\Users\yassin\source\repos\FullStackEcommerceWebsite\Backend-.NetCore\DataAcce
 C:\Users\yassin\source\repos\FullStackEcommerceWebsite\Backend-.NetCore\DataAccessLayer\bin\Debug\net8.0\DataAccessLayer.runtimeconfig.json
 C:\Users\yassin\source\repos\FullStackEcommerceWebsite\Backend-.NetCore\DataAccessLayer\bin\Debug\net8.0\DataAccessLayer.dll
 C:\Users\yassin\source\repos\FullStackEcommerceWebsite\Backend-.NetCore\DataAccessLayer\bin\Debug\net8.0\DataAccessLayer.pdb
+C:\Users\yassin\source\repos\FullStackEcommerceWebsite\Backend-.NetCore\DataAccessLayer\bin\Debug\net8.0\SharedLayer.dll
+C:\Users\yassin\source\repos\FullStackEcommerceWebsite\Backend-.NetCore\DataAccessLayer\bin\Debug\net8.0\SharedLayer.pdb
 C:\Users\yassin\source\repos\FullStackEcommerceWebsite\Backend-.NetCore\DataAccessLayer\obj\Debug\net8.0\DataAccessLayer.csproj.AssemblyReference.cache
 C:\Users\yassin\source\repos\FullStackEcommerceWebsite\Backend-.NetCore\DataAccessLayer\obj\Debug\net8.0\DataAccessLayer.GeneratedMSBuildEditorConfig.editorconfig
 C:\Users\yassin\source\repos\FullStackEcommerceWebsite\Backend-.NetCore\DataAccessLayer\obj\Debug\net8.0\DataAccessLayer.AssemblyInfoInputs.cache
 C:\Users\yassin\source\repos\FullStackEcommerceWebsite\Backend-.NetCore\DataAccessLayer\obj\Debug\net8.0\DataAccessLayer.AssemblyInfo.cs
 C:\Users\yassin\source\repos\FullStackEcommerceWebsite\Backend-.NetCore\DataAccessLayer\obj\Debug\net8.0\DataAccessLayer.csproj.CoreCompileInputs.cache
 C:\Users\yassin\source\repos\FullStackEcommerceWebsite\Backend-.NetCore\DataAccessLayer\obj\Debug\net8.0\DataAccessLayer.sourcelink.json
+C:\Users\yassin\source\repos\FullStackEcommerceWebsite\Backend-.NetCore\DataAccessLayer\obj\Debug\net8.0\DataAcce.E67BD773.Up2Date
 C:\Users\yassin\source\repos\FullStackEcommerceWebsite\Backend-.NetCore\DataAccessLayer\obj\Debug\net8.0\DataAccessLayer.dll
 C:\Users\yassin\source\repos\FullStackEcommerceWebsite\Backend-.NetCore\DataAccessLayer\obj\Debug\net8.0\refint\DataAccessLayer.dll
 C:\Users\yassin\source\repos\FullStackEcommerceWebsite\Backend-.NetCore\DataAccessLayer\obj\Debug\net8.0\DataAccessLayer.pdb

@@ -1,4 +1,4 @@
-﻿using DataAccessLayer.Dtos;
+﻿using SharedLayer.Dtos;
 using DataAccessLayer.Interfaces;
 using DataAccessLayer.Models;
 using System;
