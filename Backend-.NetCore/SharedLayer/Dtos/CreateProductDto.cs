@@ -6,10 +6,11 @@ using System.Text;
 using System.Threading.Tasks;
 using System.ComponentModel.DataAnnotations;
 using Microsoft.AspNetCore.Http;
+using SharedLayer.Attributes;
 
 namespace SharedLayer.Dtos
 {
-    public class ProductDTO
+    public class CreateProductDto
     {
         public int Id { get; set; }
 
@@ -34,16 +35,16 @@ namespace SharedLayer.Dtos
         [Range(1, int.MaxValue, ErrorMessage = "Invalid Category ID.")]
         public int CategoryID { get; set; }
 
-        // Image as a byte array
-        //[MaxLength(1048576)]  // 1MB limit on the byte array (Optional, for runtime validation)
+        const int MaxImageSize_Is_One_1Mb = 1048576; // 1MB (1 * 1024 * 1024)
+
+        [MaxFileSize(MaxImageSize_Is_One_1Mb)]
         public IFormFile? ImageData { get; set; }
 
-        public ProductDTO()
+        public CreateProductDto()
         {
         }
-        // Constructor
-        //  public ProductDTO(int id, string name, string? description, int stockQuantity, decimal price, int categoryID, byte[]? ImageData)
-        public ProductDTO(int id, string name, string description, int stockQuantity, decimal price, int categoryID, IFormFile? ImageData)
+        
+        public CreateProductDto(int id, string name, string description, int stockQuantity, decimal price, int categoryID, IFormFile? ImageData)
         {
             Id = id;
             Name = name;

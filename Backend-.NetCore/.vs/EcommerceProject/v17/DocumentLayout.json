@@ -7,16 +7,12 @@
       "RelativeMoniker": "D:0:0:{ED5648BB-11D0-4B65-9C50-AB958609788B}|EcommerceApis\\EcommerceApis.csproj|solutionrelative:ecommerceapis\\controllers\\productscontroller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
     },
     {
-      "AbsoluteMoniker": "D:0:0:{4A0F326D-E6D9-4F1C-9192-9B84A69EEFC9}|SharedLayer\\SharedLayer.csproj|c:\\users\\yassin\\source\\repos\\fullstackecommercewebsite\\backend-.netcore\\sharedlayer\\dtos\\productdto.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
-      "RelativeMoniker": "D:0:0:{4A0F326D-E6D9-4F1C-9192-9B84A69EEFC9}|SharedLayer\\SharedLayer.csproj|solutionrelative:sharedlayer\\dtos\\productdto.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+      "AbsoluteMoniker": "D:0:0:{1784F4AB-838A-40A1-A297-41B3A1B342DB}|DataBusinessLayer\\DataBusinessLayer.csproj|c:\\users\\yassin\\source\\repos\\fullstackecommercewebsite\\backend-.netcore\\databusinesslayer\\productsservice.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{1784F4AB-838A-40A1-A297-41B3A1B342DB}|DataBusinessLayer\\DataBusinessLayer.csproj|solutionrelative:databusinesslayer\\productsservice.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
     },
     {
       "AbsoluteMoniker": "D:0:0:{6CB273F8-A822-417F-92C9-979A4358685A}|DataAccessLayer\\DataAccessLayer.csproj|c:\\users\\yassin\\source\\repos\\fullstackecommercewebsite\\backend-.netcore\\dataaccesslayer\\productrepository.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
       "RelativeMoniker": "D:0:0:{6CB273F8-A822-417F-92C9-979A4358685A}|DataAccessLayer\\DataAccessLayer.csproj|solutionrelative:dataaccesslayer\\productrepository.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
-    },
-    {
-      "AbsoluteMoniker": "D:0:0:{ED5648BB-11D0-4B65-9C50-AB958609788B}|EcommerceApis\\EcommerceApis.csproj|c:\\users\\yassin\\source\\repos\\fullstackecommercewebsite\\backend-.netcore\\ecommerceapis\\controllers\\categoryproductscontroller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
-      "RelativeMoniker": "D:0:0:{ED5648BB-11D0-4B65-9C50-AB958609788B}|EcommerceApis\\EcommerceApis.csproj|solutionrelative:ecommerceapis\\controllers\\categoryproductscontroller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
     }
   ],
   "DocumentGroupContainers": [
@@ -26,7 +22,7 @@
       "DocumentGroups": [
         {
           "DockedWidth": 200,
-          "SelectedChildIndex": 7,
+          "SelectedChildIndex": 6,
           "Children": [
             {
               "$type": "Bookmark",
@@ -52,35 +48,22 @@
               "RelativeDocumentMoniker": "DataAccessLayer\\ProductRepository.cs",
               "ToolTip": "C:\\Users\\yassin\\source\\repos\\FullStackEcommerceWebsite\\Backend-.NetCore\\DataAccessLayer\\ProductRepository.cs",
               "RelativeToolTip": "DataAccessLayer\\ProductRepository.cs",
-              "ViewState": "AQIAAAYAAAAAAAAAAAAQwDkAAABJAAAA",
+              "ViewState": "AQIAACcAAAAAAAAAAAAowDYAAAAkAAAA",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2025-02-17T18:50:00.084Z",
-              "EditorCaption": ""
-            },
-            {
-              "$type": "Document",
-              "DocumentIndex": 3,
-              "Title": "CategoryProductsController.cs",
-              "DocumentMoniker": "C:\\Users\\yassin\\source\\repos\\FullStackEcommerceWebsite\\Backend-.NetCore\\EcommerceApis\\Controllers\\CategoryProductsController.cs",
-              "RelativeDocumentMoniker": "EcommerceApis\\Controllers\\CategoryProductsController.cs",
-              "ToolTip": "C:\\Users\\yassin\\source\\repos\\FullStackEcommerceWebsite\\Backend-.NetCore\\EcommerceApis\\Controllers\\CategoryProductsController.cs",
-              "RelativeToolTip": "EcommerceApis\\Controllers\\CategoryProductsController.cs",
-              "ViewState": "AQIAAAwAAAAAAAAAAAAAAAcAAAARAAAA",
-              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2025-02-17T18:46:07.745Z",
+              "WhenOpened": "2025-02-18T18:38:26.694Z",
               "EditorCaption": ""
             },
             {
               "$type": "Document",
               "DocumentIndex": 1,
-              "Title": "ProductDto.cs",
-              "DocumentMoniker": "C:\\Users\\yassin\\source\\repos\\FullStackEcommerceWebsite\\Backend-.NetCore\\SharedLayer\\Dtos\\ProductDto.cs",
-              "RelativeDocumentMoniker": "SharedLayer\\Dtos\\ProductDto.cs",
-              "ToolTip": "C:\\Users\\yassin\\source\\repos\\FullStackEcommerceWebsite\\Backend-.NetCore\\SharedLayer\\Dtos\\ProductDto.cs",
-              "RelativeToolTip": "SharedLayer\\Dtos\\ProductDto.cs",
-              "ViewState": "AQIAAB8AAAAAAAAAAAAuwC0AAAB/AAAA",
+              "Title": "ProductsService.cs",
+              "DocumentMoniker": "C:\\Users\\yassin\\source\\repos\\FullStackEcommerceWebsite\\Backend-.NetCore\\DataBusinessLayer\\ProductsService.cs",
+              "RelativeDocumentMoniker": "DataBusinessLayer\\ProductsService.cs",
+              "ToolTip": "C:\\Users\\yassin\\source\\repos\\FullStackEcommerceWebsite\\Backend-.NetCore\\DataBusinessLayer\\ProductsService.cs",
+              "RelativeToolTip": "DataBusinessLayer\\ProductsService.cs",
+              "ViewState": "AQIAABwAAAAAAAAAAADgvyUAAAAsAAAA",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2025-02-17T18:43:54.853Z",
+              "WhenOpened": "2025-02-18T18:38:06.688Z",
               "EditorCaption": ""
             },
             {
@@ -91,9 +74,9 @@
               "RelativeDocumentMoniker": "EcommerceApis\\Controllers\\ProductsController.cs",
               "ToolTip": "C:\\Users\\yassin\\source\\repos\\FullStackEcommerceWebsite\\Backend-.NetCore\\EcommerceApis\\Controllers\\ProductsController.cs",
               "RelativeToolTip": "EcommerceApis\\Controllers\\ProductsController.cs",
-              "ViewState": "AQIAACgAAAAAAAAAAAAowD4AAAAMAAAA",
+              "ViewState": "AQIAAIcAAAAAAAAAAAAmwJcAAAAMAAAA",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2025-02-14T10:47:58.011Z",
+              "WhenOpened": "2025-02-18T11:35:23.76Z",
               "EditorCaption": ""
             }
           ]

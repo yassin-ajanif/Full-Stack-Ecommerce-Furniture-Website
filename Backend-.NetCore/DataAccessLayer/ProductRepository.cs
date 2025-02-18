@@ -1,17 +1,17 @@
-﻿//using DataAccessLayer.Dtos;
+﻿
 using DataAccessLayer.Interfaces;
-using DataAccessLayer.Migrations;
 using DataAccessLayer.Models;
+using Microsoft.EntityFrameworkCore; // Add this for async methods
 using System;
 using System.Collections.Generic;
 using System.Linq;
-using System.Text;
 using System.Threading.Tasks;
 using SharedLayer.Dtos;
+using Microsoft.AspNetCore.Http;
 
 namespace DataAccessLayer
 {
-    public class ProductRepository :IProductRepository
+    public class ProductRepository : IProductRepository
     {
         private readonly AppDbContext _appDbContext;
 
@@ -20,27 +20,28 @@ namespace DataAccessLayer
             _appDbContext = appDbContext;
         }
 
-        public List<ProductDTO> getAllProducts()
+        // Convert to async
+        public async Task<IEnumerable<GetProductDto>> GetAllProductsAsync()
         {
-            var products = _appDbContext.Products.ToList();
+            var products = await _appDbContext.Products.ToListAsync(); // Use ToListAsync()
 
-            var productDtos = products.Select(p => new ProductDTO(
+            var productDtos = products.Select(p => new GetProductDto(
                 p.Id,
                 p.Name,
                 p.Description,
                 p.StockQuantity,
                 p.Price,
-                p.CategoryID,
-                 FileHelper.ConvertByteArrayToIFormFile( p.ImageData)
+                p.CategoryID
             )).ToList();
 
             return productDtos;
         }
 
-        public ProductDTO GetProductById(int productId)
+        // Convert to async
+        public async Task<GetProductDto> GetProductByIdAsync(int productId)
         {
-            // Find the product by its ID
-            var product = _appDbContext.Products.FirstOrDefault(p => p.Id == productId);
+            // Use FirstOrDefaultAsync()
+            var product = await _appDbContext.Products.FirstOrDefaultAsync(p => p.Id == productId);
 
             if (product == null)
             {
@@ -48,21 +49,20 @@ namespace DataAccessLayer
             }
 
             // Convert the product to a ProductDTO before returning
-            var productDto = new ProductDTO(
+            var productDto = new GetProductDto(
                 product.Id,
                 product.Name,
                 product.Description,
                 product.StockQuantity,
                 product.Price,
-                product.CategoryID,
-                FileHelper.ConvertByteArrayToIFormFile(product.ImageData)
-            ) ;
+                product.CategoryID
+            );
 
             return productDto;
         }
 
-
-        public bool AddProduct(ProductDTO productDto)
+        // Convert to async
+        public async Task<bool> AddProductAsync(CreateProductDto productDto)
         {
             try
             {
@@ -77,8 +77,8 @@ namespace DataAccessLayer
 
                 _appDbContext.Products.Add(newProduct);
 
-                // Declare the variable to store whether the product was successfully added
-                bool productAddedToDatabase = _appDbContext.SaveChanges() == 1;
+                // Use SaveChangesAsync()
+                bool productAddedToDatabase = await _appDbContext.SaveChangesAsync() == 1;
 
                 return productAddedToDatabase;
             }
@@ -91,9 +91,10 @@ namespace DataAccessLayer
             }
         }
 
-        public bool UpdateProduct(ProductDTO productDto)
+        // Convert to async
+        public async Task<bool> UpdateProductAsync(CreateProductDto productDto)
         {
-            var productToUpdate = _appDbContext.Products.FirstOrDefault(p => p.Id == productDto.Id);
+            var productToUpdate = await _appDbContext.Products.FirstOrDefaultAsync(p => p.Id == productDto.Id); // Use FirstOrDefaultAsync()
             if (productToUpdate == null)
             {
                 return false;  // Product not found, return false
@@ -108,8 +109,8 @@ namespace DataAccessLayer
 
             try
             {
-                // Save changes and assign the result to a variable
-                var productHasBeenUpdateSuccesfully = _appDbContext.SaveChanges();
+                // Use SaveChangesAsync()
+                var productHasBeenUpdateSuccesfully = await _appDbContext.SaveChangesAsync();
 
                 // If one row was affected, the product was updated successfully
                 return productHasBeenUpdateSuccesfully == 1;
@@ -121,10 +122,11 @@ namespace DataAccessLayer
             }
         }
 
-        public bool DeleteProduct(int productId)
+        // Convert to async
+        public async Task<bool> DeleteProductAsync(int productId)
         {
-            // Find the product to delete
-            var productToDelete = _appDbContext.Products.FirstOrDefault(p => p.Id == productId);
+            // Use FirstOrDefaultAsync()
+            var productToDelete = await _appDbContext.Products.FirstOrDefaultAsync(p => p.Id == productId);
 
             if (productToDelete == null)
             {
@@ -136,8 +138,8 @@ namespace DataAccessLayer
                 // Remove the product from the context
                 _appDbContext.Products.Remove(productToDelete);
 
-                // Attempt to save changes to the database
-                bool productDeletedSuccessfully = _appDbContext.SaveChanges() == 1;
+                // Use SaveChangesAsync()
+                bool productDeletedSuccessfully = await _appDbContext.SaveChangesAsync() == 1;
 
                 return productDeletedSuccessfully;
             }
@@ -148,7 +150,22 @@ namespace DataAccessLayer
             }
         }
 
+        // Convert to async
+        public async Task<byte[]> GetProductImageByIdAsync(int productId)
+        {
+            // Use FirstOrDefaultAsync()
+            var product = await _appDbContext.Products
+                .Where(p => p.Id == productId)
+                .FirstOrDefaultAsync();
 
+            // If the product is not found, return null or throw an exception
+            if (product == null)
+            {
+                return null; // Or you could throw an exception based on your needs
+            }
 
+            // Return the image data (assuming it's stored as a byte array in the ImageData column)
+            return product.ImageData;
+        }
     }
 }

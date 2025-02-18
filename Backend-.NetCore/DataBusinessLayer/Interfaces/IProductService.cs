@@ -1,18 +1,27 @@
 ﻿using SharedLayer.Dtos;
-using System;
 using System.Collections.Generic;
-using System.Linq;
-using System.Text;
 using System.Threading.Tasks;
 
 namespace DataBusinessLayer.Interfaces
 {
     public interface IProductService
     {
-        List<ProductDTO> getAllProducts();    // Get all products
-        ProductDTO GetProductById(int productId);    // Get a single product by ID
-        bool AddProduct(ProductDTO productDto);    // Add a new product
-        bool UpdateProduct(ProductDTO productDto);    // Update an existing product
-        bool DeleteProduct(int productId);    // Delete a product by ID
+        // Async method to get all products
+        Task<IEnumerable<GetProductDto>> GetAllProductsAsync();
+
+        // Async method to get a product by its Id
+        Task<GetProductDto> GetProductByIdAsync(int productId);
+
+        // Async method to add a new product
+        Task<bool> AddProductAsync(CreateProductDto productDto);
+
+        // Async method to update an existing product
+        Task<bool> UpdateProductAsync(CreateProductDto productDto);
+
+        // Async method to delete a product by Id
+        Task<bool> DeleteProductAsync(int productId);
+
+        // Async method to get the image of a product by Id
+        Task<byte[]> GetProductImageByIdAsync(int productID);
     }
 }

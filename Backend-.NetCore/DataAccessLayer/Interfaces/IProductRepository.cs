@@ -7,14 +7,26 @@ using System.Threading.Tasks;
 
 namespace DataAccessLayer.Interfaces
 {
-    public interface IProductRepository
-    {
-      
-            List<ProductDTO> getAllProducts();    // Get all products
-            ProductDTO GetProductById(int productId);    // Get a single product by ID
-            bool AddProduct(ProductDTO productDto);    // Add a new product
-            bool UpdateProduct(ProductDTO productDto);    // Update an existing product
-            bool DeleteProduct(int productId);    // Delete a product by ID
-      
+    
+        public interface IProductRepository
+        {
+            // Get all products asynchronously
+            Task<IEnumerable<GetProductDto>> GetAllProductsAsync();
+
+            // Get a product by its ID asynchronously
+            Task<GetProductDto> GetProductByIdAsync(int productId);
+
+            // Add a new product asynchronously
+            Task<bool> AddProductAsync(CreateProductDto productDto);
+
+            // Update an existing product asynchronously
+            Task<bool> UpdateProductAsync(CreateProductDto productDto);
+
+            // Delete a product by its ID asynchronously
+            Task<bool> DeleteProductAsync(int productId);
+
+            // Get the image of a product by its ID asynchronously (returns a byte array)
+            Task<byte[]> GetProductImageByIdAsync(int productId);
+        }
     }
-}
+
