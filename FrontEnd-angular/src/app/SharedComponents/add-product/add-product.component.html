@@ -16,7 +16,7 @@
           <!-- Image Preview & Remove Button -->
           <div *ngIf="selectedImage">
             <p>Image Preview:</p>
-            <img [src]="selectedImage" alt="Uploaded Image" class="image-preview" />
+            <img [src]="selectedImageUrl" alt="Uploaded Image" class="image-preview" />
       
             <!-- Remove Image Button -->
             <button class="remove-btn" (click)="removeImage()">Remove Image</button>
@@ -43,9 +43,16 @@
     </div>
 
     <div class="form-group">
+      <label for="productQuantity" class="form-label">Product Quantity</label>
+      <input type="number" id="productQuantity" class="form-input"
+          placeholder="Enter product Quantity" [(ngModel)]="productQuantity"
+          name="productQuantity" required min="0" />
+  </div>
+
+    <div class="form-group">
         <label class="form-label">Product Category</label>
-        <dropdown label="Select Category" [options]="categories"
-            [(ngModel)]="selectedCategory" name="productCategory"
+        <dropdown label="Select Category" [options]="categoryNames"
+              (optionSelected)="whenUserSelectProductCategory_GetIt($event)" name="productCategory"
             width="10rem"></dropdown>
     </div>
 
@@ -56,5 +63,7 @@
             name="productDescription" required></textarea>
     </div>
 
-    <button type="submit" class="btn-Bronw-background btn-hover-up submitBtn">Add Product</button>
+    <button type="submit" 
+    class="btn-Bronw-background btn-hover-up submitBtn"
+    (click)="addProduct()">Add Product</button>
 </div>

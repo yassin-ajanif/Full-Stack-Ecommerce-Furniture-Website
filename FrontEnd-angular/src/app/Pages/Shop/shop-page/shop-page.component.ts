@@ -5,6 +5,7 @@ import { ProductListComponent } from "../../../SharedComponents/product-list/pro
 import { ProductService } from '../../../Services/product.service';
 import { ServiceAndWarrantyComponent } from "../../../SharedComponents/service-and-warranty/service-and-warranty.component";
 import { PaginationComponent } from "../../../SharedComponents/pagination/pagination.component";
+import { ProductDTO } from '../../../Dtos/product.dto';
 
 @Component({
   selector: 'shop-page',
@@ -31,17 +32,7 @@ export class ShopPageComponent implements OnInit  {
       }[] ;
          
   // these are the products we're going to display per page
-   productsToDisplay!: {
-        id: number;
-        name: string;
-        description: string;
-        price: number;
-        oldPrice: number;
-        category: string;
-        stock: number;
-        rating: number;
-        imageUrl: string;
-      }[] ;
+   productsToDisplay!: ProductDTO[] ;
 
   ngOnInit(): void {
 

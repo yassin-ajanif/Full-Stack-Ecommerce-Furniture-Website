@@ -1,7 +1,7 @@
 <div class="product-card">
  
   <div class="product-image">
-    <img src= {{product.imageUrl}} alt="Product Image">
+    <img src= {{product.image}} alt="Product Image">
   </div>
   
   <!-- Black Mask -->
@@ -9,10 +9,10 @@
 
   <div class="product-info">
     <h3 class="product-title">{{product.name}}</h3>
-    <p class="product-category">{{product.category}}</p>
+    <p class="product-category">{{product.categoryID}}</p>
     <div class="product-pricing">
       <span class="current-price">{{'$ '+product.price}}</span>
-      <span class="old-price">{{ '$ '+product.oldPrice }}</span>
+      <span class="old-price">{{ '$ '+product.price }}</span>
 
     </div>
   </div>

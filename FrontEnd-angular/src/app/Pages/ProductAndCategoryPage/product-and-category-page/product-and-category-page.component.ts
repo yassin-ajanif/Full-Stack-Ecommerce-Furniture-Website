@@ -2,7 +2,7 @@ import { Component } from '@angular/core';
 import { FormsModule } from '@angular/forms';
 import { DropdownComponent } from "../../../SharedComponents/dropdown/dropdown.component";
 import { CommonModule } from '@angular/common';
-import { Product } from '../../../Dtos/product.dto';
+import { ProductDTO } from '../../../Dtos/product.dto';
 import { AddCategoryProductComponent } from "../../../SharedComponents/add-category-product/add-category-product.component";
 import { UpdateCategoryProductComponent } from "../../../SharedComponents/update-category-product/update-category-product.component";
 import { DeleteCategoryProductComponent } from "../../../SharedComponents/delete-category-product/delete-category-product.component";
@@ -25,7 +25,7 @@ export class ProductAndCategoryPageComponent {
 
   productsCategories : string[]=[]
 
-  ProductToAdd! : Product
+  ProductToAdd! : ProductDTO
 
   ngOnInit(): void {
   

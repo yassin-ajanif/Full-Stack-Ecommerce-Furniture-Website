@@ -1,4 +1,9 @@
-import { EventEmitter, Injectable, OnInit } from '@angular/core';
+import { EventEmitter, inject, Injectable, OnInit } from '@angular/core';
+import { ProductDTO } from '../Dtos/product.dto';
+import { HttpClient } from '@angular/common/http';
+import {  HttpHeaders } from '@angular/common/http';
+import { Observable, of } from 'rxjs';
+import { catchError } from 'rxjs/operators';
 
 @Injectable({
   providedIn: 'root'
@@ -6,6 +11,9 @@ import { EventEmitter, Injectable, OnInit } from '@angular/core';
 export class ProductService  {
 
   constructor() { }
+  
+  //httpClient:HttpClient = inject(HttpClient)
+   
 
   products  = [
     {
@@ -808,21 +816,9 @@ export class ProductService  {
   ];
   
  
-  productsToLoadAtShopPage !: {id: number; name: string; description: string; price: number; 
-    oldPrice: number; category: string; stock: number; rating: number; imageUrl:
-     string; }[] ;
+  productsToLoadAtShopPage !: ProductDTO[] ;
        
-     productsSentFromPaginationEvent = new EventEmitter<{ 
-      id: number; 
-      name: string; 
-      description: string; 
-      price: number; 
-      oldPrice: number; 
-      category: string; 
-      stock: number; 
-      rating: number; 
-      imageUrl: string; 
-    }[]>() ;
+     productsSentFromPaginationEvent = new EventEmitter<ProductDTO[]>() ;
     
 
     loadProductsPageNumber(PageNumber: number, productsNumberPerPage: number) {
@@ -830,11 +826,31 @@ export class ProductService  {
       const startIndexProduct = (PageNumber - 1) * productsNumberPerPage;
       const endIndexProduct = startIndexProduct + productsNumberPerPage;
       // Return the sliced array of products for the specified page
-      this.productsToLoadAtShopPage = this.products.slice(startIndexProduct, endIndexProduct);      
-      // raise event for subscribed shop page to get notified to update products
-      // after page click btn action
-      this.productsSentFromPaginationEvent.emit(this.productsToLoadAtShopPage)
+
+      //this.productsToLoadAtShopPage = this.products.slice(startIndexProduct, endIndexProduct);      
+     
+      //this.productsSentFromPaginationEvent.emit(this.productsToLoadAtShopPage)
     }
+    
+    addProductEndPoint : string =  "https://localhost:7023/api/Products/products"
 
 
-  }    
+     sendProductAddedThroughApi(httpClient: HttpClient,addProductFromData:FormData): void {
+      
+      // Send the data to the backend
+      httpClient.post(this.addProductEndPoint, addProductFromData)
+        .subscribe(
+          response => {
+            console.log('product sent successfully:', response);
+          },
+          error => {
+            console.error('couldnt send product', error);
+          }
+        );
+    }
+    
+    
+    
+    
+
+}  

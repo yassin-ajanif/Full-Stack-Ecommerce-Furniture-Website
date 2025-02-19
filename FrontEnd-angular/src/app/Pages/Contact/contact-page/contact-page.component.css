@@ -110,3 +110,10 @@ button:hover {
     transform: translateY(-3px);
 }
 
+.ng-invalid p{
+
+    /*border-color: red;*/
+    color: red;
+    font-size: .9rem;
+    
+}

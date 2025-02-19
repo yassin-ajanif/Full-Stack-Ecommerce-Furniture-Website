@@ -4,6 +4,7 @@
   display: flex;
 
   z-index: 10;
+  
 }
 
 .dropDowContainer label{
@@ -16,7 +17,7 @@ margin-right: 0.625rem;
 .dropdown {
     
     display: inline-block; /* Ensure it's aligned properly */
-    font-family: Arial, sans-serif;
+    width: fit-content;
 }
 
 /* Dropdown header */
@@ -60,9 +61,12 @@ margin-right: 0.625rem;
 
 .dropdown-menus{
     background-color: white;
-    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
     position: absolute;
     z-index: 10;
+    width: fit-content;
+    max-height: 13rem;
+    overflow-y: auto;
+    scrollbar-width: none;
 }
 
 /* Dropdown options */

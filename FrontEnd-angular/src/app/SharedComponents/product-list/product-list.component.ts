@@ -2,6 +2,7 @@ import { Component, Input } from '@angular/core';
 import { ProductComponent } from '../product/product.component';
 import { CommonModule } from '@angular/common';
 import { ProductService } from '../../Services/product.service';
+import { ProductDTO } from '../../Dtos/product.dto';
 
 @Component({
   selector: 'product-list',
@@ -12,17 +13,7 @@ import { ProductService } from '../../Services/product.service';
 export class ProductListComponent {
 
 
-   @Input() products!: {
-    id: number;
-    name: string;
-    description: string;
-    price: number;
-    oldPrice: number;
-    category: string;
-    stock: number;
-    rating: number;
-    imageUrl: string;
-  }[] ;
+   @Input() products!: ProductDTO[] ;
   
    
 }

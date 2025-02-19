@@ -1,4 +1,4 @@
-import { Component, Input } from '@angular/core';
+import { Component, inject, Input } from '@angular/core';
 import { CategoriesComponent } from '../Components/categories/categories.component';
 import { ProductListComponent } from '../../../SharedComponents/product-list/product-list.component';
 import { CommonModule } from '@angular/common';
@@ -10,6 +10,7 @@ import { HeroComponent } from '../Components/hero/hero.component';
 import { RouterOutlet } from '@angular/router';
 import { ProductService } from '../../../Services/product.service';
 import { ShopHeroComponent } from '../../../SharedComponents/shop-hero/shop-hero.component';
+import { ProductDTO } from '../../../Dtos/product.dto';
 
 
 @Component({
@@ -25,29 +26,11 @@ import { ShopHeroComponent } from '../../../SharedComponents/shop-hero/shop-hero
   styleUrl: './home-page.component.css'
 })
 export class HomePageComponent {
+    
+    productService : ProductService = inject(ProductService)
 
-    @Input() products: {
-      id: number;
-      name: string;
-      description: string;
-      price: number;
-      oldPrice: number;
-      category: string;
-      stock: number;
-      rating: number;
-      imageUrl: string;
-    }[] = new ProductService().products;
+    @Input() products: ProductDTO[] = [];
 
     // we display only the first 8 products
-    @Input() productsHomeSnapShot: {
-      id: number;
-      name: string;
-      description: string;
-      price: number;
-      oldPrice: number;
-      category: string;
-      stock: number;
-      rating: number;
-      imageUrl: string;
-    }[] = this.products.slice(0, 8);
+    @Input() productsHomeSnapShot: ProductDTO [] = this.products.slice(0, 8);
 }

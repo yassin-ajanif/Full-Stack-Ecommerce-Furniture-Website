@@ -48,32 +48,33 @@
        <div class="form-field">
          <label for="name">Your Name</label>
          <input type="text" id="name" formControlName="name">
-         <div *ngIf="contactForm.get('name')?.invalid && contactForm.get('name')?.touched">
-           Name is required.
+         <div class="ng-invalid" *ngIf="contactForm.get('name')?.invalid && contactForm.get('name')?.touched">
+           <p>Name is required.</p>
          </div>
        </div>
      
        <div class="form-field">
          <label for="email">Email Address</label>
          <input type="email" id="email" formControlName="email">
-         <div *ngIf="contactForm.get('email')?.invalid && contactForm.get('email')?.touched">
-           Enter a valid email.
+         <div class="ng-invalid"  
+         *ngIf="contactForm.get('email')?.invalid && contactForm.get('email')?.touched">
+           <p>Enter a valid email.</p>
          </div>
        </div>
      
        <div class="form-field">
          <label for="subject">Subject</label>
          <input type="text" id="subject" formControlName="subject">
-         <div *ngIf="contactForm.get('subject')?.invalid && contactForm.get('subject')?.touched">
-           Subject is required.
+         <div class="ng-invalid" *ngIf="contactForm.get('subject')?.invalid && contactForm.get('subject')?.touched">
+           <p>Subject is required.</p>
          </div>
        </div>
      
        <div class="form-field">
          <label for="message">Message</label>
          <textarea id="message" formControlName="message"></textarea>
-         <div *ngIf="contactForm.get('message')?.invalid && contactForm.get('message')?.touched">
-           Message must be at least 10 characters.
+         <div class="ng-invalid" *ngIf="contactForm.get('message')?.invalid && contactForm.get('message')?.touched">
+           <p>Message must be at least 10 characters.</p>
          </div>
        </div>
      

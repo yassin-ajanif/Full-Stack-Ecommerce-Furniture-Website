@@ -1,5 +1,5 @@
 import { Component, Input } from '@angular/core';
-import {Product} from '../../Dtos/product.dto';
+import {ProductDTO} from '../../Dtos/product.dto';
 import { ActivatedRoute, Router } from '@angular/router';
 
 @Component({
@@ -10,7 +10,7 @@ import { ActivatedRoute, Router } from '@angular/router';
 })
 export class ProductComponent {
 
-   @Input() product!: Product 
+   @Input() product!: ProductDTO 
    
 
    constructor(private activatedRoute:ActivatedRoute,private route:Router) {

@@ -11,6 +11,9 @@ import { CheckoutPageComponent } from "./Pages/Checkout/checkout-page/checkout-p
 import { ContactPageComponent } from "./Pages/Contact/contact-page/contact-page.component";
 import { LoginPageComponent } from "./Pages/Login/login-page/login-page.component";
 import { ProductAndCategoryPageComponent } from "./Pages/ProductAndCategoryPage/product-and-category-page/product-and-category-page.component";
+import { HttpClientModule } from '@angular/common/http';
+import { ProductsCartComponent } from './Pages/Cart/Components/products-cart/products-cart.component';
+import { ProductSelectedInfoComponent } from './Pages/SelectedProductInfo/Components/product-selected-info/product-selected-info.component';
 
 
 @Component({
@@ -19,7 +22,8 @@ import { ProductAndCategoryPageComponent } from "./Pages/ProductAndCategoryPage/
   imports: [RouterOutlet, RouterLink,RouterLinkActive,NavbarComponent, CommonModule, FooterComponent,
     HomePageComponent, ShopPageComponent, SelectedProductInfoPageComponent,
     CartComponent, CheckoutPageComponent, CheckoutPageComponent, 
-    ContactPageComponent, LoginPageComponent, ProductAndCategoryPageComponent,],
+    ContactPageComponent, LoginPageComponent, ProductAndCategoryPageComponent,
+    HttpClientModule,ProductSelectedInfoComponent],
 
   
   templateUrl: './app.component.html',

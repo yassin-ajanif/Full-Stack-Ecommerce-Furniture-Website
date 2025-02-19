@@ -14,7 +14,7 @@ export class DropdownComponent implements AfterViewInit {
   @Input() options: string[] = [];  
   @Input() selectedOption: string = '';
   // set default width of the dropdownMenu
-  @Input() width : string = '3rem';
+  @Input() width : string = 'fit-content';
   @Input() height : string = '1.5rem';
   @ViewChild('dropdown') dropdownElement!: ElementRef; 
   
