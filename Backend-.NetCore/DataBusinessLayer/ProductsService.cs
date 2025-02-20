@@ -39,7 +39,7 @@ namespace DataBusinessLayer
         }
 
         // Async method to update an existing product
-        public async Task<bool> UpdateProductAsync(CreateProductDto productDto)
+        public async Task<bool> UpdateProductAsync(UpdateProductDto productDto)
         {
             return await _productRepository.UpdateProductAsync(productDto);
         }
@@ -54,6 +54,11 @@ namespace DataBusinessLayer
         public async Task<byte[]> GetProductImageByIdAsync(int productID)
         {
             return await _productRepository.GetProductImageByIdAsync(productID);
+        }
+
+        public async Task<IEnumerable<GetProductDto>> GetProductsByNameAsync(string namePrefix)
+        {
+            return await _productRepository.GetProductsByNameAsync(namePrefix);
         }
     }
 }

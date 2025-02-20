@@ -1,0 +1,19 @@
+<div class="autocomplete-container">
+    <input
+      type="text"
+      [(ngModel)]="searchQuery"
+      (input)="onSearchInput(searchQuery)"
+      placeholder="Search..."
+      class="autocomplete-input"
+    />
+  
+    <!-- Dropdown menu for suggestions -->
+    <div class="autocomplete-dropdown" *ngIf="filteredItems.length > 0">
+      <ul>
+        <li *ngFor="let item of filteredItems" (click)="selectItem(item)">
+          {{ item }}
+        </li>
+      </ul>
+    </div>
+  </div>
+  

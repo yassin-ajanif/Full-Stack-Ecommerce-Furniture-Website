@@ -4,31 +4,48 @@ using DataAccessLayer.Interfaces;
 using DataAccessLayer.Models;
 using DataBusinessLayer.Interfaces;
 using Microsoft.EntityFrameworkCore;
+using System.Collections.Generic;
+using System.Linq;
+using System.Threading.Tasks;
 
 namespace DataBusinessLayer
 {
-    public class CategoryProductsService :IProductCategoryService
+    public class CategoryProductsService : IProductCategoryService
     {
         private readonly IProductCategoryRepository _productCategoryRepository;
+
         public CategoryProductsService(IProductCategoryRepository productCategoryRepository)
         {
             _productCategoryRepository = productCategoryRepository;
         }
-        public static List<string> getAllProductsCategories()
+
+        public async Task<IEnumerable<CategoryProductDTO>> GetAllProductsCategoriesAsync()
         {
-            var myDatabase = new AppDbContext();
+           
+            
+        return await _productCategoryRepository.GetAllCategoriesAsync();
 
-            var productsCategoryNames = myDatabase.ProductsCategories.Select(Category => Category.Name ).ToList();
-
-            return productsCategoryNames;
+            
         }
 
-        public bool AddCategory(CategoryProductDTO categoryDto)
+        public async Task<bool> AddCategoryAsync(CategoryProductDTO categoryDto)
         {
-
-            return _productCategoryRepository.AddCategory(categoryDto);
-
+            return await _productCategoryRepository.AddCategoryAsync(categoryDto);
         }
 
+        public async Task<bool> UpdateCategoryAsync(int id, CategoryProductDTO categoryDto)
+        {
+            return await _productCategoryRepository.UpdateCategoryAsync(id, categoryDto);
+        }
+
+        public async Task<bool> DeleteCategoryAsync(int id)
+        {
+            return await _productCategoryRepository.DeleteCategoryAsync(id);
+        }
+
+        public async Task<CategoryProductDTO> FindCategoryAsync(int id)
+        {
+            return await _productCategoryRepository.FindCategoryAsync(id);
+        }
     }
 }

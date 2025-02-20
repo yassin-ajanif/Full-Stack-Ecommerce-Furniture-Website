@@ -92,7 +92,7 @@ namespace DataAccessLayer
         }
 
         // Convert to async
-        public async Task<bool> UpdateProductAsync(CreateProductDto productDto)
+        public async Task<bool> UpdateProductAsync(UpdateProductDto productDto)
         {
             var productToUpdate = await _appDbContext.Products.FirstOrDefaultAsync(p => p.Id == productDto.Id); // Use FirstOrDefaultAsync()
             if (productToUpdate == null)
@@ -167,5 +167,30 @@ namespace DataAccessLayer
             // Return the image data (assuming it's stored as a byte array in the ImageData column)
             return product.ImageData;
         }
+
+
+        public async Task<IEnumerable<GetProductDto>> GetProductsByNameAsync(string namePrefix)
+        {
+            if (string.IsNullOrWhiteSpace(namePrefix))
+            {
+                return Enumerable.Empty<GetProductDto>();
+            }
+
+            var products = await _appDbContext.Products
+                .Where(p => p.Name.StartsWith(namePrefix)) // ✅ Efficient search
+                .AsNoTracking() // ✅ Improve performance (read-only operation)
+                .ToListAsync();
+
+            return products.Select(p => new GetProductDto(
+                p.Id,
+                p.Name,
+                p.Description,
+                p.StockQuantity,
+                p.Price,
+                p.CategoryID
+            ));
+        }
+
+
     }
 }

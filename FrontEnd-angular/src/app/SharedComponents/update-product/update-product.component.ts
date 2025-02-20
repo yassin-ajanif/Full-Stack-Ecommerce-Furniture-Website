@@ -1,7 +1,10 @@
-import { Component, Input } from '@angular/core';
+import { Component, inject, Input, OnInit } from '@angular/core';
 import { DropdownComponent } from '../dropdown/dropdown.component';
 import { CommonModule } from '@angular/common';
 import { FormsModule } from '@angular/forms';
+import { CategoryProductService } from '../../Services/CategoryProductService';
+import { ProductService } from '../../Services/product.service';
+import { getProductDTO } from '../../Dtos/getProduct.dto';
 
 @Component({
   selector: 'update-product',
@@ -9,38 +12,48 @@ import { FormsModule } from '@angular/forms';
   templateUrl: './update-product.component.html',
   styleUrl: './update-product.component.css'
 })
-export class UpdateProductComponent {
+export class UpdateProductComponent implements OnInit {
+  
 
   // Input fields for product information
   @Input() activeSection :string = ''
   searchQuery: string = '';
-  filteredProducts: any[] = [];  // Store filtered product list based on search query
+    // Store filtered product list based on search query
   productName: string = '';
   productPrice: number = 0;
   selectedCategory: string = '';
   productDescription: string = '';
   selectedImage: string | ArrayBuffer | null = null;
   
-  // List of categories (you can replace this with data from your backend or service)
-  categories: string[] = ['Category 1', 'Category 2', 'Category 3'];
+  productService = inject(ProductService)
+  categoryProductService = inject(CategoryProductService)
 
-  // Placeholder for the list of all products (this should be fetched from the backend)
-  allProducts: any[] = [
-    { name: 'Product 1', price: 100, category: 'Category 1', description: 'Description of Product 1' },
-    { name: 'Product 2', price: 200, category: 'Category 2', description: 'Description of Product 2' },
-    { name: 'Product 3', price: 150, category: 'Category 3', description: 'Description of Product 3' },
-  ];
+  categoryNamesToPickByUser: string[] = [];
 
-  // Search handler to filter products based on the search query
-  onSearch(): void {
-    if (this.searchQuery.trim() === '') {
-      this.filteredProducts = [];
-      return;
-    }
+  filteredProducts : getProductDTO[] = []
+  filteredProductsName: string[] = [];
+
+  ngOnInit(): void {
     
-    this.filteredProducts = this.allProducts.filter(product =>
-      product.name.toLowerCase().includes(this.searchQuery.toLowerCase())
-    );
+     this.categoryProductService.loadProductCategoryAsyn_At_Component(this)
+  }
+
+  onSearch(): void {
+
+  this.productService.searchProductsByPrefixNameAsync(this.searchQuery).
+  subscribe((products) => {
+
+    this.filteredProducts = products;
+    this.filteredProductsName = products.map((product) => product.name);
+
+  });
+  
+}
+
+  whenUserSelectProductCategory_GetIt(selectedCategory: string): void {
+
+    this.selectedCategory = selectedCategory;
+    
   }
 
   // Handle image selection

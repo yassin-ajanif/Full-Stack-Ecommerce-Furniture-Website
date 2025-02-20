@@ -14,16 +14,19 @@ import { ProductAndCategoryPageComponent } from "./Pages/ProductAndCategoryPage/
 import { HttpClientModule } from '@angular/common/http';
 import { ProductsCartComponent } from './Pages/Cart/Components/products-cart/products-cart.component';
 import { ProductSelectedInfoComponent } from './Pages/SelectedProductInfo/Components/product-selected-info/product-selected-info.component';
+import { UpdateCategoryProductComponent } from "./SharedComponents/update-category-product/update-category-product.component";
+import { AutoCompleteSearchBoxComponent } from "./SharedComponents/auto-complete-search-box/auto-complete-search-box.component";
 
 
 @Component({
   selector: 'app-root',
 
-  imports: [RouterOutlet, RouterLink,RouterLinkActive,NavbarComponent, CommonModule, FooterComponent,
+  imports: [RouterOutlet, RouterLink, RouterLinkActive, NavbarComponent, CommonModule, FooterComponent,
     HomePageComponent, ShopPageComponent, SelectedProductInfoPageComponent,
-    CartComponent, CheckoutPageComponent, CheckoutPageComponent, 
+    CartComponent, CheckoutPageComponent, CheckoutPageComponent,
     ContactPageComponent, LoginPageComponent, ProductAndCategoryPageComponent,
-    HttpClientModule,ProductSelectedInfoComponent],
+    HttpClientModule, ProductSelectedInfoComponent, 
+    UpdateCategoryProductComponent, AutoCompleteSearchBoxComponent],
 
   
   templateUrl: './app.component.html',

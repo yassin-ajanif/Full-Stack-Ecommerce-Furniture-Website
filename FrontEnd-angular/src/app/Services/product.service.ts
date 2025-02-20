@@ -4,6 +4,7 @@ import { HttpClient } from '@angular/common/http';
 import {  HttpHeaders } from '@angular/common/http';
 import { Observable, of } from 'rxjs';
 import { catchError } from 'rxjs/operators';
+import { getProductDTO } from '../Dtos/getProduct.dto';
 
 @Injectable({
   providedIn: 'root'
@@ -12,8 +13,9 @@ export class ProductService  {
 
   constructor() { }
   
-  //httpClient:HttpClient = inject(HttpClient)
-   
+  httpClient:HttpClient = inject(HttpClient)
+  
+
 
   products  = [
     {
@@ -815,10 +817,9 @@ export class ProductService  {
     },
   ];
   
- 
   productsToLoadAtShopPage !: ProductDTO[] ;
        
-     productsSentFromPaginationEvent = new EventEmitter<ProductDTO[]>() ;
+  productsSentFromPaginationEvent = new EventEmitter<ProductDTO[]>() ;
     
 
     loadProductsPageNumber(PageNumber: number, productsNumberPerPage: number) {
@@ -833,12 +834,13 @@ export class ProductService  {
     }
     
     addProductEndPoint : string =  "https://localhost:7023/api/Products/products"
+    serachProductByLetterEndPoint = 
+                          "https://localhost:7023/api/Products"
 
-
-     sendProductAddedThroughApi(httpClient: HttpClient,addProductFromData:FormData): void {
+     sendProductAddedThroughApi(addProductFromData:FormData): void {
       
       // Send the data to the backend
-      httpClient.post(this.addProductEndPoint, addProductFromData)
+      this.httpClient.post(this.addProductEndPoint, addProductFromData)
         .subscribe(
           response => {
             console.log('product sent successfully:', response);
@@ -847,6 +849,18 @@ export class ProductService  {
             console.error('couldnt send product', error);
           }
         );
+    }
+
+    searchProductsByPrefixNameAsync(namePrefix: string): Observable<getProductDTO[]> {
+      
+      // If namePrefix is empty, return an empty array as Observable
+      if (namePrefix.trim() === '') {
+        return of([]);  // Return an empty observable array
+      }
+        
+      return this.httpClient.get<getProductDTO[]>(
+        `${this.serachProductByLetterEndPoint}/search?namePrefix=${namePrefix}`
+      );
     }
     
     

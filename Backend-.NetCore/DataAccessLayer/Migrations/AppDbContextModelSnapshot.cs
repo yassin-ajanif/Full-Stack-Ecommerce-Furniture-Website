@@ -41,7 +41,7 @@ namespace DataAccessLayer.Migrations
                     b.HasIndex("UserID")
                         .IsUnique();
 
-                    b.ToTable("Carts", (string)null);
+                    b.ToTable("Carts");
                 });
 
             modelBuilder.Entity("DataAccessLayer.Models.CartItem", b =>
@@ -70,7 +70,7 @@ namespace DataAccessLayer.Migrations
 
                     b.HasIndex("ProductID");
 
-                    b.ToTable("CartItems", (string)null);
+                    b.ToTable("CartItems");
                 });
 
             modelBuilder.Entity("DataAccessLayer.Models.CategoryProduct", b =>
@@ -82,7 +82,6 @@ namespace DataAccessLayer.Migrations
                     SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("Id"));
 
                     b.Property<string>("Description")
-                        .IsRequired()
                         .HasMaxLength(100)
                         .HasColumnType("nvarchar(100)");
 
@@ -93,7 +92,7 @@ namespace DataAccessLayer.Migrations
 
                     b.HasKey("Id");
 
-                    b.ToTable("ProductsCategories", (string)null);
+                    b.ToTable("ProductsCategories");
                 });
 
             modelBuilder.Entity("DataAccessLayer.Models.Order", b =>
@@ -125,7 +124,7 @@ namespace DataAccessLayer.Migrations
 
                     b.HasIndex("UserID");
 
-                    b.ToTable("Orders", (string)null);
+                    b.ToTable("Orders");
                 });
 
             modelBuilder.Entity("DataAccessLayer.Models.OrderDetail", b =>
@@ -154,7 +153,7 @@ namespace DataAccessLayer.Migrations
 
                     b.HasIndex("ProductID");
 
-                    b.ToTable("OrderDetails", (string)null);
+                    b.ToTable("OrderDetails");
                 });
 
             modelBuilder.Entity("DataAccessLayer.Models.OrderStatus", b =>
@@ -172,7 +171,7 @@ namespace DataAccessLayer.Migrations
 
                     b.HasKey("Id");
 
-                    b.ToTable("OrderStatuses", (string)null);
+                    b.ToTable("OrderStatuses");
                 });
 
             modelBuilder.Entity("DataAccessLayer.Models.Payment", b =>
@@ -207,7 +206,7 @@ namespace DataAccessLayer.Migrations
 
                     b.HasIndex("PaymentStatusID");
 
-                    b.ToTable("Payments", (string)null);
+                    b.ToTable("Payments");
                 });
 
             modelBuilder.Entity("DataAccessLayer.Models.PaymentMethod", b =>
@@ -225,7 +224,7 @@ namespace DataAccessLayer.Migrations
 
                     b.HasKey("Id");
 
-                    b.ToTable("PaymentMethods", (string)null);
+                    b.ToTable("PaymentMethods");
                 });
 
             modelBuilder.Entity("DataAccessLayer.Models.PaymentStatus", b =>
@@ -243,7 +242,7 @@ namespace DataAccessLayer.Migrations
 
                     b.HasKey("Id");
 
-                    b.ToTable("PaymentStatuses", (string)null);
+                    b.ToTable("PaymentStatuses");
                 });
 
             modelBuilder.Entity("DataAccessLayer.Models.Product", b =>
@@ -262,6 +261,7 @@ namespace DataAccessLayer.Migrations
                         .HasColumnType("nvarchar(200)");
 
                     b.Property<byte[]>("ImageData")
+                        .HasMaxLength(1048576)
                         .HasColumnType("varbinary(max)");
 
                     b.Property<string>("Name")
@@ -279,7 +279,9 @@ namespace DataAccessLayer.Migrations
 
                     b.HasIndex("CategoryID");
 
-                    b.ToTable("Products", (string)null);
+                    b.HasIndex(new[] { "Name" }, "IX_Products_Name");
+
+                    b.ToTable("Products");
                 });
 
             modelBuilder.Entity("DataAccessLayer.Models.User", b =>
@@ -317,7 +319,7 @@ namespace DataAccessLayer.Migrations
 
                     b.HasKey("Id");
 
-                    b.ToTable("Users", (string)null);
+                    b.ToTable("Users");
                 });
 
             modelBuilder.Entity("DataAccessLayer.Models.Cart", b =>

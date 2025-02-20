@@ -1,54 +1,154 @@
 ﻿using SharedLayer.Dtos;
 using DataAccessLayer.Interfaces;
 using DataAccessLayer.Models;
+using Microsoft.EntityFrameworkCore;
 using System;
 using System.Collections.Generic;
 using System.Linq;
-using System.Text;
 using System.Threading.Tasks;
-using static DataAccessLayer.ProductCategoryRepository;
 
 namespace DataAccessLayer
 {
     public class ProductCategoryRepository : IProductCategoryRepository
     {
+        private readonly AppDbContext _appDbContext;
 
-            private readonly AppDbContext _appDbContext;
+        public ProductCategoryRepository(AppDbContext appDbContext)
+        {
+            _appDbContext = appDbContext;
+        }
 
-            public ProductCategoryRepository(AppDbContext appDbContext)
+        // AddCategory function to add a new category to the database asynchronously
+        public async Task<bool> AddCategoryAsync(CategoryProductDTO categoryDto)
+        {
+            try
             {
-                _appDbContext = appDbContext;
+                // Convert DTO to Model
+                var newCategory = new CategoryProduct(
+                    categoryDto.Name,
+                    categoryDto.Description
+                );
+
+                // Add the new category to the ProductsCategories table
+                await _appDbContext.ProductsCategories.AddAsync(newCategory);
+
+                // Save changes to the database
+                int rowsAffected = await _appDbContext.SaveChangesAsync();
+
+                return rowsAffected == 1; // Return true if one row was affected (category added successfully)
             }
-
-            // AddCategory function to add a new category to the database
-            public bool AddCategory(CategoryProductDTO categoryDto)
+            catch (Exception ex)
             {
-                try
+                // Log or handle the exception
+                Console.WriteLine("An error occurred: " + ex.Message);
+                return false;
+            }
+        }
+
+        // UpdateCategory function to update an existing category
+        public async Task<bool> UpdateCategoryAsync(int id, CategoryProductDTO categoryDto)
+        {
+            try
+            {
+                // Find the category by ID
+                var existingCategory = await _appDbContext.ProductsCategories
+                    .FirstOrDefaultAsync(c => c.Id == id);
+
+                if (existingCategory == null)
                 {
-                    // Convert DTO to Model
-                    var newCategory = new CategoryProduct(
-                        categoryDto.Name,
-                        categoryDto.Description
-                    );
-
-                    // Add the new category to the ProductsCategories table
-                    _appDbContext.ProductsCategories.Add(newCategory);
-
-                    // Save changes to the database
-                    bool categoryAddedSuccessfully = _appDbContext.SaveChanges() == 1;
-
-                    return categoryAddedSuccessfully;
-                }
-                catch (Exception ex)
-                {
-                    // Log or handle the exception
-                    Console.WriteLine("An error occurred: " + ex.Message);
+                    // If the category does not exist, return false
                     return false;
                 }
+
+                // Update the category's properties
+                existingCategory.Name = categoryDto.Name;
+                existingCategory.Description = categoryDto.Description;
+
+                // Save changes to the database
+                int rowsAffected = await _appDbContext.SaveChangesAsync();
+
+                return rowsAffected == 1; // Return true if one row was affected (category updated successfully)
+            }
+            catch (Exception ex)
+            {
+                // Log or handle the exception
+                Console.WriteLine("An error occurred: " + ex.Message);
+                return false;
+            }
+        }
+
+        // DeleteCategory function to delete an existing category
+        public async Task<bool> DeleteCategoryAsync(int id)
+        {
+            try
+            {
+                // Find the category by ID
+                var category = await _appDbContext.ProductsCategories
+                    .FirstOrDefaultAsync(c => c.Id == id);
+
+                if (category == null)
+                {
+                    // If the category does not exist, return false
+                    return false;
+                }
+
+                // Remove the category from the database
+                _appDbContext.ProductsCategories.Remove(category);
+
+                // Save changes to the database
+                int rowsAffected = await _appDbContext.SaveChangesAsync();
+
+                return rowsAffected == 1; // Return true if one row was affected (category deleted successfully)
+            }
+            catch (Exception ex)
+            {
+                // Log or handle the exception
+                Console.WriteLine("An error occurred: " + ex.Message);
+                return false;
+            }
+        }
+
+        // FindCategory function to find a category by ID asynchronously
+        public async Task<CategoryProductDTO> FindCategoryAsync(int id)
+        {
+            try
+            {
+                // Find the category by ID
+                var category = await _appDbContext.ProductsCategories
+                    .FirstOrDefaultAsync(c => c.Id == id);
+
+                if (category == null)
+                {
+                    // If the category does not exist, return null or an empty DTO
+                    return null;
+                }
+
+                // Return the category as a DTO
+                return new CategoryProductDTO(category.Name,category.Id,category.Description);
+                
+            }
+            catch (Exception ex)
+            {
+                // Log or handle the exception
+                Console.WriteLine("An error occurred: " + ex.Message);
+                return null;
             }
         }
 
 
-    
 
+        public async Task<IEnumerable<CategoryProductDTO>> GetAllCategoriesAsync()
+        {
+
+
+            var productCategories = await _appDbContext.ProductsCategories
+                .Select(category => new CategoryProductDTO(category.Name, category.Id, category.Description))
+                .ToListAsync();
+
+            return productCategories;  // Returns an IEnumerable with the result, even if there's just one category
+        }
+
+
+
+    }
 }

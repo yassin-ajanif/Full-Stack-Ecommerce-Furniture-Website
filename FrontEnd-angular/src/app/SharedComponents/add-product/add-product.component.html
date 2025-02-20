@@ -51,7 +51,7 @@
 
     <div class="form-group">
         <label class="form-label">Product Category</label>
-        <dropdown label="Select Category" [options]="categoryNames"
+        <dropdown label="Select Category" [options]="categoryNamesToPickByUser"
               (optionSelected)="whenUserSelectProductCategory_GetIt($event)" name="productCategory"
             width="10rem"></dropdown>
     </div>

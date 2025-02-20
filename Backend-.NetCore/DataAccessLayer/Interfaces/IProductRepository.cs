@@ -20,13 +20,15 @@ namespace DataAccessLayer.Interfaces
             Task<bool> AddProductAsync(CreateProductDto productDto);
 
             // Update an existing product asynchronously
-            Task<bool> UpdateProductAsync(CreateProductDto productDto);
+            Task<bool> UpdateProductAsync(UpdateProductDto productDto);
 
             // Delete a product by its ID asynchronously
             Task<bool> DeleteProductAsync(int productId);
 
             // Get the image of a product by its ID asynchronously (returns a byte array)
             Task<byte[]> GetProductImageByIdAsync(int productId);
+
+            Task<IEnumerable<GetProductDto>> GetProductsByNameAsync(string namePrefix);
         }
     }
 

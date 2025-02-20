@@ -10,8 +10,15 @@ namespace DataAccessLayer.Interfaces
 {
     public interface IProductCategoryRepository
     {
-        bool AddCategory(CategoryProductDTO categoryDto);
-       
+        Task<bool> AddCategoryAsync(CategoryProductDTO categoryDto);
+
+        Task<bool> UpdateCategoryAsync(int id, CategoryProductDTO categoryDto);
+
+        Task<bool> DeleteCategoryAsync(int id);
+
+        Task<CategoryProductDTO> FindCategoryAsync(int id);
+
+        Task<IEnumerable<CategoryProductDTO>> GetAllCategoriesAsync();
     }
 
 }

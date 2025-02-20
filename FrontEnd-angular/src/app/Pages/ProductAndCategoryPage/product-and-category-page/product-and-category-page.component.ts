@@ -1,4 +1,4 @@
-import { Component } from '@angular/core';
+import { Component ,inject} from '@angular/core';
 import { FormsModule } from '@angular/forms';
 import { DropdownComponent } from "../../../SharedComponents/dropdown/dropdown.component";
 import { CommonModule } from '@angular/common';
@@ -9,6 +9,9 @@ import { DeleteCategoryProductComponent } from "../../../SharedComponents/delete
 import { AddProductComponent } from '../../../SharedComponents/add-product/add-product.component';
 import { UpdateProductComponent } from "../../../SharedComponents/update-product/update-product.component";
 import { DeleteProductComponent } from "../../../SharedComponents/delete-product/delete-product.component";
+import { HttpClient } from '@angular/common/http';
+import { CategoryProductService } from '../../../Services/CategoryProductService';
+import { of } from 'rxjs';
 
 @Component({
   selector: 'product-and-category-page',
@@ -26,12 +29,16 @@ export class ProductAndCategoryPageComponent {
   productsCategories : string[]=[]
 
   ProductToAdd! : ProductDTO
-
-  ngOnInit(): void {
+  httpClient:HttpClient = inject(HttpClient)
+  categoryProductService = inject(CategoryProductService)
   
+  ngOnInit(): void {
+    
+    this.categoryProductService.loadProductCategoriesAsync()
+    
   }
 
-  
+ 
 
 setActiveSection(section: string) {
   // If the clicked section is already active, hide it; otherwise, show it
@@ -39,7 +46,10 @@ setActiveSection(section: string) {
 }
  
   onSubmit() {
+    
    
   }
+
+
 
 }

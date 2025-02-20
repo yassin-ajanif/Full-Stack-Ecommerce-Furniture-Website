@@ -5,7 +5,7 @@ import { DropdownComponent } from '../dropdown/dropdown.component';
 import { ProductDTO } from '../../Dtos/product.dto';
 import { ProductService } from '../../Services/product.service';
 import { HttpClient } from '@angular/common/http';
-import { ProductCategoryService } from '../../Services/CategoryProductService';
+import { CategoryProductService } from '../../Services/CategoryProductService';
 import { ProductCategoryDTO } from '../../Dtos/productCategory.dto';
 
 @Component({
@@ -28,30 +28,22 @@ export class AddProductComponent implements OnInit {
  productQuantity:number= 0;
  selectedCategory: string = '';
  productDescription: string = '';
- categories: ProductCategoryDTO[] = []; 
- categoryNames : string[] = []
-
+  
+ categoryNamesToPickByUser :string[]= []
  selectedImage : File | null = null
  selectedImageUrl: string | null = null;
  httpClient:HttpClient = inject(HttpClient)
- categoryProductService = inject(ProductCategoryService)
+ categoryProductService = inject(CategoryProductService)
  
+
  ngOnInit(): void {
+ 
+   // we subscribe this component to the service subject when the categories are
+   // loaded this componenets is going to load product categories
+   this.categoryProductService.loadProductCategoryAsyn_At_Component(this)
 
-  this.loadCategories(this.httpClient)
 }
 
-loadCategories(httpClient: HttpClient): void {
-  this.categoryProductService.getProductCategories(httpClient).subscribe(
-    (data) => {
-      this.categories = data; // Store the full category data
-      this.categoryNames = data.map((category) => category.name); // Extract only names for display
-    },
-    (error) => {
-      console.log('Error retrieving categories: ' + error.message);
-    }
-  );
-}
 
 whenUserSelectProductCategory_GetIt(selectedCategory: string): void {
 
@@ -78,7 +70,7 @@ whenUserSelectProductCategory_GetIt(selectedCategory: string): void {
  }
 
  getCategoryIdOfProductNameSelected(categoryName: string): number {
-  const category = this.categories.find(cat => cat.name === categoryName);
+  const category = this.categoryProductService.categories.find(cat => cat.name === categoryName);
   
   if (!category) {
     throw new Error(`Category "${categoryName}" not found.`);
@@ -113,7 +105,7 @@ whenUserSelectProductCategory_GetIt(selectedCategory: string): void {
      addProductformData.append('imageData', this.selectedImage, this.selectedImage.name);
    }
 
-  this.productService.sendProductAddedThroughApi(this.httpClient,addProductformData)
+  this.productService.sendProductAddedThroughApi(addProductformData)
       
     this.resetForm()
  }

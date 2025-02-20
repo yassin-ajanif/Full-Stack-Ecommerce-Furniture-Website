@@ -19,7 +19,7 @@ namespace DataAccessLayer.Models
 
         // Maximum length for Description to avoid overly long descriptions
         [MaxLength(100, ErrorMessage = "Description cannot exceed 500 characters.")]
-        public string Description { get; set; }
+        public string? Description { get; set; }
 
         // Navigation property for related products
         public ICollection<Product> Products { get; set; }

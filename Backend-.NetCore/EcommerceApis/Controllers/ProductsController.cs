@@ -21,7 +21,7 @@ namespace EcommerceApis.Controllers
 
         // Endpoint to get all products
         [HttpGet("products")]
-        [ProducesResponseType(StatusCodes.Status200OK, Type = typeof(IEnumerable<CreateProductDto>))]
+        [ProducesResponseType(StatusCodes.Status200OK, Type = typeof(IEnumerable<GetProductDto>))]
         [ProducesResponseType(StatusCodes.Status404NotFound)]
         public async Task<ActionResult<IEnumerable<CreateProductDto>>> GetAllProductsAsync()
         {
@@ -40,7 +40,7 @@ namespace EcommerceApis.Controllers
         [ProducesResponseType(StatusCodes.Status200OK, Type = typeof(CreateProductDto))]
         [ProducesResponseType(StatusCodes.Status404NotFound)]
         [ProducesResponseType(StatusCodes.Status400BadRequest)]
-        public async Task<ActionResult<CreateProductDto>> GetProductByIdAsync(int id)
+        public async Task<ActionResult<GetProductDto>> GetProductByIdAsync(int id)
         {
             if (id < 1) return BadRequest("Invalid id");
 
@@ -76,16 +76,18 @@ namespace EcommerceApis.Controllers
                 return StatusCode(500, "An error occurred while adding the product."); // Return 500 if there's a server error
             }
 
-            return CreatedAtAction(nameof(GetProductByIdAsync), new { id = productDto.Id }, productDto); // Return 201 with the newly created product
+
+            return StatusCode(201, productDto);
+            // Return 201 with the newly created product
         }
 
         // Endpoint to update an existing product
         [HttpPut("products")]
-        [ProducesResponseType(StatusCodes.Status200OK, Type = typeof(CreateProductDto))]
+        [ProducesResponseType(StatusCodes.Status200OK, Type = typeof(UpdateProductDto))]
         [ProducesResponseType(StatusCodes.Status400BadRequest)]
         [ProducesResponseType(StatusCodes.Status404NotFound)]
         [ProducesResponseType(StatusCodes.Status500InternalServerError)]
-        public async Task<ActionResult> UpdateProductAsync([FromBody] CreateProductDto productDto)
+        public async Task<ActionResult> UpdateProductAsync([FromForm] UpdateProductDto productDto)
         {
             // Check if the model is valid (based on validation attributes in ProductDTO)
             if (!ModelState.IsValid)
@@ -110,7 +112,7 @@ namespace EcommerceApis.Controllers
             }
 
             // Return 200 with the updated product
-            return Ok(updatedProduct);
+            return StatusCode(200,updatedProduct);
         }
 
         // Endpoint to delete a product
@@ -159,5 +161,30 @@ namespace EcommerceApis.Controllers
             // Return the image as a file
             return File(imageBytes, "image/png"); // Adjust MIME type if necessary
         }
+
+
+        [HttpGet("search")]
+        [ProducesResponseType(StatusCodes.Status404NotFound)]
+        [ProducesResponseType(StatusCodes.Status400BadRequest)]
+        public async Task<IActionResult> GetProductsByName([FromQuery] string namePrefix)
+        {
+            if (string.IsNullOrWhiteSpace(namePrefix))
+            {
+                return Ok(Enumerable.Empty<GetProductDto>());
+            }
+
+            var products = await _productService.GetProductsByNameAsync(namePrefix);
+
+            // If no products are found, return an empty list
+            if (products == null || !products.Any())
+            {
+                return Ok(Enumerable.Empty<GetProductDto>()); // Return an empty list (200 OK)
+            }
+
+            return Ok(products);
+        }
+
+
+
     }
 }

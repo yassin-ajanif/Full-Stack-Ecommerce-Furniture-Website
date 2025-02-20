@@ -8,12 +8,9 @@
             name="productName" required />
     </div>
 
-    <div class="form-group">
-        <label class="form-label">Product Category</label>
-        <dropdown label="Select Category" [options]="categories"
-            [(ngModel)]="selectedCategory" name="productCategory"
-            width="10rem"></dropdown>
-    </div>
+    
 
-    <button type="submit" class="btn-Bronw-background btn-hover-up submitBtn">Delete Product</button>
+    <button type="submit" 
+    class="btn-Bronw-background btn-hover-up submitBtn"
+    (click)="onDeleteProduct()">Delete Product</button>
 </div>

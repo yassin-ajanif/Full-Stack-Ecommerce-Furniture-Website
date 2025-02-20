@@ -1,13 +1,12 @@
 ﻿using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
-using DataBusinessLayer;
-using Microsoft.AspNetCore.Http;
-using Microsoft.AspNetCore.Mvc;
-using DataBusinessLayer;
 using DataBusinessLayer.Interfaces;
 using SharedLayer.Dtos;
-using DataAccessLayer.Interfaces;
-
+using System.Collections.Generic;
+using System.Linq;
+using System.Threading.Tasks;
+using DataAccessLayer;
+using DataAccessLayer.Models;
 
 namespace EcommerceApis.Controllers
 {
@@ -16,28 +15,35 @@ namespace EcommerceApis.Controllers
     public class CategoryProductsController : ControllerBase
     {
         private readonly IProductCategoryService _productCategoryService;
+
         public CategoryProductsController(IProductCategoryService productCategoryService)
         {
             _productCategoryService = productCategoryService;
         }
+
         [HttpGet("ProductsCategories")]
-        public ActionResult<IEnumerable<string>>getProductsCategyNames()
+        [ProducesResponseType(StatusCodes.Status200OK, Type = typeof(IEnumerable<CategoryProductDTO>))]
+        [ProducesResponseType(StatusCodes.Status404NotFound)]
+        [ProducesResponseType(StatusCodes.Status500InternalServerError)]
+        public async Task<ActionResult<IEnumerable<CategoryProductDTO>>> GetProductCategoriesAsync()
         {
-            List<string> categories = DataBusinessLayer.CategoryProductsService.getAllProductsCategories();
+            IEnumerable<CategoryProductDTO> categories = await _productCategoryService.GetAllProductsCategoriesAsync();
 
+            if (categories == null || !categories.Any())
+            {
+                return NotFound("There are no categories found.");
+            }
 
-            if (categories.Count == 0) return NotFound("there is no product found");
-
+            //return StatusCode(200,categories);
             return Ok(categories);
         }
-
 
         // Endpoint to add a new product category
         [HttpPost("product-categories")]
         [ProducesResponseType(StatusCodes.Status201Created, Type = typeof(CategoryProductDTO))]
         [ProducesResponseType(StatusCodes.Status400BadRequest)]
         [ProducesResponseType(StatusCodes.Status500InternalServerError)]
-        public ActionResult AddProductCategory([FromBody] CategoryProductDTO categoryDto)
+        public async Task<ActionResult> AddProductCategoryAsync([FromBody] CategoryProductDTO categoryDto)
         {
             // Validate the model
             if (!ModelState.IsValid)
@@ -47,15 +53,73 @@ namespace EcommerceApis.Controllers
             }
 
             // Call the service layer to add the product category
-            var result = _productCategoryService.AddCategory(categoryDto);
+            var result = await _productCategoryService.AddCategoryAsync(categoryDto);
 
             if (!result)
             {
                 return StatusCode(500, "An error occurred while adding the product category.");
             }
 
-            return CreatedAtAction(nameof(AddProductCategory), new { id = categoryDto.Id }, categoryDto);
+            return StatusCode(201, categoryDto);
         }
 
-    }
+        // Endpoint to update a category
+        [HttpPut("product-categories/{id}")]
+        [ProducesResponseType(StatusCodes.Status200OK, Type = typeof(CategoryProductDTO))]
+        [ProducesResponseType(StatusCodes.Status400BadRequest)]
+        [ProducesResponseType(StatusCodes.Status404NotFound)]
+        [ProducesResponseType(StatusCodes.Status500InternalServerError)]
+        public async Task<ActionResult> UpdateProductCategoryAsync(int id, [FromBody] CategoryProductDTO categoryDto)
+        {
+            if (id != categoryDto.Id)
+            {
+                return BadRequest("Category ID mismatch.");
+            }
+
+            var result = await _productCategoryService.UpdateCategoryAsync(id, categoryDto);
+
+            if (!result)
+            {
+                return StatusCode(500, "An error occurred while updating the product category.");
+            }
+
+            return StatusCode(200,categoryDto);
+        }
+
+        // Endpoint to delete a category
+        [HttpDelete("product-categories/{id}")]
+        [ProducesResponseType(StatusCodes.Status204NoContent)]
+        [ProducesResponseType(StatusCodes.Status404NotFound)]
+        [ProducesResponseType(StatusCodes.Status500InternalServerError)]
+        public async Task<ActionResult> DeleteProductCategoryAsync(int id)
+        {
+            var result = await _productCategoryService.DeleteCategoryAsync(id);
+
+            if (!result)
+            {
+                return StatusCode(500, "An error occurred while deleting the product category.");
+            }
+
+            return NoContent();
+        }
+
+        // Endpoint to find a specific category by ID
+        [HttpGet("product-categories/{id}")]
+        [ProducesResponseType(StatusCodes.Status200OK, Type = typeof(CategoryProductDTO))]
+        [ProducesResponseType(StatusCodes.Status404NotFound)]
+        public async Task<ActionResult<CategoryProductDTO>> GetProductCategoryByIdAsync(int id)
+        {
+            var category = await _productCategoryService.FindCategoryAsync(id);
+
+            if (category == null)
+            {
+                return NotFound("Category not found.");
+            }
+
+            return StatusCode(200,category);
+        }
+
+
+
+}
 }

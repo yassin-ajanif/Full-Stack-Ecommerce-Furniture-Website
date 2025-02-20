@@ -33,6 +33,8 @@ public static class FileHelper
     // Converts an IFormFile to a byte array
     public static byte[] ConvertIFormFileToByteArray(IFormFile formFile)
     {
+        if (formFile == null) return null;
+
         using var memoryStream = new MemoryStream();
         formFile.CopyTo(memoryStream);
         return memoryStream.ToArray();

@@ -1,10 +1,12 @@
-﻿using System;
+﻿using Microsoft.EntityFrameworkCore;
+using System;
 using System.Collections.Generic;
 using System.ComponentModel.DataAnnotations;
 using System.ComponentModel.DataAnnotations.Schema;
 
 namespace DataAccessLayer.Models
 {
+    [Index(nameof(Name), Name = "IX_Products_Name")]
     public class Product
     {
         [Key]

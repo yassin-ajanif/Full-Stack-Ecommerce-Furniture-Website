@@ -6,17 +6,22 @@
           <h4>Search for a Product</h4>
       
           <!-- Search Input -->
+           <div>
+
           <input type="text" [(ngModel)]="searchQuery" (input)="onSearch()"
-            placeholder="Enter product name" class="search-input" />
+            placeholder="Enter product name" class="search-input"
+            autocomplete="false" />
       
           <!-- Search Results -->
           <div *ngIf="filteredProducts.length > 0" class="results-container">
-            <p>Results:</p>
+          
             <ul>
               <li *ngFor="let product of filteredProducts">{{ product.name }}</li>
             </ul>
           </div>
-      
+
+        </div>
+
           <!-- No Results Message -->
           <p *ngIf="filteredProducts.length === 0 && searchQuery !== ''">No products found.</p>
         </div>
@@ -62,8 +67,8 @@
 
     <div class="form-group">
         <label class="form-label">Product Category</label>
-        <dropdown label="Select Category" [options]="categories"
-            [(ngModel)]="selectedCategory" name="productCategory"
+        <dropdown label="Select Category" [options]="categoryNamesToPickByUser"
+            (optionSelected)="whenUserSelectProductCategory_GetIt($event)" name="productCategory"
             width="10rem"></dropdown>
     </div>
 
