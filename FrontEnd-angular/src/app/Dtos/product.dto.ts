@@ -24,4 +24,8 @@ export class ProductDTO {
       this.categoryID = categoryID;
       this.image = image;
   }
+
+  static empty(): ProductDTO {
+    return new ProductDTO(0, '', null, 0, 0, 0, null);
+  }
 }

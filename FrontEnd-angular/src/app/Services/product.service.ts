@@ -3,7 +3,7 @@ import { ProductDTO } from '../Dtos/product.dto';
 import { HttpClient } from '@angular/common/http';
 import {  HttpHeaders } from '@angular/common/http';
 import { Observable, of } from 'rxjs';
-import { catchError } from 'rxjs/operators';
+import { catchError, map } from 'rxjs/operators';
 import { getProductDTO } from '../Dtos/getProduct.dto';
 
 @Injectable({
@@ -14,8 +14,10 @@ export class ProductService  {
   constructor() { }
   
   httpClient:HttpClient = inject(HttpClient)
+  private baseUrl : string = "https://localhost:7023/api/Products"
   
-
+  private serachProductByLetterEndPoint = "https://localhost:7023/api/Products"
+ 
 
   products  = [
     {
@@ -833,14 +835,12 @@ export class ProductService  {
       //this.productsSentFromPaginationEvent.emit(this.productsToLoadAtShopPage)
     }
     
-    addProductEndPoint : string =  "https://localhost:7023/api/Products/products"
-    serachProductByLetterEndPoint = 
-                          "https://localhost:7023/api/Products"
+    
 
-     sendProductAddedThroughApi(addProductFromData:FormData): void {
+    sendProductAddedThroughApi(addProductFromData:FormData): void {
       
       // Send the data to the backend
-      this.httpClient.post(this.addProductEndPoint, addProductFromData)
+      this.httpClient.post(this.baseUrl+'/Addproduct', addProductFromData)
         .subscribe(
           response => {
             console.log('product sent successfully:', response);
@@ -849,6 +849,13 @@ export class ProductService  {
             console.error('couldnt send product', error);
           }
         );
+    }
+    
+    
+    updateProduct(updateProductFromData: FormData): Observable<any> {
+
+      return this.httpClient.put(`${this.baseUrl}/Updateproduct`, updateProductFromData);
+    
     }
 
     searchProductsByPrefixNameAsync(namePrefix: string): Observable<getProductDTO[]> {
@@ -863,7 +870,16 @@ export class ProductService  {
       );
     }
     
+   
     
+    getProductImageById(productId: number): Observable<Blob> {
+      return this.httpClient.get(`${this.baseUrl}/GetProductImage/${productId}`, 
+        { responseType: 'blob' });
+    }
+    
+    
+     
+      
     
     
 

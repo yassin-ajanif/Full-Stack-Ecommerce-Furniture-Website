@@ -48,7 +48,7 @@
               "RelativeDocumentMoniker": "DataAccessLayer\\ProductRepository.cs",
               "ToolTip": "C:\\Users\\yassin\\source\\repos\\FullStackEcommerceWebsite\\Backend-.NetCore\\DataAccessLayer\\ProductRepository.cs",
               "RelativeToolTip": "DataAccessLayer\\ProductRepository.cs",
-              "ViewState": "AQIAAJMAAAAAAAAAAAAmwLoAAAAeAAAA",
+              "ViewState": "AQIAAC8AAAAAAAAAAAAwwLoAAAAeAAAA",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
               "WhenOpened": "2025-02-20T16:25:22.873Z",
               "EditorCaption": ""
@@ -63,8 +63,7 @@
               "RelativeToolTip": "DataBusinessLayer\\ProductsService.cs",
               "ViewState": "AQIAAAMAAAAAAAAAAAAAADMAAAAAAAAA",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2025-02-20T16:26:08.502Z",
-              "EditorCaption": ""
+              "WhenOpened": "2025-02-20T16:26:08.502Z"
             },
             {
               "$type": "Document",
@@ -74,7 +73,7 @@
               "RelativeDocumentMoniker": "EcommerceApis\\Controllers\\ProductsController.cs",
               "ToolTip": "C:\\Users\\yassin\\source\\repos\\FullStackEcommerceWebsite\\Backend-.NetCore\\EcommerceApis\\Controllers\\ProductsController.cs",
               "RelativeToolTip": "EcommerceApis\\Controllers\\ProductsController.cs",
-              "ViewState": "AQIAAJUAAAAAAAAAAAAmwKoAAAAMAAAA",
+              "ViewState": "AQIAAE4AAAAAAAAAAAAIwFwAAAAMAAAA",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
               "WhenOpened": "2025-02-19T12:03:28.374Z",
               "EditorCaption": ""

@@ -89,20 +89,30 @@ whenUserSelectProductCategory_GetIt(selectedCategory: string): void {
 
    }
     
-   const selectedCategoryIDFromCategoryName : string= 
-         this.getCategoryIdOfProductNameSelected(this.selectedCategory).toString()
+   const selectedCategoryIDFromCategoryName : number= 
+         this.getCategoryIdOfProductNameSelected(this.selectedCategory)
    
+   const productDTO = new ProductDTO(
+          0,
+          this.productName,
+          this.productDescription || '',
+          this.productQuantity,
+          this.productPrice,
+          selectedCategoryIDFromCategoryName,
+          this.selectedImage || null // Pass the File object directly
+        );
+
    const addProductformData = new FormData();
    addProductformData.append('id', '0');
-   addProductformData.append('name', this.productName);
-   addProductformData.append('description', this.productDescription || '');
-   addProductformData.append('stockQuantity', this.productQuantity.toString());
-   addProductformData.append('price', this.productPrice.toString());
-   addProductformData.append('categoryID',selectedCategoryIDFromCategoryName); // Ensure category ID matches API
+   addProductformData.append('name', productDTO.name);
+   addProductformData.append('description', productDTO.description || '');
+   addProductformData.append('stockQuantity', productDTO.stockQuantity.toString());
+   addProductformData.append('price', productDTO.price.toString());
+   addProductformData.append('categoryID',productDTO.categoryID.toString()); // Ensure category ID matches API
    
    // Append the image as a File (No conversion needed)
-   if (this.selectedImage) {
-     addProductformData.append('imageData', this.selectedImage, this.selectedImage.name);
+   if (productDTO.image) {
+     addProductformData.append('imageData', productDTO.image, this.selectedImage!.name);
    }
 
   this.productService.sendProductAddedThroughApi(addProductformData)

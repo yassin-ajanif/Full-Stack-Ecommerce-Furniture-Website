@@ -54,4 +54,25 @@ export class CategoryProductService {
     );
   }
 
+  getCategoryIdOfProductFromItName(categoryName: string): number|undefined {
+    const category = this.categories.find(cat => cat.name === categoryName);
+    
+    if (!category) {
+      return undefined;
+    }
+  
+    return category.id;
+  }
+
+  getCategoryNameFromId(categoryId: number): string|undefined {
+    const category = this.categories.find(cat => cat.id === categoryId);
+  
+    if (!category) {
+      return undefined;
+    }
+  
+    return category.name;
+  }
+  
+
 }

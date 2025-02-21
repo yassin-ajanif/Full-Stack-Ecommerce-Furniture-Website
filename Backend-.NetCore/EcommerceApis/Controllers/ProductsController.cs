@@ -20,7 +20,7 @@ namespace EcommerceApis.Controllers
         }
 
         // Endpoint to get all products
-        [HttpGet("products")]
+        [HttpGet("Allproducts")]
         [ProducesResponseType(StatusCodes.Status200OK, Type = typeof(IEnumerable<GetProductDto>))]
         [ProducesResponseType(StatusCodes.Status404NotFound)]
         public async Task<ActionResult<IEnumerable<CreateProductDto>>> GetAllProductsAsync()
@@ -55,7 +55,7 @@ namespace EcommerceApis.Controllers
         }
 
         // Endpoint to add a new product
-        [HttpPost("products")]
+        [HttpPost("Addproduct")]
         [ProducesResponseType(StatusCodes.Status201Created, Type = typeof(CreateProductDto))]
         [ProducesResponseType(StatusCodes.Status400BadRequest)]
         [ProducesResponseType(StatusCodes.Status500InternalServerError)]
@@ -82,7 +82,7 @@ namespace EcommerceApis.Controllers
         }
 
         // Endpoint to update an existing product
-        [HttpPut("products")]
+        [HttpPut("Updateproduct")]
         [ProducesResponseType(StatusCodes.Status200OK, Type = typeof(UpdateProductDto))]
         [ProducesResponseType(StatusCodes.Status400BadRequest)]
         [ProducesResponseType(StatusCodes.Status404NotFound)]
@@ -148,6 +148,9 @@ namespace EcommerceApis.Controllers
 
         // Endpoint to get product image
         [HttpGet("GetProductImage/{id}")]
+        [ProducesResponseType(StatusCodes.Status204NoContent)]
+        [ProducesResponseType(StatusCodes.Status404NotFound)]
+        [ProducesResponseType(StatusCodes.Status400BadRequest)]
         public async Task<IActionResult> GetProductImageAsync(int id)
         {
             // Call the data layer function to get the image byte array
@@ -155,7 +158,7 @@ namespace EcommerceApis.Controllers
 
             if (imageBytes == null)
             {
-                return NotFound("Image not found.");
+                return NoContent();
             }
 
             // Return the image as a file
@@ -166,7 +169,7 @@ namespace EcommerceApis.Controllers
         [HttpGet("search")]
         [ProducesResponseType(StatusCodes.Status404NotFound)]
         [ProducesResponseType(StatusCodes.Status400BadRequest)]
-        public async Task<IActionResult> GetProductsByName([FromQuery] string namePrefix)
+        public async Task<IActionResult> GetProductsByNameAsync([FromQuery] string namePrefix)
         {
             if (string.IsNullOrWhiteSpace(namePrefix))
             {

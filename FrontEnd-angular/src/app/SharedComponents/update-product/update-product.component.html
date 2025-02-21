@@ -5,25 +5,12 @@
         <div class="search-container">
           <h4>Search for a Product</h4>
       
-          <!-- Search Input -->
-           <div>
+        <auto-complete-search-box class="autoComplete-copnt"
+        [filteredItems]="filteredProductsName"
+        (onSearch)="onSearch($event)"
+        (itemSelected)="getProductPickedToUpdate($event)">
+        </auto-complete-search-box>
 
-          <input type="text" [(ngModel)]="searchQuery" (input)="onSearch()"
-            placeholder="Enter product name" class="search-input"
-            autocomplete="false" />
-      
-          <!-- Search Results -->
-          <div *ngIf="filteredProducts.length > 0" class="results-container">
-          
-            <ul>
-              <li *ngFor="let product of filteredProducts">{{ product.name }}</li>
-            </ul>
-          </div>
-
-        </div>
-
-          <!-- No Results Message -->
-          <p *ngIf="filteredProducts.length === 0 && searchQuery !== ''">No products found.</p>
         </div>
       </section>
       
@@ -34,7 +21,7 @@
   <h3>Upload Product Image</h3>
 
   <!-- File Input -->
-  <input type="file"
+  <input type="file" #fileInput *ngIf="!selectedImage"
    (change)="onImageSelected($event)" 
    accept="image/*" class="file-input" />
 
@@ -47,37 +34,47 @@
     <button class="remove-btn" (click)="removeImage()">Remove Image</button>
   </div>
 
-  <!-- Upload Button -->
-  <button class="upload-btn">Upload</button>
+ 
 </div>
 </section>
     <div class="form-group">
         <label for="productName" class="form-label">Product Name</label>
         <input type="text" id="productName" class="form-input"
-            placeholder="Enter product name" [(ngModel)]="productName"
+            placeholder="Enter product name" [(ngModel)]="productPickedToUpdateDto.name"
             name="productName" required />
     </div>
 
     <div class="form-group">
         <label for="productPrice" class="form-label">Product Price</label>
         <input type="number" id="productPrice" class="form-input"
-            placeholder="Enter product price" [(ngModel)]="productPrice"
+            placeholder="Enter product price" [(ngModel)]="productPickedToUpdateDto.price"
             name="productPrice" required min="0" />
     </div>
 
     <div class="form-group">
+      <label for="productPrice" class="form-label">Stock Quantity</label>
+      <input type="number" id="productPrice" class="form-input"
+          placeholder="Enter product price" [(ngModel)]="productPickedToUpdateDto.stockQuantity"
+          name="productPrice" required min="0" />
+  </div>
+
+    <div class="form-group">
         <label class="form-label">Product Category</label>
         <dropdown label="Select Category" [options]="categoryNamesToPickByUser"
-            (optionSelected)="whenUserSelectProductCategory_GetIt($event)" name="productCategory"
+            (optionSelected)="whenUserSelectProductCategory_GetIt($event)"
+             [selectedOption] = "selectedCategory"
+             name="productCategory"
             width="10rem"></dropdown>
     </div>
 
     <div class="form-group">
         <label for="productDescription" class="form-label">Product Description</label>
         <textarea id="productDescription" class="form-input"
-            placeholder="Enter product description" [(ngModel)]="productDescription"
+            placeholder="Enter product description" [(ngModel)]="productPickedToUpdateDto.description"
             name="productDescription" required></textarea>
     </div>
 
-    <button type="submit" class="btn-Bronw-background btn-hover-up submitBtn">Update Product</button>
+    <button type="submit" 
+    class="btn-Bronw-background btn-hover-up submitBtn"
+    (click)="updateProduct()">Update Product</button>
 </div>

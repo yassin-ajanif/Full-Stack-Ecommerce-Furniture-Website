@@ -8,8 +8,10 @@
       
      
       margin-top: 10px;
-      text-align: center;
+      
     }
+
+    
     
     .search-container {
       margin-top: 10px;
@@ -28,6 +30,8 @@
       border-radius: 5px;
       justify-self: end;
     }
+
+    .autoComplete-copnt{ justify-self: end}
     
     .results-container {
       margin-top: 10px;
