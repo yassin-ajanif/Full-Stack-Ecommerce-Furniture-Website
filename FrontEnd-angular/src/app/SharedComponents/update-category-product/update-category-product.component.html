@@ -2,7 +2,8 @@
     <button (click)="toggleSection('update')" class="toggle-btn">Update Category</button>
     <div class="category-block" *ngIf="showUpdate">
       <dropdown label="select Category" 
-                [options]="categories" 
+                [options]="categoryNamesToPickByUser" 
+                (optionSelected)="whenUserSelectProductCategory_GetIt($event)"
                 width="10rem">
             </dropdown>
             <label class="updateCategory">updated Category :</label>

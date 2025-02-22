@@ -12,7 +12,7 @@ namespace DataBusinessLayer.Interfaces
     {
         Task<IEnumerable<CategoryProductDTO>> GetAllProductsCategoriesAsync();
         Task<bool> AddCategoryAsync(CategoryProductDTO categoryDto);
-        Task<bool> UpdateCategoryAsync(int id, CategoryProductDTO categoryDto);
+        Task<bool> UpdateCategoryAsync(CategoryProductDTO categoryDto);
         Task<bool> DeleteCategoryAsync(int id);
         Task<CategoryProductDTO> FindCategoryAsync(int id);
     }

@@ -1,7 +1,8 @@
 import { CommonModule } from '@angular/common';
-import { Component } from '@angular/core';
+import { Component, inject, OnInit } from '@angular/core';
 import { FormsModule } from '@angular/forms';
 import { DropdownComponent } from '../dropdown/dropdown.component';
+import { CategoryProductService } from '../../Services/CategoryProductService';
 
 @Component({
   selector: 'delete-category-product',
@@ -9,13 +10,28 @@ import { DropdownComponent } from '../dropdown/dropdown.component';
   templateUrl: './delete-category-product.component.html',
   styleUrl: './delete-category-product.component.css'
 })
-export class DeleteCategoryProductComponent {
-
-
+export class DeleteCategoryProductComponent implements OnInit{
+   
   showDelete: boolean = false;  // To toggle visibility of the delete category section
-  categories: string[] = ['Category 1', 'Category 2', 'Category 3'];  // Dummy categories, replace with actual data
+  categoriesUserToPick: string[] = [];  // Dummy categories, replace with actual data
   selectedCategoryToDelete: string = '';  // To store the selected category to delete
+  
+  categoryProductService = inject(CategoryProductService)
 
+  ngOnInit(): void {
+    
+    this.loadProductCategories()
+  }
+
+  loadProductCategories(){
+
+    this.categoryProductService.categoryNamesSubject.subscribe(categories =>{
+      
+      this.categoriesUserToPick = categories.map(categories => categories.name)
+
+    })
+
+  }
   // Method to toggle visibility of the delete category section
   toggleSection(section: string) {
     if (section === 'delete') {
@@ -23,15 +39,21 @@ export class DeleteCategoryProductComponent {
     }
   }
 
+  whenUserPickCategoryGetIt(categorySelected:string){
+    this.selectedCategoryToDelete=categorySelected
+  }
   // Method to delete the selected category (you can integrate with backend API to delete the category)
   deleteCategory() {
-    if (this.selectedCategoryToDelete) {
-      console.log('Category Deleted:', this.selectedCategoryToDelete);
-      // You can now call a service to delete the selected category from the backend here
-      this.selectedCategoryToDelete = '';  // Reset the selected category after deletion
-      this.showDelete = false;  // Optionally close the input after deleting the category
-    } else {
-      console.log('Please select a category to delete.');
-    }
+   
+    const categoryId_oF_CategorySelected = 
+    this.categoryProductService.getCategoryIdOfProductFromItName(this.selectedCategoryToDelete)
+     
+    if(categoryId_oF_CategorySelected===undefined) return
+
+    this.categoryProductService.
+    DeleteProductCategoryByID(categoryId_oF_CategorySelected).subscribe(isDeleted=>{
+      if(isDeleted) console.log("category is deleted succesffuly")
+        
+    })
   }
 }

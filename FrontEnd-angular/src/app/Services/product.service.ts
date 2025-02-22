@@ -837,18 +837,15 @@ export class ProductService  {
     
     
 
-    sendProductAddedThroughApi(addProductFromData:FormData): void {
+    sendProductAddedThroughApi(addProductFromData:FormData): Observable<boolean> {
       
       // Send the data to the backend
-      this.httpClient.post(this.baseUrl+'/Addproduct', addProductFromData)
-        .subscribe(
-          response => {
-            console.log('product sent successfully:', response);
-          },
-          error => {
-            console.error('couldnt send product', error);
-          }
-        );
+      return this.httpClient.post(this.baseUrl+'/Addproduct', addProductFromData).pipe(
+
+        map(()=> true),
+        catchError(()=>of(false))
+      )
+        
     }
     
     
@@ -856,6 +853,13 @@ export class ProductService  {
 
       return this.httpClient.put(`${this.baseUrl}/Updateproduct`, updateProductFromData);
     
+    }
+
+    deleteProductByID(id: number): Observable<boolean> {
+      return this.httpClient.delete<void>(`${this.baseUrl}/delete/${id}`).pipe(
+        map(() => true), // If deletion succeeds, return true
+        catchError(() => of(false)) // If an error occurs, return false
+      );
     }
 
     searchProductsByPrefixNameAsync(namePrefix: string): Observable<getProductDTO[]> {
@@ -869,8 +873,6 @@ export class ProductService  {
         `${this.serachProductByLetterEndPoint}/search?namePrefix=${namePrefix}`
       );
     }
-    
-   
     
     getProductImageById(productId: number): Observable<Blob> {
       return this.httpClient.get(`${this.baseUrl}/GetProductImage/${productId}`, 

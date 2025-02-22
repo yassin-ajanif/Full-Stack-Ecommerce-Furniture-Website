@@ -1,0 +1,17 @@
+
+<div class="overlay" *ngIf="isActivated">
+    <div class="message-box">
+      <p>{{ message }}</p>
+      
+      <div class="buttons" *ngIf="confirmationMode">
+        <button mat-button color="warn" 
+        (click)="closeOverlayInConfirmMode(true)">Yes</button>
+        <button mat-button color="primary" 
+        (click)="closeOverlayInConfirmMode(false)">No</button>
+      </div>
+  
+      <button *ngIf="!confirmationMode" mat-button color="accent" 
+      (click)="closeOverlay()">OK</button>
+    </div>
+  </div>
+  

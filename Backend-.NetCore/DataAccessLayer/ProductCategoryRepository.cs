@@ -46,13 +46,13 @@ namespace DataAccessLayer
         }
 
         // UpdateCategory function to update an existing category
-        public async Task<bool> UpdateCategoryAsync(int id, CategoryProductDTO categoryDto)
+        public async Task<bool> UpdateCategoryAsync(CategoryProductDTO categoryDto)
         {
             try
             {
-                // Find the category by ID
+                // Find the category by ID from the DTO
                 var existingCategory = await _appDbContext.ProductsCategories
-                    .FirstOrDefaultAsync(c => c.Id == id);
+                    .FirstOrDefaultAsync(c => c.Id == categoryDto.Id);
 
                 if (existingCategory == null)
                 {
@@ -76,6 +76,7 @@ namespace DataAccessLayer
                 return false;
             }
         }
+
 
         // DeleteCategory function to delete an existing category
         public async Task<bool> DeleteCategoryAsync(int id)

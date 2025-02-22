@@ -33,9 +33,9 @@ namespace DataBusinessLayer
             return await _productCategoryRepository.AddCategoryAsync(categoryDto);
         }
 
-        public async Task<bool> UpdateCategoryAsync(int id, CategoryProductDTO categoryDto)
+        public async Task<bool> UpdateCategoryAsync( CategoryProductDTO categoryDto)
         {
-            return await _productCategoryRepository.UpdateCategoryAsync(id, categoryDto);
+            return await _productCategoryRepository.UpdateCategoryAsync(categoryDto);
         }
 
         public async Task<bool> DeleteCategoryAsync(int id)

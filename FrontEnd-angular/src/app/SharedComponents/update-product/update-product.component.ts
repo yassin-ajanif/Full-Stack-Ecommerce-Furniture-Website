@@ -43,7 +43,17 @@ export class UpdateProductComponent implements OnInit {
   
   ngOnInit(): void {
     
-     this.categoryProductService.loadProductCategoryAsyn_At_Component(this)
+    this.loadCategoryProductNames()
+
+  }
+
+  loadCategoryProductNames(){
+
+    this.categoryProductService.categoryNamesSubject.subscribe(categories => {
+
+      this.categoryNamesToPickByUser = categories.map(category => category.name);
+   
+    }); 
   }
 
   onSearch(searchQuery:string): void {
@@ -203,6 +213,7 @@ export class UpdateProductComponent implements OnInit {
 
 this.productPickedToUpdateDto.name = '';
 this.productPickedToUpdateDto.price = 0;
+this.productPickedToUpdateDto.stockQuantity=0
 this.selectedCategory = '';
 this.productPickedToUpdateDto.description = '';
 this.productPickedToUpdateDto.image = null;

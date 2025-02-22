@@ -1,7 +1,7 @@
 // product-category.service.ts
 import { inject, Injectable } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
-import { Observable, Subject } from 'rxjs';
+import { catchError, map, Observable, of, Subject } from 'rxjs';
 import { ProductCategoryDTO } from '../Dtos/productCategory.dto'; // Import the DTO model
 
 @Injectable({
@@ -11,45 +11,22 @@ export class CategoryProductService {
   
   http:HttpClient = inject(HttpClient)
 
-  private getCategoryProductUrl = 
-  'https://localhost:7023/api/CategoryProducts/ProductsCategories'; // Replace with your actual API URL
+  private baseUrl = 'https://localhost:7023/api/CategoryProducts/';  
 
   categories: ProductCategoryDTO[] = [];
   categoryNames : string[] = []
-  categoryNamesSubject = new Subject<string[]>();
 
-  getProductCategories(httpClient:HttpClient): Observable<ProductCategoryDTO[]> {
+  categoryNamesSubject = new Subject<ProductCategoryDTO[]>();
 
-    return httpClient.get<ProductCategoryDTO[]>(this.getCategoryProductUrl);
+  loadProductCategories(): void {
 
-  }
-
-  loadProductCategoryAsyn_At_Component(componenet:any){
-
-    this.categoryNamesSubject.subscribe(data=>{
-  
-      componenet.categoryNamesToPickByUser = data
-   })}
-
-   send_To_AllSubsribedCompnts_CategoryNames(categories:string[]){
-    
-    this.categoryNamesSubject.next(categories)
-
-   }
-
-   loadProductCategoriesAsync(): void {
-
-    this.getProductCategories(this.http).subscribe(
-      (data) => {
-        
-        this.categories = data; // Store the full category data
-        this.categoryNames = data.map((category) => category.name); // Extract only names for display 
-        
-        this.send_To_AllSubsribedCompnts_CategoryNames(this.categoryNames)
-        
+    this.http.get<ProductCategoryDTO[]>(this.baseUrl + "all").subscribe(
+      (categories) => {
+        this.categories = categories
+        this.categoryNamesSubject.next(categories);
       },
       (error) => {
-        console.log('Error retrieving categories: ' + error.message);
+        console.error('Error fetching product categories:', error);
       }
     );
   }
@@ -74,5 +51,26 @@ export class CategoryProductService {
     return category.name;
   }
   
+  AddProductCategory(productCategory: ProductCategoryDTO): Observable<boolean> {
+    return this.http.post(`${this.baseUrl}add`, productCategory).pipe(
+      map(() => true), 
+      catchError(() => of(false)) 
+    );
+  }
+  
+  UpdateProductCategory(productCategory: ProductCategoryDTO): Observable<boolean> {
 
+    return this.http.put(`${this.baseUrl}update`, productCategory).pipe(
+      map(() => true), 
+      catchError(() => of(false)) 
+    );
+  }
+
+  DeleteProductCategoryByID(productCategoryId: number): Observable<boolean> {
+
+    return this.http.delete(`${this.baseUrl}delete/${productCategoryId}`).pipe(
+      map(() => true), 
+      catchError(() => of(false)) 
+    );
+  }
 }

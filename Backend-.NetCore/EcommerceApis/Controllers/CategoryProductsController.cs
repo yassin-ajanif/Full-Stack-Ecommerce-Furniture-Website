@@ -21,7 +21,7 @@ namespace EcommerceApis.Controllers
             _productCategoryService = productCategoryService;
         }
 
-        [HttpGet("ProductsCategories")]
+        [HttpGet("All")]
         [ProducesResponseType(StatusCodes.Status200OK, Type = typeof(IEnumerable<CategoryProductDTO>))]
         [ProducesResponseType(StatusCodes.Status404NotFound)]
         [ProducesResponseType(StatusCodes.Status500InternalServerError)]
@@ -39,7 +39,7 @@ namespace EcommerceApis.Controllers
         }
 
         // Endpoint to add a new product category
-        [HttpPost("product-categories")]
+        [HttpPost("add")]
         [ProducesResponseType(StatusCodes.Status201Created, Type = typeof(CategoryProductDTO))]
         [ProducesResponseType(StatusCodes.Status400BadRequest)]
         [ProducesResponseType(StatusCodes.Status500InternalServerError)]
@@ -64,30 +64,36 @@ namespace EcommerceApis.Controllers
         }
 
         // Endpoint to update a category
-        [HttpPut("product-categories/{id}")]
+        [HttpPut("update")]
         [ProducesResponseType(StatusCodes.Status200OK, Type = typeof(CategoryProductDTO))]
         [ProducesResponseType(StatusCodes.Status400BadRequest)]
-        [ProducesResponseType(StatusCodes.Status404NotFound)]
+        [ProducesResponseType(StatusCodes.Status404NotFound)] // Add proper response
         [ProducesResponseType(StatusCodes.Status500InternalServerError)]
-        public async Task<ActionResult> UpdateProductCategoryAsync(int id, [FromBody] CategoryProductDTO categoryDto)
+        public async Task<ActionResult> UpdateProductCategoryAsync([FromBody] CategoryProductDTO categoryDto)
         {
-            if (id != categoryDto.Id)
+            if (!ModelState.IsValid)
             {
-                return BadRequest("Category ID mismatch.");
+                var errors = ModelState.Values.SelectMany(v => v.Errors).Select(e => e.ErrorMessage);
+                return BadRequest(new { Errors = errors });
             }
 
-            var result = await _productCategoryService.UpdateCategoryAsync(id, categoryDto);
+            var result = await _productCategoryService.UpdateCategoryAsync(categoryDto);
+
+            if (result == null)
+            {
+                return NotFound("Product category not found."); // ✅ Return 404 if category doesn't exist
+            }
 
             if (!result)
             {
                 return StatusCode(500, "An error occurred while updating the product category.");
             }
 
-            return StatusCode(200,categoryDto);
+            return Ok(categoryDto); // ✅ Return 200 with updated category
         }
 
         // Endpoint to delete a category
-        [HttpDelete("product-categories/{id}")]
+        [HttpDelete("delete/{id}")]
         [ProducesResponseType(StatusCodes.Status204NoContent)]
         [ProducesResponseType(StatusCodes.Status404NotFound)]
         [ProducesResponseType(StatusCodes.Status500InternalServerError)]
@@ -104,7 +110,7 @@ namespace EcommerceApis.Controllers
         }
 
         // Endpoint to find a specific category by ID
-        [HttpGet("product-categories/{id}")]
+        [HttpGet("get/{id}")]
         [ProducesResponseType(StatusCodes.Status200OK, Type = typeof(CategoryProductDTO))]
         [ProducesResponseType(StatusCodes.Status404NotFound)]
         public async Task<ActionResult<CategoryProductDTO>> GetProductCategoryByIdAsync(int id)

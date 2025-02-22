@@ -12,44 +12,41 @@ import { DeleteProductComponent } from "../../../SharedComponents/delete-product
 import { HttpClient } from '@angular/common/http';
 import { CategoryProductService } from '../../../Services/CategoryProductService';
 import { of } from 'rxjs';
+import { OverlayMessageComponent } from '../../../SharedComponents/overlay-message/overlay-message.component';
 
 @Component({
   selector: 'product-and-category-page',
   imports: [FormsModule, DropdownComponent, DropdownComponent, CommonModule,
     AddCategoryProductComponent, UpdateCategoryProductComponent,
-    DeleteCategoryProductComponent, AddProductComponent, UpdateProductComponent, DeleteProductComponent],
+    DeleteCategoryProductComponent, AddProductComponent, UpdateProductComponent, 
+    DeleteProductComponent,OverlayMessageComponent],
   templateUrl: './product-and-category-page.component.html',
   styleUrl: './product-and-category-page.component.css'
 })
 export class ProductAndCategoryPageComponent {
   
   activeSection: string = ''; // Default: No section shown
-
-
+  
   productsCategories : string[]=[]
 
   ProductToAdd! : ProductDTO
   httpClient:HttpClient = inject(HttpClient)
   categoryProductService = inject(CategoryProductService)
   
+  
+
   ngOnInit(): void {
     
-    this.categoryProductService.loadProductCategoriesAsync()
-    
+    this.categoryProductService.loadProductCategories()
+  
   }
 
  
-
-setActiveSection(section: string) {
+  setActiveSection(section: string) {
   // If the clicked section is already active, hide it; otherwise, show it
   this.activeSection = this.activeSection === section ? '' : section;
-}
+   }
  
-  onSubmit() {
-    
-   
-  }
-
-
+  
 
 }

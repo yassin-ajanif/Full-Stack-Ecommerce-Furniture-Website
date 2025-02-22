@@ -1,7 +1,11 @@
-import { Component } from '@angular/core';
+import { Component, inject, OnInit } from '@angular/core';
 import { DropdownComponent } from '../dropdown/dropdown.component';
 import { FormsModule } from '@angular/forms';
 import { CommonModule } from '@angular/common';
+import { CategoryProductService } from '../../Services/CategoryProductService';
+import { getProductDTO } from '../../Dtos/getProduct.dto';
+import { ProductCategoryDTO } from '../../Dtos/productCategory.dto';
+import { overLayService } from '../../Services/overLayService.service';
 
 @Component({
   selector: 'update-category-product',
@@ -9,13 +13,31 @@ import { CommonModule } from '@angular/common';
   templateUrl: './update-category-product.component.html',
   styleUrl: './update-category-product.component.css'
 })
-export class UpdateCategoryProductComponent {
-
+export class UpdateCategoryProductComponent implements OnInit{
+  
+  
   showUpdate: boolean = false;  // To toggle visibility of the update category section
   updatedCategoryName: string = '';  // To bind the input value for updating the category name
-  categories: string[] = ['Category 1', 'Category 2', 'Category 3'];  // Dummy categories, replace with actual data
+  categoryNamesToPickByUser: string[] = [];  // Dummy categories, replace with actual data
   selectedCategory: string = '';  // To store the selected category
+  
+  categoryProductService = inject(CategoryProductService)
+  overlayerService = inject(overLayService)
 
+  ngOnInit(): void {
+
+    this.loadCategoryProductNames()
+  }
+
+  loadCategoryProductNames(){
+
+    this.categoryProductService.categoryNamesSubject.subscribe(categories => {
+
+      this.categoryNamesToPickByUser = categories.map(category => category.name);
+   
+    }); 
+  
+}
   // Method to toggle visibility of the update category section
   toggleSection(section: string) {
     if (section === 'update') {
@@ -23,16 +45,37 @@ export class UpdateCategoryProductComponent {
     }
   }
 
+  whenUserSelectProductCategory_GetIt(selectedCategory:string){
+     this.selectedCategory = selectedCategory
+  }
   // Method to update the selected category (you can integrate with backend API to save the updated category)
+  
   updateCategory() {
-    if (this.selectedCategory && this.updatedCategoryName.trim()) {
-      console.log('Category Updated:', this.selectedCategory, 'New Name:', this.updatedCategoryName);
-      // You can now call a service to send the updated category to the backend here
-      this.updatedCategoryName = '';  // Reset the input after updating the category
-      this.showUpdate = false;  // Optionally close the input after updating the category
-    } else {
-      console.log('Please select a valid category and enter a new category name.');
-    }
+    
+    const CategoryDtoToUpdate : ProductCategoryDTO |undefined= 
+    this.categoryProductService.categories.
+    find(category => category.name === this.selectedCategory);
+    
+    if(CategoryDtoToUpdate===undefined) return
+      
+    CategoryDtoToUpdate.name = this.updatedCategoryName;  // To bind the input value for updating the category name
+
+    this.categoryProductService.UpdateProductCategory(CategoryDtoToUpdate)
+      .subscribe(isProductUpdated => {
+      
+       if(isProductUpdated)  {
+
+         this.categoryProductService.loadProductCategories();
+         
+         this.overlayerService.
+         showOverLay_Without_ConfirmationMode("categrory is updated succes")
+         
+       }
+       else                  console.log("categoryproduct failded to update")
+  
+    });
+  
+    
   }
 
 

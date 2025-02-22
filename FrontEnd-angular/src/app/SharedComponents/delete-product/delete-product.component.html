@@ -3,9 +3,11 @@
 
     <div class="form-group">
         <label for="productName" class="form-label">Product Name</label>
-        <input type="text" id="productName" class="form-input"
-            placeholder="Enter product name" [(ngModel)]="productName"
-            name="productName" required />
+        <auto-complete-search-box class="autoComplete-copnt"
+        [filteredItems]="filteredProductsName"
+        (onSearch)="onSearch($event)"
+        (itemSelected)="getProductPickedIdToUpdate($event)">
+        </auto-complete-search-box>
     </div>
 
     

@@ -38,12 +38,19 @@ export class AddProductComponent implements OnInit {
 
  ngOnInit(): void {
  
-   // we subscribe this component to the service subject when the categories are
-   // loaded this componenets is going to load product categories
-   this.categoryProductService.loadProductCategoryAsyn_At_Component(this)
+    this.loadCategoryProductNames()
 
 }
 
+loadCategoryProductNames(){
+
+    this.categoryProductService.categoryNamesSubject.subscribe(categories => {
+
+      this.categoryNamesToPickByUser = categories.map(category => category.name);
+   
+    }); 
+  
+}
 
 whenUserSelectProductCategory_GetIt(selectedCategory: string): void {
 
@@ -67,6 +74,7 @@ whenUserSelectProductCategory_GetIt(selectedCategory: string): void {
  // Method to remove the selected image
  removeImage(): void {
    this.selectedImage = null;  // Clear the selected image
+  
  }
 
  getCategoryIdOfProductNameSelected(categoryName: string): number {
@@ -115,7 +123,14 @@ whenUserSelectProductCategory_GetIt(selectedCategory: string): void {
      addProductformData.append('imageData', productDTO.image, this.selectedImage!.name);
    }
 
-  this.productService.sendProductAddedThroughApi(addProductformData)
+  this.productService.sendProductAddedThroughApi(addProductformData).subscribe(
+            response => {
+              console.log('product sent successfully:', response);
+            },
+            error => {
+              console.error('couldnt send product', error);
+            }
+          );
       
     this.resetForm()
  }
@@ -134,4 +149,5 @@ whenUserSelectProductCategory_GetIt(selectedCategory: string): void {
   this.productDescription = '';
   this.selectedImageUrl = null;
 }
+
 }

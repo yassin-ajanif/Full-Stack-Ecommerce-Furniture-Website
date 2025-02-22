@@ -2,7 +2,8 @@
     <button (click)="toggleSection('delete')" class="toggle-btn">Delete Category</button>
     <div class="category-block" *ngIf="showDelete">
         <dropdown label="select Category" 
-        [options]="categories" 
+        [options]="categoriesUserToPick" 
+        (optionSelected)="whenUserPickCategoryGetIt($event)"
         width="10rem">
     </dropdown>
       <button (click)="deleteCategory()" class="btn-delete">Delete</button>
