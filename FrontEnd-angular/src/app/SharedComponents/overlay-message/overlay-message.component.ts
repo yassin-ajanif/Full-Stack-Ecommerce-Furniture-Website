@@ -20,25 +20,30 @@ export class OverlayMessageComponent implements OnInit{
 
   ngOnInit(): void {
     
-      this.overlayService.isOverlayActivated.subscribe(data=>{
+      this.overlayService.overlayState.subscribe(overlayProperties =>{
          
-          this.isActivated = data
+          this.isActivated = overlayProperties.isOverlayActivated
+          this.confirmationMode = overlayProperties.isConfirmationModeActivated
+          this.message = overlayProperties.overlayMessageBox
       })
 
-      this.overlayService.overlayMessageBox.subscribe(data=>{
-         
-        this.message = data })
+      
   }
-
+   
+  hideOverLay(){
+    this.isActivated = false
+ }
 
   closeOverlay(){
 
-    this.overlayService.hideOverLay()
+    this.hideOverLay()
   }
 
   // user Has Approved it means clicked ok or yes
   closeOverlayInConfirmMode(userHasApproved:boolean){
    
+    this.overlayService.userHasClickedYesOrNot(userHasApproved)
+    this.isActivated = false
   } 
 
 }

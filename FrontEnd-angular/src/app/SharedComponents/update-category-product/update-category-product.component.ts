@@ -50,9 +50,23 @@ export class UpdateCategoryProductComponent implements OnInit{
   }
   // Method to update the selected category (you can integrate with backend API to save the updated category)
   
-  updateCategory() {
-    
-    const CategoryDtoToUpdate : ProductCategoryDTO |undefined= 
+    testOperation() : Promise<string>{
+       
+    return new Promise((resolve,reject)=>{
+
+        setTimeout(() => {
+           let operationSuccess = true 
+                if(operationSuccess)  resolve("operation succeded") 
+                else reject("operation failed")
+        }, 5000);
+    })
+
+   }
+
+   
+    updateCategory() {
+
+     const CategoryDtoToUpdate : ProductCategoryDTO |undefined= 
     this.categoryProductService.categories.
     find(category => category.name === this.selectedCategory);
     
@@ -60,6 +74,8 @@ export class UpdateCategoryProductComponent implements OnInit{
       
     CategoryDtoToUpdate.name = this.updatedCategoryName;  // To bind the input value for updating the category name
 
+    
+    
     this.categoryProductService.UpdateProductCategory(CategoryDtoToUpdate)
       .subscribe(isProductUpdated => {
       
