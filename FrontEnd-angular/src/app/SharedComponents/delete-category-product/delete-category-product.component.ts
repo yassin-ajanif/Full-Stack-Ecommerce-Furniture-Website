@@ -3,6 +3,8 @@ import { Component, inject, OnInit } from '@angular/core';
 import { FormsModule } from '@angular/forms';
 import { DropdownComponent } from '../dropdown/dropdown.component';
 import { CategoryProductService } from '../../Services/CategoryProductService';
+import { OverlayMessageComponent } from '../overlay-message/overlay-message.component';
+import { overLayService } from '../../Services/overLayService.service';
 
 @Component({
   selector: 'delete-category-product',
@@ -17,6 +19,7 @@ export class DeleteCategoryProductComponent implements OnInit{
   selectedCategoryToDelete: string = '';  // To store the selected category to delete
   
   categoryProductService = inject(CategoryProductService)
+  overlayServiceMessageBox = inject(overLayService)
 
   ngOnInit(): void {
     
@@ -42,18 +45,33 @@ export class DeleteCategoryProductComponent implements OnInit{
   whenUserPickCategoryGetIt(categorySelected:string){
     this.selectedCategoryToDelete=categorySelected
   }
+
+  restForm(){
+    this.selectedCategoryToDelete = ""
+  }
   // Method to delete the selected category (you can integrate with backend API to delete the category)
-  deleteCategory() {
+  async deleteCategory() {
    
     const categoryId_oF_CategorySelected = 
     this.categoryProductService.getCategoryIdOfProductFromItName(this.selectedCategoryToDelete)
      
-    if(categoryId_oF_CategorySelected===undefined) return
+    if(categoryId_oF_CategorySelected===undefined) {
+      alert("select category to delete") ;return }
+
+    const userHasApprovedTodeleteCategory = 
+    await this.overlayServiceMessageBox.
+    showOverLay_With_ConfirmationMode_And_Return_If_YES_or_Not
+    ("do you really want to delete this product")
+   
+    if(!userHasApprovedTodeleteCategory) return 
 
     this.categoryProductService.
-    DeleteProductCategoryByID(categoryId_oF_CategorySelected).subscribe(isDeleted=>{
-      if(isDeleted) console.log("category is deleted succesffuly")
-        
+    DeleteProductCategoryByID(categoryId_oF_CategorySelected!).subscribe(isDeleted=>{
+      
+      if(isDeleted) { 
+        this.restForm() 
+        this.categoryProductService.loadProductCategories();
+      }
     })
   }
 }

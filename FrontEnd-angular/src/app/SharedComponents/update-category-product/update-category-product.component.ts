@@ -48,51 +48,41 @@ export class UpdateCategoryProductComponent implements OnInit{
   whenUserSelectProductCategory_GetIt(selectedCategory:string){
      this.selectedCategory = selectedCategory
   }
-  // Method to update the selected category (you can integrate with backend API to save the updated category)
   
-    testOperation() : Promise<string>{
-       
-    return new Promise((resolve,reject)=>{
-
-        setTimeout(() => {
-           let operationSuccess = true 
-                if(operationSuccess)  resolve("operation succeded") 
-                else reject("operation failed")
-        }, 5000);
-    })
-
-   }
-
-   
     updateCategory() {
+
+      if(!this.updatedCategoryName) {
+        alert("add new category name"); return}
 
      const CategoryDtoToUpdate : ProductCategoryDTO |undefined= 
     this.categoryProductService.categories.
     find(category => category.name === this.selectedCategory);
     
-    if(CategoryDtoToUpdate===undefined) return
+    if(CategoryDtoToUpdate===undefined ) {
+      alert("select category to update"); return}
       
-    CategoryDtoToUpdate.name = this.updatedCategoryName;  // To bind the input value for updating the category name
+    CategoryDtoToUpdate!.name = this.updatedCategoryName;  // To bind the input value for updating the category name
 
     
     
-    this.categoryProductService.UpdateProductCategory(CategoryDtoToUpdate)
+    this.categoryProductService.UpdateProductCategory(CategoryDtoToUpdate!)
       .subscribe(isProductUpdated => {
       
        if(isProductUpdated)  {
 
          this.categoryProductService.loadProductCategories();
          
-         this.overlayerService.
-         showOverLay_Without_ConfirmationMode("categrory is updated succes")
+         this.resetForm()
          
        }
-       else                  console.log("categoryproduct failded to update")
+       
   
     });
   
     
   }
 
-
+        resetForm(){
+              this.selectedCategory = this.updatedCategoryName = ''
+        }
 }

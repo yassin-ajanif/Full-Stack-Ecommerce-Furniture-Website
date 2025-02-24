@@ -3,6 +3,8 @@ import { inject, Injectable } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
 import { catchError, map, Observable, of, Subject } from 'rxjs';
 import { ProductCategoryDTO } from '../Dtos/productCategory.dto'; // Import the DTO model
+import { SpinnerService } from './spinner-service.service';
+import { overLayService } from './overLayService.service';
 
 @Injectable({
   providedIn: 'root',
@@ -15,6 +17,8 @@ export class CategoryProductService {
 
   categories: ProductCategoryDTO[] = [];
   categoryNames : string[] = []
+  spinnerService = inject(SpinnerService)
+  overlayMessageBoxService = inject(overLayService)
 
   categoryNamesSubject = new Subject<ProductCategoryDTO[]>();
 
@@ -52,25 +56,55 @@ export class CategoryProductService {
   }
   
   AddProductCategory(productCategory: ProductCategoryDTO): Observable<boolean> {
+    this.spinnerService.showSpinner();
+  
     return this.http.post(`${this.baseUrl}add`, productCategory).pipe(
-      map(() => true), 
-      catchError(() => of(false)) 
+      map(() => {
+        this.spinnerService.hideSpinner();
+        this.overlayMessageBoxService.showOverLay_Without_ConfirmationMode("Category added successfully");
+        return true;
+      }),
+      catchError(() => {
+        this.spinnerService.hideSpinner();
+        this.overlayMessageBoxService.showOverLay_Without_ConfirmationMode("Something went wrong");
+        return of(false);
+      })
     );
   }
   
   UpdateProductCategory(productCategory: ProductCategoryDTO): Observable<boolean> {
-
+    this.spinnerService.showSpinner();
+  
     return this.http.put(`${this.baseUrl}update`, productCategory).pipe(
-      map(() => true), 
-      catchError(() => of(false)) 
+      map(() => {
+        this.spinnerService.hideSpinner();
+        this.overlayMessageBoxService.showOverLay_Without_ConfirmationMode("Category updated successfully");
+        return true;
+      }),
+      catchError(() => {
+        this.spinnerService.hideSpinner();
+        this.overlayMessageBoxService.showOverLay_Without_ConfirmationMode("Something went wrong");
+        return of(false);
+      })
     );
   }
+  
 
   DeleteProductCategoryByID(productCategoryId: number): Observable<boolean> {
+  this.spinnerService.showSpinner();
 
-    return this.http.delete(`${this.baseUrl}delete/${productCategoryId}`).pipe(
-      map(() => true), 
-      catchError(() => of(false)) 
-    );
-  }
+  return this.http.delete(`${this.baseUrl}delete/${productCategoryId}`).pipe(
+    map(() => {
+      this.spinnerService.hideSpinner();
+      this.overlayMessageBoxService.showOverLay_Without_ConfirmationMode("Category deleted successfully");
+      return true;
+    }),
+    catchError(() => {
+      this.spinnerService.hideSpinner();
+      this.overlayMessageBoxService.showOverLay_Without_ConfirmationMode("Something went wrong");
+      return of(false);
+    })
+  );
+}
+
 }

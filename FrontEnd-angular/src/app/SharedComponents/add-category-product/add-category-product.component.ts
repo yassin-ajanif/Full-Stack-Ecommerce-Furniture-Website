@@ -15,21 +15,25 @@ import { OverlayMessageComponent } from '../overlay-message/overlay-message.comp
 export class AddCategoryProductComponent  implements OnInit{
 
   showAdd: boolean = false;  // Control visibility of the add category form
-  categoryForm: FormGroup;  // FormGroup for handling the form controls
+  categoryForm!: FormGroup;  // FormGroup for handling the form controls
 
   categoryToAdd!: string;  // List to store the added categories
   categoryProductService = inject(CategoryProductService)
 
   constructor(private fb: FormBuilder) { 
     // Initialize categoryForm in the constructor
+   
+  }
+
+  validateForm(){
     this.categoryForm = this.fb.group({
       categoryName: ['', [Validators.required, Validators.maxLength(50)]]
     });
-  }
 
+  }
   ngOnInit(): void {
    
-   
+   this.validateForm()
   }
   
 
@@ -50,13 +54,16 @@ export class AddCategoryProductComponent  implements OnInit{
         
         (isCategoryAdded) => {
 
-          if(isCategoryAdded) this.categoryProductService.loadProductCategories()
+          if(isCategoryAdded) { 
+            this.categoryProductService.loadProductCategories()
+            this.categoryForm.reset();  // Reset the form after submission
+          }
           
         }
       );
      
-      this.categoryForm.reset();  // Reset the form after submission
-      this.showAdd = false;  // Hide the form after adding*/
+      
+     
   }
 
 }

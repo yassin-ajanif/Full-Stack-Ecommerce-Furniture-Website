@@ -4,9 +4,13 @@
         <dropdown label="select Category" 
         [options]="categoriesUserToPick" 
         (optionSelected)="whenUserPickCategoryGetIt($event)"
+        [selectedOption]="selectedCategoryToDelete"
         width="10rem">
     </dropdown>
-      <button (click)="deleteCategory()" class="btn-delete">Delete</button>
+    <button (click)="deleteCategory()" class="btn-delete" >
+Delete
+</button>
+
     </div>
     </div>
  

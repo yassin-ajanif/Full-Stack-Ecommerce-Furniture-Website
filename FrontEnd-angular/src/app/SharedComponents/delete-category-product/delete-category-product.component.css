@@ -266,5 +266,8 @@
       display: block;
       margin: auto;
     }
-    
+     .btn-update:disabled{
+      opacity: 0.5; 
+      cursor: not-allowed;
+    }
     

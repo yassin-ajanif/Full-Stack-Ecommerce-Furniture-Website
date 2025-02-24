@@ -2,9 +2,11 @@ import { EventEmitter, inject, Injectable, OnInit } from '@angular/core';
 import { ProductDTO } from '../Dtos/product.dto';
 import { HttpClient } from '@angular/common/http';
 import {  HttpHeaders } from '@angular/common/http';
-import { Observable, of } from 'rxjs';
-import { catchError, map } from 'rxjs/operators';
+import { Observable, of, throwError } from 'rxjs';
+import { catchError, finalize, map, tap } from 'rxjs/operators';
 import { getProductDTO } from '../Dtos/getProduct.dto';
+import { SpinnerService } from './spinner-service.service';
+import { overLayService } from './overLayService.service';
 
 @Injectable({
   providedIn: 'root'
@@ -14,6 +16,9 @@ export class ProductService  {
   constructor() { }
   
   httpClient:HttpClient = inject(HttpClient)
+  spinnerService = inject(SpinnerService)
+  overlayMessageBoxService = inject(overLayService)
+
   private baseUrl : string = "https://localhost:7023/api/Products"
   
   private serachProductByLetterEndPoint = "https://localhost:7023/api/Products"
@@ -837,30 +842,72 @@ export class ProductService  {
     
     
 
-    sendProductAddedThroughApi(addProductFromData:FormData): Observable<boolean> {
+    sendProductAddedThroughApi(addProductFromData: FormData): Observable<boolean> {
       
-      // Send the data to the backend
-      return this.httpClient.post(this.baseUrl+'/Addproduct', addProductFromData).pipe(
-
-        map(()=> true),
-        catchError(()=>of(false))
-      )
+      this.spinnerService.showSpinner()
+ 
+      return this.httpClient.post(this.baseUrl + '/Addproduct', addProductFromData).pipe(
         
-    }
-    
-    
-    updateProduct(updateProductFromData: FormData): Observable<any> {
+        map(() => {  
 
-      return this.httpClient.put(`${this.baseUrl}/Updateproduct`, updateProductFromData);
-    
-    }
+          this.spinnerService.hideSpinner()
+          this.overlayMessageBoxService.
+          showOverLay_Without_ConfirmationMode("product added successfully")
 
-    deleteProductByID(id: number): Observable<boolean> {
-      return this.httpClient.delete<void>(`${this.baseUrl}/delete/${id}`).pipe(
-        map(() => true), // If deletion succeeds, return true
-        catchError(() => of(false)) // If an error occurs, return false
+          return true;
+        }),
+        catchError((error) => {
+          
+          this.spinnerService.hideSpinner()
+          this.overlayMessageBoxService.
+          showOverLay_Without_ConfirmationMode("something went wrong")
+
+          return throwError(() => error); // Rethrow the error
+        })
       );
     }
+    
+    
+    updateProduct(updateProductFromData: FormData): Observable<boolean> {
+    
+      this.spinnerService.showSpinner(); // Show spinner before request starts
+  
+      return this.httpClient.put(`${this.baseUrl}/Updateproduct`, updateProductFromData).pipe(
+          
+          map(() => {
+            this.spinnerService.hideSpinner()
+          this.overlayMessageBoxService.
+          showOverLay_Without_ConfirmationMode("product updated successfully")
+              return true;
+          }),
+          catchError((error) => {
+            this.spinnerService.hideSpinner()
+          this.overlayMessageBoxService.
+          showOverLay_Without_ConfirmationMode("something went wrong")
+              return throwError(() => error); // Rethrow the error
+          }) 
+      );
+  }
+  
+
+  deleteProductByID(id: number): Observable<boolean> {
+      
+    this.spinnerService.showSpinner(); 
+  
+    return this.httpClient.delete<void>(`${this.baseUrl}/delete/${id}`).pipe(
+      map(() => {  
+        this.spinnerService.hideSpinner();
+        this.overlayMessageBoxService.showOverLay_Without_ConfirmationMode("Product deleted successfully");
+        return true;
+      }),
+      catchError(() => {
+        this.spinnerService.hideSpinner();
+        this.overlayMessageBoxService.showOverLay_Without_ConfirmationMode("Something went wrong");
+        return of(false); // Return false instead of throwing an error
+      })
+    );
+  }
+  
 
     searchProductsByPrefixNameAsync(namePrefix: string): Observable<getProductDTO[]> {
       

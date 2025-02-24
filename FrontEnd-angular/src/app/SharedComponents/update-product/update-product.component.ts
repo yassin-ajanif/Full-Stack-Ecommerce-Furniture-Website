@@ -8,6 +8,7 @@ import { getProductDTO } from '../../Dtos/getProduct.dto';
 import { AutoCompleteSearchBoxComponent } from '../auto-complete-search-box/auto-complete-search-box.component';
 import { ProductDTO } from '../../Dtos/product.dto';
 import { throwError } from 'rxjs';
+import { overLayService } from '../../Services/overLayService.service';
 
 @Component({
   selector: 'update-product',
@@ -32,6 +33,7 @@ export class UpdateProductComponent implements OnInit {
   productService = inject(ProductService)
   categoryProductService = inject(CategoryProductService)
   renderer: Renderer2 = inject(Renderer2)
+  overlayService = inject(overLayService)
 
   categoryNamesToPickByUser: string[] = [];
 
@@ -69,6 +71,8 @@ export class UpdateProductComponent implements OnInit {
   }
 
  getProductPickedToUpdate(productNamePickedToUpdate: string){
+
+  this.searchQuery = productNamePickedToUpdate
 
   const foundProduct = this.filteredProducts.find(
     product => product.name === productNamePickedToUpdate
@@ -194,19 +198,14 @@ export class UpdateProductComponent implements OnInit {
      
      
       this.productService.updateProduct(updateProductformData).subscribe({
-        next: (response) => {
-          console.log("Product updated successfully!", response);
-          //this.updateSuccess = true;  // Set a success flag
-          this.resetForm()
+        next: (productIsUpdated) => {
+          
+          if(productIsUpdated) { this.resetForm(); this.searchQuery=''}
         },
-        error: (error) => {
-          console.error("Error updating product:", error);
-          //this.updateSuccess = false; // Set a failure flag
-        }
+     
       });
       
-
-    //this.resetForm()
+   
   }
 
    resetForm(){
@@ -217,6 +216,7 @@ this.productPickedToUpdateDto.stockQuantity=0
 this.selectedCategory = '';
 this.productPickedToUpdateDto.description = '';
 this.productPickedToUpdateDto.image = null;
+this.removeImage()
    }
 
   loadProductImage_And_GetItValue(productId: number): File| null {

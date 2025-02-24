@@ -6,24 +6,24 @@
     <section class="upload-section">
         <!-- Image Upload Content -->
         <div class="upload-content">
-          <h3>Upload Product Image</h3>
+          <h3>Add Product Image</h3>
       
           <!-- File Input -->
-          <input type="file"
-           (change)="onImageSelected($event)" 
-           accept="image/*" class="file-input" />
+  <input type="file" #fileInput *ngIf="!selectedImage"
+  (change)="onImageSelected($event)" 
+  accept="image/*" class="file-input" />
+
+ <!-- Image Preview & Remove Button -->
+ <div *ngIf="selectedImage">
+   <p>Image Preview:</p>
+   <img [src]="selectedImageUrl" alt="add Image" class="image-preview" />
+
+   <!-- Remove Image Button -->
+   <button class="remove-btn" (click)="removeImage()">Remove Image</button>
+ </div>
       
-          <!-- Image Preview & Remove Button -->
-          <div *ngIf="selectedImage">
-            <p>Image Preview:</p>
-            <img [src]="selectedImageUrl" alt="Uploaded Image" class="image-preview" />
-      
-            <!-- Remove Image Button -->
-            <button class="remove-btn" (click)="removeImage()">Remove Image</button>
-          </div>
-      
-          <!-- Upload Button -->
-          <button class="upload-btn">Upload</button>
+          
+          
         </div>
       </section>
       

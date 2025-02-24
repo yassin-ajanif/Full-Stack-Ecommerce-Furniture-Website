@@ -7,6 +7,7 @@ import { ProductService } from '../../Services/product.service';
 import { HttpClient } from '@angular/common/http';
 import { CategoryProductService } from '../../Services/CategoryProductService';
 import { ProductCategoryDTO } from '../../Dtos/productCategory.dto';
+import { overLayService } from '../../Services/overLayService.service';
 
 @Component({
   selector: 'add-product',
@@ -31,10 +32,11 @@ export class AddProductComponent implements OnInit {
   
  categoryNamesToPickByUser :string[]= []
  selectedImage : File | null = null
- selectedImageUrl: string | null = null;
+ selectedImageUrl: string | ArrayBuffer |null = null;
+
  httpClient:HttpClient = inject(HttpClient)
  categoryProductService = inject(CategoryProductService)
- 
+ overlayMessageBoxService = inject(overLayService)
 
  ngOnInit(): void {
  
@@ -58,18 +60,19 @@ whenUserSelectProductCategory_GetIt(selectedCategory: string): void {
   
 }
 
- // Method to handle image selection (called when the user selects an image file)
- onImageSelected(event: any): void {
-  
-  const file = event.target.files[0];
-  if (file) {
-    
-    this.selectedImage = file
-    // Create a URL to preview the image
-    this.selectedImageUrl = URL.createObjectURL(file);
 
+onImageSelected(event: any): void {
+    
+  this.selectedImage = event.target.files[0];
+  
+  if (this.selectedImage) {
+    const reader = new FileReader();
+    reader.onload = () => {
+      this.selectedImageUrl = reader.result;  // Store image data for preview
+    };
+    reader.readAsDataURL(this.selectedImage);  // Convert image to base64
   }
-} 
+}
       
  // Method to remove the selected image
  removeImage(): void {
@@ -89,6 +92,8 @@ whenUserSelectProductCategory_GetIt(selectedCategory: string): void {
 
  // Method to handle form submission
  addProduct(): void {
+
+ 
    // Basic validation check before submission
    if (!this.productName || !this.productPrice || !this.selectedCategory ) {
      
@@ -124,15 +129,13 @@ whenUserSelectProductCategory_GetIt(selectedCategory: string): void {
    }
 
   this.productService.sendProductAddedThroughApi(addProductformData).subscribe(
-            response => {
-              console.log('product sent successfully:', response);
-            },
-            error => {
-              console.error('couldnt send product', error);
+            
+             isProductCreated => { 
+              if(isProductCreated) this.resetForm()
             }
           );
       
-    this.resetForm()
+   
  }
 
  
@@ -142,12 +145,13 @@ whenUserSelectProductCategory_GetIt(selectedCategory: string): void {
  }
 
  resetForm() {
+
   this.productName = '';
   this.productPrice = 0;
   this.productQuantity = 0;
   this.selectedCategory = '';
   this.productDescription = '';
-  this.selectedImageUrl = null;
+  this.removeImage()
 }
 
 }

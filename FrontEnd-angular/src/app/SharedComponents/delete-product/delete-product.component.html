@@ -6,7 +6,8 @@
         <auto-complete-search-box class="autoComplete-copnt"
         [filteredItems]="filteredProductsName"
         (onSearch)="onSearch($event)"
-        (itemSelected)="getProductPickedIdToUpdate($event)">
+        (itemSelected)="getProductPickedIdToUpdate($event)"
+        [searchQuery]="itemSelected">
         </auto-complete-search-box>
     </div>
 

@@ -140,7 +140,10 @@
       transform: translateY(-3px); 
     }
   
-  
+    .btn-add:disabled, .btn-update:disabled, .btn-delete :disabled {
+      opacity: 0.5; 
+      cursor: not-allowed;
+    }
     
     .page-title{
       display: flex

@@ -7,6 +7,8 @@ import { AutoCompleteSearchBoxComponent } from '../auto-complete-search-box/auto
 import { ProductService } from '../../Services/product.service';
 import { ProductDTO } from '../../Dtos/product.dto';
 import { getProductDTO } from '../../Dtos/getProduct.dto';
+import { OverlayMessageComponent } from '../overlay-message/overlay-message.component';
+import { overLayService } from '../../Services/overLayService.service';
 
 @Component({
   selector: 'delete-product',
@@ -23,9 +25,10 @@ export class DeleteProductComponent implements OnInit{
   filteredProductsName : string[]=[]
   filteredProducts : getProductDTO[] = []
   itemSelected : string = ''
-
+  
   categoryProductService = inject(CategoryProductService)
   productService = inject(ProductService)
+  overlayMessageBox = inject(overLayService)
 
   ngOnInit(): void {
     
@@ -46,6 +49,8 @@ export class DeleteProductComponent implements OnInit{
  
   getProductPickedIdToUpdate(productNamePickedToUpdate: string){
  
+    this.itemSelected = productNamePickedToUpdate
+    
    const foundProduct = this.filteredProducts.find(
      product => product.name === productNamePickedToUpdate
    );
@@ -58,21 +63,32 @@ export class DeleteProductComponent implements OnInit{
  
   }
   // Function to handle the form submission and delete the product
-  onDeleteProduct() {
+  async onDeleteProduct() {
     
    if(this.productIdToDelete===undefined) return
    
-   this.productService.deleteProductByID(this.productIdToDelete).subscribe({
-    next: (isDeleted) => {
-      if (isDeleted) {
-        console.log('Product deleted successfully');
-      } else {
-        console.error('Failed to delete product');
+   const userHasApprovedToDeleteProduct = await this.overlayMessageBox.
+   showOverLay_With_ConfirmationMode_And_Return_If_YES_or_Not
+   ("are you sure to delele this product")
+
+   if(!userHasApprovedToDeleteProduct) return
+
+   this.productService.deleteProductByID(this.productIdToDelete).subscribe(
+    (productIsDeleted) => {
+      if (productIsDeleted) {
+        console.log("the value is",this.itemSelected);
+        this.itemSelected = "";  
+        console.log("the value is",this.itemSelected);
       }
     }
-  });
+    
+  );
+  
 
   }
+
+ 
+
 
  
 

@@ -18,6 +18,7 @@ import { UpdateCategoryProductComponent } from "./SharedComponents/update-catego
 import { AutoCompleteSearchBoxComponent } from "./SharedComponents/auto-complete-search-box/auto-complete-search-box.component";
 import { OverlayMessageComponent } from "./SharedComponents/overlay-message/overlay-message.component";
 import { overLayService } from './Services/overLayService.service';
+import { FullPageSpinnerComponent } from "./SharedComponents/full-page-spinner/full-page-spinner.component";
 
 
 @Component({
@@ -28,7 +29,7 @@ import { overLayService } from './Services/overLayService.service';
     CartComponent, CheckoutPageComponent, CheckoutPageComponent,
     ContactPageComponent, LoginPageComponent, ProductAndCategoryPageComponent,
     HttpClientModule, ProductSelectedInfoComponent,
-    UpdateCategoryProductComponent, AutoCompleteSearchBoxComponent, OverlayMessageComponent],
+    UpdateCategoryProductComponent, AutoCompleteSearchBoxComponent, OverlayMessageComponent, FullPageSpinnerComponent],
 
   
   templateUrl: './app.component.html',
