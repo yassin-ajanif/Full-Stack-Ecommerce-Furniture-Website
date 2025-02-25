@@ -1,4 +1,4 @@
-import { AfterViewChecked, AfterViewInit, Component, ElementRef, EventEmitter, HostListener, Input, OnInit, Output, QueryList, Renderer2, ViewChild, viewChild, ViewChildren } from '@angular/core';
+import { AfterViewChecked, AfterViewInit, Component, ElementRef, EventEmitter, HostListener, Input, OnChanges, OnInit, Output, QueryList, Renderer2, SimpleChanges, ViewChild, viewChild, ViewChildren } from '@angular/core';
 import { ProductService } from '../../Services/product.service';
 import { CommonModule } from '@angular/common';
 
@@ -8,7 +8,7 @@ import { CommonModule } from '@angular/common';
   templateUrl: './pagination.component.html',
   styleUrl: './pagination.component.css'
 })
-export class PaginationComponent implements OnInit,AfterViewInit{
+export class PaginationComponent implements OnChanges, OnInit{
   
   @Input() totalProducts : number = 1
   @Input() productsPerPage : number = 12
@@ -26,21 +26,37 @@ export class PaginationComponent implements OnInit,AfterViewInit{
   pageNumbersArray! : number []
   firtBtnNumberOfActualSlide : number=1
   
- constructor(private productService: ProductService,private renderer:Renderer2) {} 
- 
- ngAfterViewInit(): void {
-    
-  this.goToPageNumber(1,this.productsPerPage)
+  // these elments are the ones (indexes) to send page to parent 
+  // to inject them as output to productlist
+  // componenet so it can decide how many products will be displaying
+  // per actual page
+  @Output() OnproductPageIndexesChanges = 
+  new EventEmitter<{ startIndex: number, endIndex: number }>();
 
+ constructor(private productService: ProductService,private renderer:Renderer2) {} 
+  
+ ngOnInit(): void {
+  
+  this.goToPageNumber(1,this.productsPerPage)
   }
   
-  ngOnInit(): void {
+ ngOnChanges(): void {
+  
+    this.loadPaginationElements_When_ProductsNumber_Changes()
+    // go to first page as default
+    
+  }
+ 
 
+  // this method make the calculation of btn pages to show based on product number
+  // so have included this method inside ngonchages because when one of the input
+  // values changes like totalProducts changes it get called 
+  // it is based on the totalProducts number
+  loadPaginationElements_When_ProductsNumber_Changes(){
     this.totalBtnPagesToNavigate = this.getTotalBtnPagesToNavigate()
     this.LoadNewSlideBtnsArray(this.currentSlideOfBtns)
     this.totalSlidesToNavigate = this.gettotalSlidesToNavigate()
   }
-
 
   getTotalBtnPagesToNavigate() :number{
     return Math.ceil(this.totalProducts / this.productsPerPage);
@@ -147,7 +163,7 @@ changeTheBackgroundColorOfBtnClicked(btnElementClicked:HTMLElement){
   
 goToPageNumber(pageNumber: number,productsNumberPerPage:number) {
      
-       this.productService.loadProductsPageNumber(pageNumber,productsNumberPerPage)
+       this.loadProductsPageNumber(pageNumber,productsNumberPerPage)
     }
     
 
@@ -160,7 +176,15 @@ handleBtnClicked(btnElementClicked: HTMLElement) {
       // Call the method to go to the page
       this.goToPageNumber(getPageNumberFromBtnClicked,productsNumberPerPage);
     }
-
+  
+loadProductsPageNumber(PageNumber: number, productsNumberPerPage: number) {
+    
+      const startIndexProduct = (PageNumber - 1) * productsNumberPerPage;
+      const endIndexProduct = startIndexProduct + productsNumberPerPage;
+      // Return the sliced array of products for the specified page
+     this.OnproductPageIndexesChanges.emit
+     ({ startIndex:startIndexProduct, endIndex:endIndexProduct });
+    }
 
  
   }

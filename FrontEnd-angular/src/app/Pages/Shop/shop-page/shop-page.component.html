@@ -1,8 +1,13 @@
  
 
 <shop-hero></shop-hero>
+<!---->
 <showing-products-params></showing-products-params>
-<product-list [products]="productsToDisplay"></product-list>
-<pagination [totalProducts]="products.length" [productsPerPage]="8"></pagination>
+<product-list [products]="productsToDisplay"
+ [startIndex]="startIndexProductPage" 
+ [endIndex]="endIndexProductPage" ></product-list>
+<pagination [totalProducts]="productsToDisplay.length" 
+ [productsPerPage]="2"
+ (OnproductPageIndexesChanges)="OnproductPageIndexesChanges($event)"></pagination>
 <service-and-warranty></service-and-warranty>
 

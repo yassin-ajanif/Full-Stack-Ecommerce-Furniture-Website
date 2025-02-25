@@ -1,4 +1,4 @@
-import { AfterViewInit, Component, Input, OnInit } from '@angular/core';
+import { AfterViewInit, Component, EventEmitter, Input, OnInit, Output } from '@angular/core';
 import { ShopHeroComponent } from "../../../SharedComponents/shop-hero/shop-hero.component";
 import { ShowingProductsParamsComponent } from '../Components/showing-products-params/showing-products-params.component';
 import { ProductListComponent } from "../../../SharedComponents/product-list/product-list.component";
@@ -17,41 +17,27 @@ import { ProductDTO } from '../../../Dtos/product.dto';
 export class ShopPageComponent implements OnInit  {
   
   constructor(private productService:ProductService){ }
-  
-  // these are the total products loaded
-   products!: {
-        id: number;
-        name: string;
-        description: string;
-        price: number;
-        oldPrice: number;
-        category: string;
-        stock: number;
-        rating: number;
-        imageUrl: string;
-      }[] ;
-         
+        
   // these are the products we're going to display per page
-   productsToDisplay!: ProductDTO[] ;
-
+   productsToDisplay: ProductDTO[] = [];
+   startIndexProductPage : number = 0
+   endIndexProductPage : number = 0
+   
   ngOnInit(): void {
 
-    this.loadAllProducts()
-    this.whenBtnPageIsClickedSubscription()
+   this.productService.loadAllProducts().subscribe
+   (products=> 
+    this.productsToDisplay = this.productService.productsToLoadAtShopPage =products)
+     
   }
   
-  // we subscribe to event that is raised when the page btn is clicked
-  whenBtnPageIsClickedSubscription(){
-      this.productService.productsSentFromPaginationEvent.
-      subscribe(_ => {  this.updateProductToDisplayWhenBtnPageIsClicked() })
-  }
+  OnproductPageIndexesChanges(ProductPageIndexes:{ startIndex: number, endIndex: number }){
 
-  loadAllProducts(){
-    this.products = this.productService.products;
+    this.startIndexProductPage = ProductPageIndexes.startIndex
+    this.endIndexProductPage = ProductPageIndexes.endIndex
   }
-   
-  updateProductToDisplayWhenBtnPageIsClicked(){
-     this.productsToDisplay = this.productService.productsToLoadAtShopPage
-  }
+  
+
+
 
 }

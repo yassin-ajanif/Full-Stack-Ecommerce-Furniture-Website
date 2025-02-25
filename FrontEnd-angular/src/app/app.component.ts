@@ -1,4 +1,4 @@
-import { AfterViewInit, Component, inject } from '@angular/core';
+import { AfterViewInit, Component, inject, OnInit } from '@angular/core';
 import { RouterLink, RouterLinkActive, RouterOutlet, Routes } from '@angular/router';
 import { NavbarComponent } from './navbar/navbar.component';
 import { CommonModule } from '@angular/common';
@@ -37,8 +37,13 @@ import { FullPageSpinnerComponent } from "./SharedComponents/full-page-spinner/f
 })
 
 
-export class AppComponent {
+export class AppComponent implements OnInit{
   
   title = 'EcommerceWebApp';
+
+  ngOnInit(){
+
+    this.title = 'EcommerceWebApp';
+  }
 
 }
