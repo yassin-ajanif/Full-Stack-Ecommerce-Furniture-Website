@@ -3,6 +3,9 @@ import { ProductComponent } from '../product/product.component';
 import { CommonModule } from '@angular/common';
 import { ProductService } from '../../Services/product.service';
 import { ProductDTO } from '../../Dtos/product.dto';
+import { getProductDTO } from '../../Dtos/getProduct.dto';
+import { catchError, delay, finalize, map, tap } from 'rxjs/operators';
+import { firstValueFrom, forkJoin, Observable, of, throwError } from 'rxjs';
 
 @Component({
   selector: 'product-list',
@@ -13,7 +16,7 @@ import { ProductDTO } from '../../Dtos/product.dto';
 export class ProductListComponent implements OnChanges{
   
    
-   @Input() products: ProductDTO[] =[];
+   @Input() products: getProductDTO[] =[];
    @Input() startIndex : number = 0
    @Input() endIndex : number = 0
    productService  = inject(ProductService)
@@ -27,10 +30,21 @@ export class ProductListComponent implements OnChanges{
     // if we set the productsNumber to display per page to 8 
     // we will have startindex =0 and endindex = 8 
     // page 2 will be startindex = 8 and endindex = 16 and so on
-       this.products = this.productService.productsToLoadAtShopPage.
+      
+      this.products = this.productService.productsToLoadAtShopPage.
        slice(this.startIndex,this.endIndex)
+
+       
+        
+       // we load image of these products seprately for faster retrieval
+       //this.productService.loadImagesOfTheseProducts(this.products)
+       
+       this.productService.loadImagesOfTheseProducts(this.products)
+
+     
   }
 
-   
-   
+  
+  
+  
 }

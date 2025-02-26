@@ -2,7 +2,7 @@ import { EventEmitter, inject, Injectable, OnInit } from '@angular/core';
 import { ProductDTO } from '../Dtos/product.dto';
 import { HttpClient } from '@angular/common/http';
 import {  HttpHeaders } from '@angular/common/http';
-import { firstValueFrom, Observable, of, throwError } from 'rxjs';
+import { firstValueFrom, forkJoin, Observable, of, throwError } from 'rxjs';
 import { catchError, delay, finalize, map, tap } from 'rxjs/operators';
 import { getProductDTO } from '../Dtos/getProduct.dto';
 import { SpinnerService } from './spinner-service.service';
@@ -21,11 +21,11 @@ export class ProductService  {
 
     private baseUrl : string = "https://localhost:7023/api/Products"
    
-    productsToLoadAtShopPage : ProductDTO[] = [];
+    productsToLoadAtShopPage : getProductDTO[] = [];
  
-    loadAllProducts():Observable<ProductDTO[]>{
+    loadAllProducts():Observable<getProductDTO[]>{
       
-    return this.httpClient.get<ProductDTO[]>(`${this.baseUrl}/Allproducts`)
+    return this.httpClient.get<getProductDTO[]>(`${this.baseUrl}/Allproducts`)
   
     }
    
@@ -110,10 +110,27 @@ export class ProductService  {
         { responseType: 'blob' });
     }
     
-    
-     
-      
-    
-    
+    loadProductImage_And_GetItValue(productId: number): Observable<string | null> {
+      return this.getProductImageById(productId).pipe(
+        map(imageBlob => {
+          if (!imageBlob) return null;
+          const file = new File([imageBlob], "image.png");
+          return URL.createObjectURL(file); // Convert File to Blob URL
+        })
+      );
+    }
 
+    loadImagesOfTheseProducts(products: getProductDTO[]): void {
+      forkJoin(
+        products.map(product =>
+          this.loadProductImage_And_GetItValue(product.id).pipe(
+            map(productImageUrl => ({ ...product, imageUrl: productImageUrl })) // New object reference
+          )
+        )
+      ).subscribe(updatedProducts => {
+        products.length = 0; // Clear the existing array (important for change detection)
+       products.push(...updatedProducts); // Add new objects (new reference inside array
+      });
+    }
+ 
 }  

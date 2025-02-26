@@ -2,6 +2,7 @@ import { Component } from '@angular/core';
 import { ProductListComponent } from "../../../../SharedComponents/product-list/product-list.component";
 import { ProductService } from '../../../../Services/product.service';
 import { ProductDTO } from '../../../../Dtos/product.dto';
+import { getProductDTO } from '../../../../Dtos/getProduct.dto';
 
 @Component({
   selector: 'related-products',
@@ -11,7 +12,7 @@ import { ProductDTO } from '../../../../Dtos/product.dto';
 })
 export class RelatedProductsComponent {
   
-  realtedProducts : ProductDTO[] = []
+  realtedProducts : getProductDTO[] = []
 
    constructor(private productService:ProductService){
 
