@@ -3,6 +3,7 @@ import { ProductListComponent } from "../../../../SharedComponents/product-list/
 import { ProductService } from '../../../../Services/product.service';
 import { ProductDTO } from '../../../../Dtos/product.dto';
 import { getProductDTO } from '../../../../Dtos/getProduct.dto';
+import { displayProductDTO } from '../../../../Dtos/displayProduct.dto';
 
 @Component({
   selector: 'related-products',
@@ -12,7 +13,7 @@ import { getProductDTO } from '../../../../Dtos/getProduct.dto';
 })
 export class RelatedProductsComponent {
   
-  realtedProducts : getProductDTO[] = []
+  realtedProducts : displayProductDTO[] = []
 
    constructor(private productService:ProductService){
 

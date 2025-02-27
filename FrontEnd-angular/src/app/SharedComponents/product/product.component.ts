@@ -4,6 +4,7 @@ import { ActivatedRoute, Router } from '@angular/router';
 import { ImageLoaderComponent } from "../image-loader/image-loader.component";
 import { CommonModule } from '@angular/common';
 import { getProductDTO } from '../../Dtos/getProduct.dto';
+import { displayProductDTO } from '../../Dtos/displayProduct.dto';
 
 @Component({
   selector: 'product',
@@ -13,7 +14,7 @@ import { getProductDTO } from '../../Dtos/getProduct.dto';
 })
 export class ProductComponent {
 
-   @Input() product!: getProductDTO 
+   @Input() product!: displayProductDTO 
    
 
    constructor(private activatedRoute:ActivatedRoute,private route:Router) {

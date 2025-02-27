@@ -37,9 +37,9 @@ export class ProductAndCategoryPageComponent {
 
   ngOnInit(): void {
     
-    this.categoryProductService.loadProductCategories()
-  
-  }
+    this.categoryProductService.loadProductCategories().subscribe()
+      
+}
 
  
   setActiveSection(section: string) {

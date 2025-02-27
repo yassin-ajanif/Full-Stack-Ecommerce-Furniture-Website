@@ -70,7 +70,7 @@ export class UpdateCategoryProductComponent implements OnInit{
       
        if(isProductUpdated)  {
 
-         this.categoryProductService.loadProductCategories();
+         this.categoryProductService.loadProductCategories().subscribe();
          
          this.resetForm()
          

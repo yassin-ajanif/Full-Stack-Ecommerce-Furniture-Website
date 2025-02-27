@@ -12,6 +12,7 @@ import { ProductService } from '../../../Services/product.service';
 import { ShopHeroComponent } from '../../../SharedComponents/shop-hero/shop-hero.component';
 import { ProductDTO } from '../../../Dtos/product.dto';
 import { getProductDTO } from '../../../Dtos/getProduct.dto';
+import { displayProductDTO } from '../../../Dtos/displayProduct.dto';
 
 
 @Component({
@@ -30,8 +31,8 @@ export class HomePageComponent {
     
     productService : ProductService = inject(ProductService)
 
-    @Input() products: getProductDTO[] = [];
+    @Input() products: displayProductDTO[] = [];
 
     // we display only the first 8 products
-    @Input() productsHomeSnapShot: getProductDTO [] = this.products.slice(0, 8);
+    @Input() productsHomeSnapShot: displayProductDTO [] = this.products.slice(0, 8);
 }

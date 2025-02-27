@@ -24,12 +24,12 @@
      <label>Categories :</label>
 
      <dropdown label="Filter by" 
-               [options]="['All', 'Dining', 'Bedroom', 'LivingRoom']"
-               selectedOption = "All"
-               widthInRem="10rem" 
-               heightInRem="1.5rem"
-               labelWidthInRem="1.1rem">
-              </dropdown>
+          [options]="productCategoryNames"
+          [selectedOption]="'All'"
+          widthInRem="10rem" 
+          heightInRem="1.5rem"
+          labelWidthInRem="1.1rem">
+</dropdown>
 </div>
 
 <div class="search-container">

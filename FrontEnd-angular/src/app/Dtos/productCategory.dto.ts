@@ -2,7 +2,7 @@
 
 export class ProductCategoryDTO {
     id: number;
-    name: string;
+    name: string ;
     description: string | null;
   
     constructor(name: string, ID: number = 0,   description: string | null = null) {

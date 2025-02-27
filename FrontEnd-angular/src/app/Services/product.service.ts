@@ -7,6 +7,7 @@ import { catchError, delay, finalize, map, tap } from 'rxjs/operators';
 import { getProductDTO } from '../Dtos/getProduct.dto';
 import { SpinnerService } from './spinner-service.service';
 import { overLayService } from './overLayService.service';
+import { displayProductDTO } from '../Dtos/displayProduct.dto';
 
 @Injectable({
   providedIn: 'root'
@@ -21,7 +22,7 @@ export class ProductService  {
 
     private baseUrl : string = "https://localhost:7023/api/Products"
    
-    productsToLoadAtShopPage : getProductDTO[] = [];
+    productsToLoadAtShopPage : displayProductDTO[] = [];
  
     loadAllProducts():Observable<getProductDTO[]>{
       
@@ -120,17 +121,16 @@ export class ProductService  {
       );
     }
 
-    loadImagesOfTheseProducts(products: getProductDTO[]): void {
-      forkJoin(
+  
+    loadImagesOfTheseProducts(products: displayProductDTO[]): Observable<displayProductDTO[]> {
+      return forkJoin(
         products.map(product =>
           this.loadProductImage_And_GetItValue(product.id).pipe(
             map(productImageUrl => ({ ...product, imageUrl: productImageUrl })) // New object reference
           )
         )
-      ).subscribe(updatedProducts => {
-        products.length = 0; // Clear the existing array (important for change detection)
-       products.push(...updatedProducts); // Add new objects (new reference inside array
-      });
+      );
     }
+    
  
 }  
