@@ -1,4 +1,4 @@
-import { AfterViewChecked, AfterViewInit, Component, ElementRef, EventEmitter, HostListener, Input, OnChanges, OnInit, Output, QueryList, Renderer2, SimpleChanges, ViewChild, viewChild, ViewChildren } from '@angular/core';
+import { AfterViewChecked, AfterViewInit, ChangeDetectorRef, Component, DoCheck, ElementRef, EventEmitter, HostListener, Input, OnChanges, OnInit, Output, QueryList, Renderer2, SimpleChanges, ViewChild, viewChild, ViewChildren } from '@angular/core';
 import { ProductService } from '../../Services/product.service';
 import { CommonModule } from '@angular/common';
 
@@ -8,11 +8,12 @@ import { CommonModule } from '@angular/common';
   templateUrl: './pagination.component.html',
   styleUrl: './pagination.component.css'
 })
-export class PaginationComponent implements OnChanges, OnInit{
+export class PaginationComponent implements OnChanges{
   
   @Input() totalProducts : number = 1
   @Input() productsPerPage : number = 12
   @ViewChildren('btnRef') btnPages!: QueryList<ElementRef<HTMLElement>>;
+
   
   // the slide that contains a group of btns pages
   currentSlideOfBtns: number = 1;
@@ -24,7 +25,7 @@ export class PaginationComponent implements OnChanges, OnInit{
   totalBtnPagesToNavigate! : number 
   totalSlidesToNavigate! : number 
   pageNumbersArray! : number []
-  firtBtnNumberOfActualSlide : number=1
+  firtBtnNumberOfActualSlides : number=1
   
   // these elments are the ones (indexes) to send page to parent 
   // to inject them as output to productlist
@@ -34,20 +35,18 @@ export class PaginationComponent implements OnChanges, OnInit{
   new EventEmitter<{ startIndex: number, endIndex: number }>();
 
  constructor(private productService: ProductService,private renderer:Renderer2) {} 
-  
- ngOnInit(): void {
-  
-  this.goToPageNumber(1,this.productsPerPage)
-  }
-  
+
+ 
+ 
  ngOnChanges(): void {
   
     this.loadPaginationElements_When_ProductsNumber_Changes()
     // go to first page as default
-    
+    //this.goToPageNumber(1,this.productsPerPage)
+    //this.goToPageNumber_AndHighlight_TheBtnPageClicked(1)
   }
- 
 
+ 
   // this method make the calculation of btn pages to show based on product number
   // so have included this method inside ngonchages because when one of the input
   // values changes like totalProducts changes it get called 
@@ -97,12 +96,13 @@ export class PaginationComponent implements OnChanges, OnInit{
      return this.currentSlideOfBtns == this.totalSlidesToNavigate
   }
 
-  goToSlide_And_Load_Its_First_Page(currentslide:number){
-    this.firtBtnNumberOfActualSlide =
+  goToSlides_And_Load_Its_First_Page(currentslide:number){
+    
+    this.firtBtnNumberOfActualSlides =
     this.getTheFirstBtnNumberPageOfCurrentSlide(currentslide)
     
     this.LoadNewSlideBtnsArray(currentslide)
-    this.goToPageNumber(this.firtBtnNumberOfActualSlide,this.productsPerPage) 
+    this.goToPageNumber(this.firtBtnNumberOfActualSlides,this.productsPerPage) 
    }
    
   // when we click to btn <
@@ -110,7 +110,7 @@ export class PaginationComponent implements OnChanges, OnInit{
 
     if (this.currentSlideOfBtns > 1) {
    
-      this.goToSlide_And_Load_Its_First_Page(--this.currentSlideOfBtns)
+      this.goToSlides_And_Load_Its_First_Page(--this.currentSlideOfBtns)
     }
   }
 
@@ -119,7 +119,7 @@ export class PaginationComponent implements OnChanges, OnInit{
     
     if (this.weReachedEndOfBtnsPageSlide()) return;
       
-    this.goToSlide_And_Load_Its_First_Page(++this.currentSlideOfBtns)
+    this.goToSlides_And_Load_Its_First_Page(++this.currentSlideOfBtns)
  }
   
 
@@ -129,7 +129,7 @@ export class PaginationComponent implements OnChanges, OnInit{
     if(this.currentSlideOfBtns==1) return
    // is going to be the first slide so the first btn page is 1
     this.currentSlideOfBtns =1
-    this.goToSlide_And_Load_Its_First_Page(this.currentSlideOfBtns)
+    this.goToSlides_And_Load_Its_First_Page(this.currentSlideOfBtns)
  }
 // when we click to btn >>
  goToLastSlideOfBtns(){
@@ -138,7 +138,7 @@ export class PaginationComponent implements OnChanges, OnInit{
 
   this.currentSlideOfBtns = this.gettotalSlidesToNavigate()
 
-  this.goToSlide_And_Load_Its_First_Page(this.currentSlideOfBtns)
+  this.goToSlides_And_Load_Its_First_Page(this.currentSlideOfBtns)
    
  }
 
@@ -167,8 +167,22 @@ goToPageNumber(pageNumber: number,productsNumberPerPage:number) {
     }
     
 
-handleBtnClicked(btnElementClicked: HTMLElement) {
+getButtonByPageNumber(targetPage: number): HTMLElement | null {
+        if (!this.btnPages) return null; // Ensure QueryList is available
+      
+        const matchingBtn = this.btnPages.find(btn => btn.nativeElement.innerText.trim() === targetPage.toString());
+      
+        console.log(matchingBtn)
+        return matchingBtn ? matchingBtn.nativeElement : null; // Return HTMLElement or null
+      }
+      
+
+goToPageNumber_AndHighlight_TheBtnPageClicked(pageNumber: number) {
      
+      const btnElementClicked : HTMLElement | null = this.getButtonByPageNumber(pageNumber)
+     
+      if(!btnElementClicked) return 
+
       this.changeTheBackgroundColorOfBtnClicked(btnElementClicked);   
       // Extract the page number from the button's inner text
       const getPageNumberFromBtnClicked = Number(btnElementClicked.innerText);
@@ -177,6 +191,7 @@ handleBtnClicked(btnElementClicked: HTMLElement) {
       this.goToPageNumber(getPageNumberFromBtnClicked,productsNumberPerPage);
     }
   
+
 loadProductsPageNumber(PageNumber: number, productsNumberPerPage: number) {
     
       const startIndexProduct = (PageNumber - 1) * productsNumberPerPage;
@@ -187,6 +202,7 @@ loadProductsPageNumber(PageNumber: number, productsNumberPerPage: number) {
     }
 
  
+   
   }
 
 

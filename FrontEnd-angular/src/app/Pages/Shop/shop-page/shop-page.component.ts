@@ -20,7 +20,12 @@ import { ActivatedRoute } from '@angular/router';
   templateUrl: './shop-page.component.html',
   styleUrl: './shop-page.component.css'
 })
-export class ShopPageComponent implements OnInit ,OnDestroy {
+export class ShopPageComponent implements OnInit ,OnDestroy ,AfterViewInit{
+  
+  ngAfterViewInit(): void {
+    
+     this.endIndexProductPage = 8
+  }
   
   private queryParamsSubscription!: Subscription;
   private searchSubscription!: Subscription;
@@ -38,18 +43,11 @@ export class ShopPageComponent implements OnInit ,OnDestroy {
    
   ngOnInit(): void {
 
-    this.productAndCategoryDescription=this.loadAllProductsWithCategories().
-    subscribe(transformedProducts => {
-      
-      this.productsToDisplay = transformedProducts;
-      // we load all the products with their categorynames in the product service 
-      // so others componenets implements the product service can use them
-      this.productService.productsToLoadAtShopPage = transformedProducts;
-    });
     
-    this.ListenToUserWhenIsLookingForProducts()
+    this.loadProducts()
 
   }
+
 
   ngOnDestroy(): void {
 
@@ -96,31 +94,37 @@ export class ShopPageComponent implements OnInit ,OnDestroy {
 
     this.startIndexProductPage = ProductPageIndexes.startIndex
     this.endIndexProductPage = ProductPageIndexes.endIndex
+
   }
+
+  //loadProducts
   
+  clearProductsToDisplay(){
+    this.productsToDisplay.length = 0
+  }
 
+  
+  loadProducts(): void {
 
-ListenToUserWhenIsLookingForProducts(): void {
   this.queryParamsSubscription = this.activatedRoute.queryParams.subscribe(params => {
-    const searchTerm = params['search'];
     
-    if (searchTerm) {
-      this.searchSubscription = this.productService.searchProductsByPrefixNameAsync(searchTerm).pipe(
-        map((products: getProductDTO[]) => 
-          products.map(product => this.convertToDisplayProductDTO(product)) // Transform each item
-        )
-      ).subscribe((displayProducts: displayProductDTO[]) => {
-        
-        // load product service class with actual value of products to display
-        this.productService.productsToLoadAtShopPage = displayProducts
-        // display the products in the container
-        this.productsToDisplay = displayProducts;  // Assign transformed data
-      });
-    }
-  });
-}
+    const searchTerm = params['search'];
+    // when the search prefix is displayed in the route it means user is searching for products
+    // so the search keywork prefix is existing
+    const userIsSearchingForProducts = searchTerm
+    // when user want to load the shop page it dosent look for a specific product
+    const userIsLoadingTheShopPage =  (searchTerm === undefined)
+ 
 
-private convertToDisplayProductDTO(product: getProductDTO): displayProductDTO {
+    if (userIsSearchingForProducts) this.loadProductsBySearchTerm(searchTerm)
+   
+    else if(userIsLoadingTheShopPage)  this.loadAllProducts()
+    
+  });
+
+  }
+
+ private convertToDisplayProductDTO(product: getProductDTO): displayProductDTO {
   return new displayProductDTO(
     product.id,
     product.name,
@@ -130,9 +134,35 @@ private convertToDisplayProductDTO(product: getProductDTO): displayProductDTO {
     this.categoryProductService.getCategoryNameFromId(product.categoryID) ?? 'unkown category',   // Default value for categoryName (replace with actual value if available)
     product.imageUrl ?? null // Ensure imageUrl is handled correctly
   );
-}
+ }
 
+ private loadProductsBySearchTerm(searchTerm:string){
 
+  this.searchSubscription = this.productService.searchProductsByPrefixNameAsync(searchTerm).pipe(
+    map((products: getProductDTO[]) => 
+      products.map(product => this.convertToDisplayProductDTO(product)) // Transform each item
+    )
+  ).subscribe((displayProducts: displayProductDTO[]) => {
+    
+    // load product service class with actual value of products to display
+    this.productService.productsToLoadAtShopPage = displayProducts
+    // display the products in the container
+    this.clearProductsToDisplay()
+    this.productsToDisplay = displayProducts;  // Assign transformed data
+  });
+ }
 
+ private loadAllProducts(){
+
+  this.productAndCategoryDescription=this.loadAllProductsWithCategories().
+    subscribe(transformedProducts => {
+      
+      this.clearProductsToDisplay()
+      this.productsToDisplay = transformedProducts;
+      // we load all the products with their categorynames in the product service 
+      // so others componenets implements the product service can use them
+      this.productService.productsToLoadAtShopPage = transformedProducts;
+    });
+ }
 
 }

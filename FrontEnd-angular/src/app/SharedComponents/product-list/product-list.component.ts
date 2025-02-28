@@ -1,4 +1,4 @@
-import { Component, inject, Input, OnChanges, OnDestroy, OnInit, SimpleChanges } from '@angular/core';
+import { AfterViewChecked, AfterViewInit, Component, inject, Input, OnChanges, OnDestroy, OnInit, SimpleChanges } from '@angular/core';
 import { ProductComponent } from '../product/product.component';
 import { CommonModule } from '@angular/common';
 import { ProductService } from '../../Services/product.service';
@@ -19,7 +19,7 @@ import { ActivatedRoute } from '@angular/router';
 })
 export class ProductListComponent implements OnChanges ,OnDestroy{
   
-  
+ 
    @Input() products: displayProductDTO[] =[];
    @Input() startIndex : number = 0
    @Input() endIndex : number = 0

@@ -1,22 +1,22 @@
 <div class="pagination-container">
   
 
+
   
   <button class="page-button" (click)="goToFirstSlideOfBtns()"> << </button>
 
   <button class="page-button" (click)="goPreviousSlideOfBtns()">&#60;</button>
    
-
-   
-  <button *ngFor="let pageNumber of pageNumbersArray" 
-        class="page-button"
-        #btnRef
-        (click)="handleBtnClicked(btnRef)"
-        [ngClass]="{'active': pageNumber === firtBtnNumberOfActualSlide}"
-       >
-        
-  {{ pageNumber }}
-  </button>           
+  
+  <button *ngFor="let pageNumber of pageNumbersArray"  
+  class="page-button"
+  #btnRef
+  (click)="goToPageNumber_AndHighlight_TheBtnPageClicked(pageNumber)"
+  [ngClass]="{'active': pageNumber === firtBtnNumberOfActualSlides}"
+ >
+  
+{{ pageNumber }}
+</button>  
 
   
   <button class="page-button" (click)="goNextSlideOfBtns()">&#62;</button> 
