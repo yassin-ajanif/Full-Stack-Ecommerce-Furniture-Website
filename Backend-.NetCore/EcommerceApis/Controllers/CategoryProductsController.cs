@@ -45,6 +45,7 @@ namespace EcommerceApis.Controllers
         [ProducesResponseType(StatusCodes.Status500InternalServerError)]
         public async Task<ActionResult> AddProductCategoryAsync([FromBody] CategoryProductDTO categoryDto)
         {
+           
             // Validate the model
             if (!ModelState.IsValid)
             {

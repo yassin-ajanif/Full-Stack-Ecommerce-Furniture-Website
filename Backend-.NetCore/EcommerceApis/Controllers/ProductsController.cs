@@ -25,6 +25,7 @@ namespace EcommerceApis.Controllers
         [ProducesResponseType(StatusCodes.Status404NotFound)]
         public async Task<ActionResult<IEnumerable<CreateProductDto>>> GetAllProductsAsync()
         {
+           
             var allProductNames = await _productService.GetAllProductsAsync();
 
             if (!allProductNames.Any())
@@ -60,7 +61,9 @@ namespace EcommerceApis.Controllers
         [ProducesResponseType(StatusCodes.Status400BadRequest)]
         [ProducesResponseType(StatusCodes.Status500InternalServerError)]
         public async Task<ActionResult> AddProductAsync([FromForm] CreateProductDto productDto)
-        {
+        {   
+         
+
             // Check if the model is valid (based on validation attributes in ProductDTO)
             if (!ModelState.IsValid)
             {
@@ -89,6 +92,8 @@ namespace EcommerceApis.Controllers
         [ProducesResponseType(StatusCodes.Status500InternalServerError)]
         public async Task<ActionResult> UpdateProductAsync([FromForm] UpdateProductDto productDto)
         {
+
+            
             // Check if the model is valid (based on validation attributes in ProductDTO)
             if (!ModelState.IsValid)
             {
@@ -153,6 +158,7 @@ namespace EcommerceApis.Controllers
         [ProducesResponseType(StatusCodes.Status400BadRequest)]
         public async Task<IActionResult> GetProductImageAsync(int id)
         {
+            
             // Call the data layer function to get the image byte array
             byte[] imageBytes = await _productService.GetProductImageByIdAsync(id);
 
