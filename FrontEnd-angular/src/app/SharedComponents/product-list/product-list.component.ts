@@ -17,55 +17,12 @@ import { ActivatedRoute } from '@angular/router';
   templateUrl: './product-list.component.html',
   styleUrl: './product-list.component.css'
 })
-export class ProductListComponent implements OnChanges ,OnDestroy{
+export class ProductListComponent   {
   
  
    @Input() products: displayProductDTO[] =[];
-   @Input() startIndex : number = 0
-   @Input() endIndex : number = 0
-   productService  = inject(ProductService)
-   categoryService = inject(CategoryProductService)
-   activatedRoute = inject(ActivatedRoute)
-   private productsWithImagesIncludedSubsription! : Subscription 
+
  
-  
-   ngOnChanges(): void {
-    
-      this.loadProductsWithoutImages()
-      
-      this.productsWithImagesIncludedSubsription = this.loadImagesOfTheseProducts().
-      subscribe(updatedProductsIncludingImages => {
-        this.products = updatedProductsIncludingImages;
-      });
-                  
-  }
-   
-  
 
-  loadProductsWithoutImages() {
-  // this function is going to show the product for each page
-    // for example if we have page 1 the startindex = 0 and endindex = 
-    // products we set to display per page
-    // if we set the productsNumber to display per page to 8 
-    // we will have startindex =0 and endindex = 8 
-    // page 2 will be startindex = 8 and endindex = 16 and so on
-    const firstPageProducts = this.productService.productsToLoadAtShopPage.slice(this.startIndex,this.endIndex)
-    
-    this.products = firstPageProducts
-
-  }
-  
-  loadImagesOfTheseProducts(): Observable<displayProductDTO[]> {
-  return this.productService.loadImagesOfTheseProducts(this.products);
-}
-
-
- ngOnDestroy(): void {
-
-  
-    if(this.productsWithImagesIncludedSubsription)this.productsWithImagesIncludedSubsription.unsubscribe()
-   
-    
-    }
 
 }

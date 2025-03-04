@@ -94,17 +94,31 @@ export class ProductService  {
     );
     }
   
-    searchProductsByPrefixNameAsync(namePrefix: string): Observable<getProductDTO[]> {
-      
-      // If namePrefix is empty, return an empty array as Observable
-      if (namePrefix.trim() === '') {
-        return of([]);  // Return an empty observable array
-      }
-        
-      return this.httpClient.get<getProductDTO[]>(
-        `${this.baseUrl}/search?namePrefix=${namePrefix}`
-      );
+    searchProductsByPrefixNameAsync(namePrefix: string , category: string = 'All'): Observable<getProductDTO[]> {
+      // Trim input values to remove unnecessary spaces
+      const trimmedNamePrefix = namePrefix.trim();
+      const trimmedCategory = category.trim();
+    
+      // If namePrefix is empty after trimming, return an empty observable array
+     
+      // Construct the API URL with properly encoded query parameters
+      const url = `${this.baseUrl}/search?namePrefix=${trimmedNamePrefix}&categoryName=${trimmedCategory}`;
+    
+      return this.httpClient.get<getProductDTO[]>(url);
     }
+
+    searchProductsByCategories(category: string): Observable<getProductDTO[]> {
+      // Trim input values to remove unnecessary spaces
+      const trimmedCategory = category.trim();
+    
+      // If namePrefix is empty after trimming, return an empty observable array
+     
+      // Construct the API URL with properly encoded query parameters
+      const url = `${this.baseUrl}/AllproductsCategory?categoryName=${trimmedCategory}`;
+    
+      return this.httpClient.get<getProductDTO[]>(url);
+    }
+    
     
     getProductImageById(productId: number): Observable<Blob> {
       return this.httpClient.get(`${this.baseUrl}/GetProductImage/${productId}`, 

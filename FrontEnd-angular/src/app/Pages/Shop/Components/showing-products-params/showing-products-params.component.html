@@ -2,20 +2,7 @@
    
     <div class="navbar">
 
-      <div class="selectContainer">
-
-      <label>Filter by :</label>
-  
-      <dropdown label="Filter by" 
-      widthInRem="10rem"
-      heightInRem="1.5rem"
-      labelWidthInRem="1.1rem"
-      [options]="['Not Filtred', 'Cheap', 'Popular']"
-      selectedOption = "Not Filtred"
-       ></dropdown>
-    
-
-    </div>
+     
 
      <div class="filters-wrapper">
  
@@ -25,7 +12,8 @@
 
      <dropdown label="Filter by" 
           [options]="productCategoryNames"
-          [selectedOption]="'All'"
+          [selectedOption]="selectedCategoryName"
+          (optionSelected)="getSelectedCategoryName_From_DropDownMenu($event)"
           widthInRem="10rem" 
           heightInRem="1.5rem"
           labelWidthInRem="1.1rem">

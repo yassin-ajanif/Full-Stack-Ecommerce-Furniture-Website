@@ -19,8 +19,6 @@ export class DropdownComponent implements AfterViewInit {
   @ViewChild('dropdown') dropdownElement!: ElementRef; 
   
 
-  //items = ['Apple', 'Banana', 'Cherry', 'Date'];  
-  
   @Output() optionSelected: EventEmitter<string> = new EventEmitter<string>();
 
   isOpen: boolean = false;

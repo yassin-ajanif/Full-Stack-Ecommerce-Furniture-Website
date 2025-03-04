@@ -3,11 +3,25 @@
 <shop-hero></shop-hero>
 <!---->
 <showing-products-params></showing-products-params>
-<product-list [products]="productsToDisplay"
- [startIndex]="startIndexProductPage" 
- [endIndex]="endIndexProductPage" ></product-list>
-<pagination [totalProducts]="productsToDisplay.length" 
+<product-list [products]="productsToDisplay"></product-list>
+
+<div *ngIf="isFetching" class="no-products">
+    <p>Loading products...</p>
+  </div>
+  
+  <div *ngIf="!isFetching && errorDetected" class="no-products">
+    <p>Error loading products. Please try again.</p>
+  </div>
+  
+  <div *ngIf="!isFetching && !productsToDisplay.length && !errorDetected" class="no-products">
+    <p>No product found.</p>
+  </div>
+  
+
+<pagination [allProducts]="ProductsRetrievedFromDb" 
  [productsPerPage]="8"
- (OnproductPageIndexesChanges)="OnproductPageIndexesChanges($event)"></pagination>
+ (OnproductPageIndexesChanges)="loadActualProductPage($event)"></pagination>
 <service-and-warranty></service-and-warranty>
+
+
 
