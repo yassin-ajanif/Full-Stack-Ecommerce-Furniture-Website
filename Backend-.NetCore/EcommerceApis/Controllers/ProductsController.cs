@@ -13,10 +13,12 @@ namespace EcommerceApis.Controllers
     public class ProductsController : ControllerBase
     {
         private readonly IProductService _productService;
+        private readonly IProductCategoryService _productCategoryService;
 
-        public ProductsController(IProductService productService)
+        public ProductsController(IProductService productService,IProductCategoryService productCategoryService)
         {
             _productService = productService;
+            _productCategoryService = productCategoryService;
         }
 
         // Endpoint to get all products
@@ -35,6 +37,36 @@ namespace EcommerceApis.Controllers
 
             return Ok(allProductNames); // Return 200 OK with the list of products
         }
+
+        // Endpoint to get all products
+        [HttpGet("AllproductsCategory")]
+        [ProducesResponseType(StatusCodes.Status200OK, Type = typeof(IEnumerable<GetProductDto>))]
+        [ProducesResponseType(StatusCodes.Status404NotFound)]
+        public async Task<ActionResult<IEnumerable<GetProductDto>>> GetAllProductsAsyncByCategory([FromQuery] string categoryName)
+        {
+            IEnumerable<GetProductDto> products;
+
+            if (categoryName == "All") { 
+
+                products = await _productService.GetAllProductsAsync();
+
+                return Ok(products);
+            }
+
+            int CategoryIdFromCategoryName = await _productCategoryService.GetCategoryIdOfCategoryName(categoryName);
+
+            if (CategoryIdFromCategoryName == -1) return BadRequest($"the {categoryName} is not existing");
+
+             products = await _productService.GetProductsByCategoryAsync(CategoryIdFromCategoryName);
+
+            if (!products.Any())
+            {
+                return NotFound("There aren't any products existing.");
+            }
+
+            return Ok(products); // Return 200 OK with the list of products
+        }
+
 
         // Endpoint to get product by ID
         [HttpGet("products/{id}")]
@@ -175,23 +207,39 @@ namespace EcommerceApis.Controllers
         [HttpGet("search")]
         [ProducesResponseType(StatusCodes.Status404NotFound)]
         [ProducesResponseType(StatusCodes.Status400BadRequest)]
-        public async Task<IActionResult> GetProductsByNameAsync([FromQuery] string namePrefix)
+        public async Task<IActionResult> GetProductsByNameAsync([FromQuery] string namePrefix, [FromQuery] string categoryName)
         {
-            if (string.IsNullOrWhiteSpace(namePrefix))
+            if (string.IsNullOrWhiteSpace(namePrefix) || string.IsNullOrWhiteSpace(categoryName))
             {
                 return Ok(Enumerable.Empty<GetProductDto>());
             }
 
-            var products = await _productService.GetProductsByNameAsync(namePrefix);
+            // Determine if user is searching for all categories or a specific one
+            bool isAllCategories = categoryName.Equals("All", StringComparison.OrdinalIgnoreCase);
 
-            // If no products are found, return an empty list
-            if (products == null || !products.Any())
+            IEnumerable<GetProductDto> products;
+
+            if (isAllCategories)
             {
-                return Ok(Enumerable.Empty<GetProductDto>()); // Return an empty list (200 OK)
+                products = await _productService.GetProductsByNameAsync(namePrefix);
+            }
+            
+            else
+            {
+                int categoryId = await _productCategoryService.GetCategoryIdOfCategoryName(categoryName);
+
+                if (categoryId == -1)
+                {
+                    return BadRequest($"No product category exists with the name '{categoryName}'.");
+                }
+
+                products = await _productService.GetProductsByNameAsync(namePrefix, categoryId);
             }
 
-            return Ok(products);
+            // Return an empty list if no products are found
+            return Ok(products.Any() ? products : Enumerable.Empty<GetProductDto>());
         }
+
 
 
 

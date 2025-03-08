@@ -8,11 +8,12 @@ namespace DataAccessLayer.Models
     public class Cart
     {
         [Key]
-        public int Id { get; set; }
+        public int CartId { get; set; }
 
         // Foreign key to User
         [ForeignKey("User")]
-        public int UserID { get; set; }
+      
+        public string UserID { get; set; }
 
         // Navigation property for User
         public User User { get; set; }
@@ -25,7 +26,7 @@ namespace DataAccessLayer.Models
         public int Quantity { get; set; }
 
         // Constructor to ensure required properties are provided
-        public Cart(int userID, int quantity)
+        public Cart(string userID, int quantity)
         {
             UserID = userID;  // Ensure the UserID is set when creating the cart
             Quantity = quantity;  // Assign quantity (no validation in constructor)

@@ -15,5 +15,6 @@ namespace DataBusinessLayer.Interfaces
         Task<bool> UpdateCategoryAsync(CategoryProductDTO categoryDto);
         Task<bool> DeleteCategoryAsync(int id);
         Task<CategoryProductDTO> FindCategoryAsync(int id);
+        Task<int> GetCategoryIdOfCategoryName(string categoryName);
     }
 }

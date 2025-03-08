@@ -137,7 +137,6 @@ namespace DataAccessLayer
         }
 
 
-
         public async Task<IEnumerable<CategoryProductDTO>> GetAllCategoriesAsync()
         {
 
@@ -149,6 +148,22 @@ namespace DataAccessLayer
             return productCategories;  // Returns an IEnumerable with the result, even if there's just one category
         }
 
+
+        public async Task<int> GetCategoryIdOfCategoryName(string categoryName)
+        {
+            try
+            {
+                var category = await _appDbContext.ProductsCategories
+                    .FirstOrDefaultAsync(cName => cName.Name == categoryName);
+
+                return category?.Id ?? -1;
+            }
+            catch (Exception ex)
+            {
+               
+                return -1; // Return -1 in case of an error
+            }
+        }
 
 
     }

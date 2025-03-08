@@ -28,7 +28,11 @@ namespace DataAccessLayer.Interfaces
             // Get the image of a product by its ID asynchronously (returns a byte array)
             Task<byte[]> GetProductImageByIdAsync(int productId);
 
+            Task<IEnumerable<GetProductDto>> GetProductsByNameAsync(string namePrefix,int categoryID);
+
             Task<IEnumerable<GetProductDto>> GetProductsByNameAsync(string namePrefix);
-        }
+
+            Task<IEnumerable<GetProductDto>> GetProductsByCategoryAsync(int categoryId);
+    }
     }
 

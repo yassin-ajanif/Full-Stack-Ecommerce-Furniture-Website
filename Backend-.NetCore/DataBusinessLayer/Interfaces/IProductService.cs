@@ -9,6 +9,8 @@ namespace DataBusinessLayer.Interfaces
         // Async method to get all products
         Task<IEnumerable<GetProductDto>> GetAllProductsAsync();
 
+        Task<IEnumerable<GetProductDto>> GetProductsByCategoryAsync(int categoryId);
+
         // Async method to get a product by its Id
         Task<GetProductDto> GetProductByIdAsync(int productId);
 
@@ -24,6 +26,8 @@ namespace DataBusinessLayer.Interfaces
         // Async method to get the image of a product by Id
         Task<byte[]> GetProductImageByIdAsync(int productID);
 
+        Task<IEnumerable<GetProductDto>> GetProductsByNameAsync(string namePrefix,int categoryID);
         Task<IEnumerable<GetProductDto>> GetProductsByNameAsync(string namePrefix);
+
     }
 }

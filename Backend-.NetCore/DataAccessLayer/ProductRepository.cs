@@ -37,6 +37,26 @@ namespace DataAccessLayer
             return productDtos;
         }
 
+        
+
+        public async Task<IEnumerable<GetProductDto>> GetProductsByCategoryAsync(int categoryId)
+        {
+            return await _appDbContext.Products
+                .AsNoTracking() // Improves read performance
+                .Where(p => p.CategoryID == categoryId)
+                .Select(p => new GetProductDto( // Projects data at the database level
+                    p.Id,
+                    p.Name,
+                    p.Description,
+                    p.StockQuantity,
+                    p.Price,
+                    p.CategoryID
+                ))
+                .ToListAsync();
+        }
+
+
+
         // Convert to async
         public async Task<GetProductDto> GetProductByIdAsync(int productId)
         {
@@ -169,27 +189,66 @@ namespace DataAccessLayer
         }
 
 
+        public async Task<IEnumerable<GetProductDto>> GetProductsByNameAsync(string namePrefix, int categoryId)
+        {
+            try
+            {
+                if (string.IsNullOrWhiteSpace(namePrefix))
+                {
+                    return Enumerable.Empty<GetProductDto>();
+                }
+
+                var products = await _appDbContext.Products
+                    .Where(p => p.Name.StartsWith(namePrefix) && p.CategoryID == categoryId) 
+                    .AsNoTracking() 
+                    .ToListAsync();
+
+                return products.Select(p => new GetProductDto(
+                    p.Id,
+                    p.Name,
+                    p.Description,
+                    p.StockQuantity,
+                    p.Price,
+                    p.CategoryID
+                ));
+            }
+            catch (Exception ex)
+            {
+
+                return Enumerable.Empty<GetProductDto>(); // Return an empty collection on failure
+            }
+        }
+
         public async Task<IEnumerable<GetProductDto>> GetProductsByNameAsync(string namePrefix)
         {
-            if (string.IsNullOrWhiteSpace(namePrefix))
+            try
             {
-                return Enumerable.Empty<GetProductDto>();
+                if (string.IsNullOrWhiteSpace(namePrefix))
+                {
+                    return Enumerable.Empty<GetProductDto>();
+                }
+
+                var products = await _appDbContext.Products
+                    .Where(p => p.Name.StartsWith(namePrefix))
+                    .AsNoTracking()
+                    .ToListAsync();
+
+                return products.Select(p => new GetProductDto(
+                    p.Id,
+                    p.Name,
+                    p.Description,
+                    p.StockQuantity,
+                    p.Price,
+                    p.CategoryID
+                ));
             }
+            catch (Exception ex)
+            {
 
-            var products = await _appDbContext.Products
-                .Where(p => p.Name.StartsWith(namePrefix)) // ✅ Efficient search
-                .AsNoTracking() // ✅ Improve performance (read-only operation)
-                .ToListAsync();
-
-            return products.Select(p => new GetProductDto(
-                p.Id,
-                p.Name,
-                p.Description,
-                p.StockQuantity,
-                p.Price,
-                p.CategoryID
-            ));
+                return Enumerable.Empty<GetProductDto>(); // Return an empty collection on failure
+            }
         }
+
 
 
     }

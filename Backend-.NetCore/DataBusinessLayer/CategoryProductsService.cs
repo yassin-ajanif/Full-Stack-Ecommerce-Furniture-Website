@@ -21,11 +21,9 @@ namespace DataBusinessLayer
 
         public async Task<IEnumerable<CategoryProductDTO>> GetAllProductsCategoriesAsync()
         {
-           
-            
+                 
         return await _productCategoryRepository.GetAllCategoriesAsync();
-
-            
+  
         }
 
         public async Task<bool> AddCategoryAsync(CategoryProductDTO categoryDto)
@@ -46,6 +44,12 @@ namespace DataBusinessLayer
         public async Task<CategoryProductDTO> FindCategoryAsync(int id)
         {
             return await _productCategoryRepository.FindCategoryAsync(id);
+        }
+
+        public async Task<int> GetCategoryIdOfCategoryName(string categoryName)
+        {
+
+            return await _productCategoryRepository.GetCategoryIdOfCategoryName(categoryName);
         }
     }
 }

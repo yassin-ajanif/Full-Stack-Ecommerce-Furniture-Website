@@ -26,6 +26,10 @@ namespace DataBusinessLayer
             return await _productRepository.GetAllProductsAsync();
         }
 
+        public async Task<IEnumerable<GetProductDto>> GetProductsByCategoryAsync(int categoryId)
+        {
+            return await _productRepository.GetProductsByCategoryAsync(categoryId);
+        }
         // Async method to get product by Id
         public async Task<GetProductDto> GetProductByIdAsync(int productId)
         {
@@ -56,8 +60,15 @@ namespace DataBusinessLayer
             return await _productRepository.GetProductImageByIdAsync(productID);
         }
 
+        public async Task<IEnumerable<GetProductDto>> GetProductsByNameAsync(string namePrefix,int categoryID)
+        {
+           
+            return await _productRepository.GetProductsByNameAsync(namePrefix,categoryID);
+        }
+
         public async Task<IEnumerable<GetProductDto>> GetProductsByNameAsync(string namePrefix)
         {
+
             return await _productRepository.GetProductsByNameAsync(namePrefix);
         }
     }

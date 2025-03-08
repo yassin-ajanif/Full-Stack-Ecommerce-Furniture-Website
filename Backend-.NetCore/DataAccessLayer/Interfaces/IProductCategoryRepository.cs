@@ -19,6 +19,8 @@ namespace DataAccessLayer.Interfaces
         Task<CategoryProductDTO> FindCategoryAsync(int id);
 
         Task<IEnumerable<CategoryProductDTO>> GetAllCategoriesAsync();
+
+        Task<int> GetCategoryIdOfCategoryName(string categoryName);
     }
 
 }
