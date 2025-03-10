@@ -4,11 +4,18 @@ using DataAccessLayer.Interfaces;
 using DataAccessLayer.Models;
 using DataBusinessLayer;
 using DataBusinessLayer.Interfaces;
+using Microsoft.AspNetCore.Authentication.Cookies;
+using Microsoft.AspNetCore.Authentication.JwtBearer;
 using Microsoft.AspNetCore.Identity;
 using Microsoft.EntityFrameworkCore;
+using Microsoft.IdentityModel.Tokens;
+using Microsoft.OpenApi.Models;
+using System.Text;
+using System.Text.Json;
+
+
 
 var builder = WebApplication.CreateBuilder(args);
-
 
 // Add services to the container.
 builder.Services.AddControllers();
@@ -26,13 +33,37 @@ builder.Services.AddCors(options =>
 builder.Services.AddEndpointsApiExplorer();
 builder.Services.AddSwaggerGen();
 
-
 // we make the migration adding or manipulation to run at datalayer class
 
 builder.Services.AddDbContext<AppDbContext>(options => options.UseSqlServer(options => options.MigrationsAssembly("DataAccessLayer")));
 
 // make or activate the identity so the services of it like uermanager and loginmanager to be ready injectable using depcy injection
-builder.Services.AddIdentity<User,IdentityRole>().AddEntityFrameworkStores<AppDbContext>();
+builder.Services.AddIdentity<User, IdentityRole>().AddEntityFrameworkStores<AppDbContext>();
+
+
+builder.Services.AddAuthentication(options =>
+{
+    options.DefaultAuthenticateScheme = JwtBearerDefaults.AuthenticationScheme;
+    options.DefaultChallengeScheme = JwtBearerDefaults.AuthenticationScheme;
+    options.DefaultScheme = JwtBearerDefaults.AuthenticationScheme;
+ 
+})
+.AddJwtBearer(options =>
+{
+    options.TokenValidationParameters = new TokenValidationParameters
+    {
+        ValidateIssuer = false,
+        ValidateAudience = false,
+        ValidateLifetime = true,
+        ValidateIssuerSigningKey = true,
+        ValidIssuer = builder.Configuration["JwtSettings:Issuer"],
+        ValidAudience = builder.Configuration["JwtSettings:Audience"],
+        IssuerSigningKey = new SymmetricSecurityKey(Encoding.UTF8.GetBytes(builder.Configuration["JwtSettings:SecretKey"]))
+    };
+
+});
+
+
 
 // Register Repository (Data Access Layer)
 builder.Services.AddScoped<IProductRepository, ProductRepository>();
@@ -45,7 +76,6 @@ builder.Services.AddScoped<IProductCategoryRepository, ProductCategoryRepository
 builder.Services.AddScoped<IProductCategoryService, CategoryProductsService>();
 
 builder.Services.AddScoped<IUserService, UserService>();
-
 
 
 var app = builder.Build();
@@ -62,7 +92,9 @@ app.UseHttpsRedirection();
 // Enable CORS by using the policy
 app.UseCors("AllowLocalhost");
 
+app.UseAuthentication();
 app.UseAuthorization();
+
 
 app.MapControllers();
 

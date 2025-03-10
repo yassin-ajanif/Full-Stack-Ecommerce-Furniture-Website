@@ -7,11 +7,13 @@ using System.Linq;
 using System.Threading.Tasks;
 using DataAccessLayer;
 using DataAccessLayer.Models;
+using Microsoft.AspNetCore.Authorization;
 
 namespace EcommerceApis.Controllers
 {
     [Route("api/[controller]")]
     [ApiController]
+    [Authorize]
     public class CategoryProductsController : ControllerBase
     {
         private readonly IProductCategoryService _productCategoryService;
@@ -21,12 +23,14 @@ namespace EcommerceApis.Controllers
             _productCategoryService = productCategoryService;
         }
 
+       
         [HttpGet("All")]
         [ProducesResponseType(StatusCodes.Status200OK, Type = typeof(IEnumerable<CategoryProductDTO>))]
         [ProducesResponseType(StatusCodes.Status404NotFound)]
         [ProducesResponseType(StatusCodes.Status500InternalServerError)]
         public async Task<ActionResult<IEnumerable<CategoryProductDTO>>> GetProductCategoriesAsync()
         {
+           
             IEnumerable<CategoryProductDTO> categories = await _productCategoryService.GetAllProductsCategoriesAsync();
 
             if (categories == null || !categories.Any())

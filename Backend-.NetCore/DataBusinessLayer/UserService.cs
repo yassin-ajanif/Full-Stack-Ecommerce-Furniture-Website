@@ -72,6 +72,8 @@ namespace DataBusinessLayer
             claims.Add(new Claim(ClaimTypes.Name, user.UserName));
             claims.Add(new Claim(ClaimTypes.NameIdentifier, user.Id));
             claims.Add(new Claim(JwtRegisteredClaimNames.Jti, Guid.NewGuid().ToString()));
+           
+            
 
             var roles = await _userManager.GetRolesAsync(user);
 
@@ -101,8 +103,6 @@ namespace DataBusinessLayer
 
             // Create the JWT token
             var token = new JwtSecurityToken(
-                issuer: "MyApp",
-                audience: "MyUsers",
                 claims: claims,
                 expires: DateTime.UtcNow.AddHours(1),  // Adjust token expiry as needed
                 signingCredentials: credentials

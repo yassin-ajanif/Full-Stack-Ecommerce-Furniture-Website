@@ -5,11 +5,14 @@ using SharedLayer.Dtos;
 using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
+using Microsoft.AspNetCore.Authorization;
 
 namespace EcommerceApis.Controllers
-{
+{   
+    
     [Route("api/[controller]")]
     [ApiController]
+   
     public class ProductsController : ControllerBase
     {
         private readonly IProductService _productService;
@@ -21,6 +24,7 @@ namespace EcommerceApis.Controllers
             _productCategoryService = productCategoryService;
         }
 
+        
         // Endpoint to get all products
         [HttpGet("Allproducts")]
         [ProducesResponseType(StatusCodes.Status200OK, Type = typeof(IEnumerable<GetProductDto>))]
