@@ -10,6 +10,8 @@ import { LoginGuard } from './LoginGuard.guard';
 import { CheckoutPageComponent } from './Pages/Checkout/checkout-page/checkout-page.component';
 import { ChekoutGuard } from './CheckoutGuard.guard';
 import { ContactGuard } from './Contact.guard';
+import { SignUpPageComponent } from './Pages/Login/sign-up-page/sign-up-page.component';
+import { ProductAndCategoryPageComponent } from './Pages/ProductAndCategoryPage/product-and-category-page/product-and-category-page.component';
 
 
 export const routes: Routes = [
@@ -19,8 +21,10 @@ export const routes: Routes = [
   { path: 'Contact', component: ContactPageComponent, canDeactivate:[ContactGuard]},
   // can active if it ture it allow to go at this route
   { path: 'Checkout', component: CheckoutPageComponent,canActivate:[ChekoutGuard] },
-  { path: 'Login', component: LoginPageComponent , canActivate:[LoginGuard]},
-  { path: 'Products/Product/:id', component: SelectedProductInfoPageComponent },
+  { path: 'SignUp', component: SignUpPageComponent },
+  { path: 'Login', component: LoginPageComponent },
+  { path: 'Products/Product/:id', component: SelectedProductInfoPageComponent },  
+  { path: 'Dashboard', component: ProductAndCategoryPageComponent },  
   { path: '', redirectTo: 'Home', pathMatch: 'full' } // Default route
 ];
 

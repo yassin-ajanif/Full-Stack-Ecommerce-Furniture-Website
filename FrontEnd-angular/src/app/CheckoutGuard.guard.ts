@@ -10,7 +10,7 @@ export const ChekoutGuard = () => {
     const router = inject(Router);  // Inject the Router
     
     
-    const allowToGoToCheckout = authService.isLogged
+    const allowToGoToCheckout = true
     
     // redirect the user to login page before being able to go checkout page 
     if(!allowToGoToCheckout) { alert('you need to log in'); router.navigate(['/Login']) }

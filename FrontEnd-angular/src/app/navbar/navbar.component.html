@@ -16,18 +16,20 @@
       <li><a routerLink="Contact" routerLinkActive="active-link">Contact</a></li>
     </ul>
 
+
     <!-- Icons -->
     <div class="navbar-icons">
       <a  class="icon">
-        <img src="Assets/Home/logIcon.png" alt="LogIn" class="navbar-icon-img"
+        <img *ngIf="!authService.userToken" src="Assets/Home/logIcon.png" alt="LogIn" class="navbar-icon-img"
         routerLink="Login">
+        <h4 class ="logOut" *ngIf="authService.userToken" (click)="authService.logOut()">Log out</h4>
       </a>
-      <div  class="icon">
-        <img src="Assets/Home/SearchIcon.png" alt="Search" class="navbar-icon-img">
-      </div>
-      <a  class="icon">
-        <img src="Assets/Home/LoveIcon.png" alt="User" class="navbar-icon-img">
-      </a>
+
+      <h4 style='cursor: pointer;' *ngIf="authService.userToken && authService.isAdmin"
+          routerLink="/Dashboard"
+      >DashBoard</h4>
+
+      
       <a  class="icon">
         <img src="Assets/Home/CartIcon.png" alt="Cart" (click)="DisplayCart()" 
         class="navbar-icon-img">

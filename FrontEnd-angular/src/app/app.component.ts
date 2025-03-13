@@ -19,6 +19,8 @@ import { AutoCompleteSearchBoxComponent } from "./SharedComponents/auto-complete
 import { OverlayMessageComponent } from "./SharedComponents/overlay-message/overlay-message.component";
 import { overLayService } from './Services/overLayService.service';
 import { FullPageSpinnerComponent } from "./SharedComponents/full-page-spinner/full-page-spinner.component";
+import { SignUpPageComponent } from "./Pages/Login/sign-up-page/sign-up-page.component";
+import { AuthServiceService } from './Services/auth-service.service';
 
 
 @Component({
@@ -29,7 +31,7 @@ import { FullPageSpinnerComponent } from "./SharedComponents/full-page-spinner/f
     CartComponent, CheckoutPageComponent, CheckoutPageComponent,
     ContactPageComponent, LoginPageComponent, ProductAndCategoryPageComponent,
     HttpClientModule, ProductSelectedInfoComponent,
-    UpdateCategoryProductComponent, AutoCompleteSearchBoxComponent, OverlayMessageComponent, FullPageSpinnerComponent],
+    UpdateCategoryProductComponent, AutoCompleteSearchBoxComponent, OverlayMessageComponent, FullPageSpinnerComponent, SignUpPageComponent],
 
   
   templateUrl: './app.component.html',
@@ -40,13 +42,14 @@ import { FullPageSpinnerComponent } from "./SharedComponents/full-page-spinner/f
 export class AppComponent implements OnInit{
   
  
-  @Input() test! : number
-  
   title = 'EcommerceWebApp';
+  authService = inject(AuthServiceService)
 
   ngOnInit(){
 
     this.title = 'EcommerceWebApp';
+    // we auto login if user has already signed up or logged up before
+    this.authService.autoLogin()
   }
   
   

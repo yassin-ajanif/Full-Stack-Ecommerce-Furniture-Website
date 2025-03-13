@@ -90,4 +90,8 @@ body {
   
 }
 
-
+.logOut{
+  
+  cursor: pointer;
+  color:var(--btn-brown)
+}

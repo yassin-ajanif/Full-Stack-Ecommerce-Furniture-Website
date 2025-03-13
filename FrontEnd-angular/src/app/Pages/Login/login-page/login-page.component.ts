@@ -1,36 +1,61 @@
-import { Component, ElementRef, inject, ViewChild, viewChild } from '@angular/core';
+import { Component, ElementRef, inject, Renderer2, ViewChild } from '@angular/core';
 import { AuthServiceService } from '../../../Services/auth-service.service';
-import { Router } from '@angular/router';
-import { setAlternateWeakRefImpl } from '@angular/core/primitives/signals';
+import { Router, RouterOutlet, RouterLink, RouterLinkActive } from '@angular/router';
+import { logedUser } from '../../../Dtos/logedUser.dto';
+import { overLayService } from '../../../Services/overLayService.service';
+import { SpinnerService } from '../../../Services/spinner-service.service';
+import { FormsModule } from '@angular/forms';
+import { CommonModule } from '@angular/common';
 
 @Component({
   selector: 'login-page',
-  imports: [],
+  imports: [RouterOutlet, RouterLink, RouterLinkActive,CommonModule,FormsModule],
   templateUrl: './login-page.component.html',
   styleUrl: './login-page.component.css'
 })
 export class LoginPageComponent {
 
-  @ViewChild('LogedEmail')    userName! :ElementRef
-  @ViewChild('LogedPassword') password! :ElementRef
-  authService:AuthServiceService = inject(AuthServiceService)
-  router : Router = inject(Router)
+  authService: AuthServiceService = inject(AuthServiceService);
+  router: Router = inject(Router);
+  overlayService = inject(overLayService);
+  spinnerService = inject(SpinnerService);
+  
+
+   user : logedUser= {
+      usernameOrEmail: '',
+      password: '',
+    };
 
   OnLogin() {
-       
-    const email    = this.userName.nativeElement.value
-    const password = this.password.nativeElement.value
-
-    if (!email || !password) {
-      alert('Please enter both email and password');
-      return;
-    }
-
-    // Example: Call authentication service
-     const isLogged = this.authService.Authenticate(email, password);
-     
-     if(isLogged)  { alert("ok right") ; this.router.navigate(['/Home']);} 
-      else alert ('false')
     
+    this.spinnerService.showSpinner();
+
+    this.authService.logIn(this.user).subscribe({
+
+      next: (userToken) => {
+        this.spinnerService.hideSpinner();
+        this.resetForm();
+
+        this.authService.deletePreviousTokenIfUserSignedBefore()
+        this.authService.setUserTokenToBeSeenFromAnyAppCompnt(userToken)
+        this.authService.storeTokenInLocalStorage(userToken)
+        
+        this.authService.autoLogout()
+        this.router.navigate(['/Home']);
+
+      },
+      error: (err) => {   
+        this.spinnerService.hideSpinner();
+        const errorMessage = err.error?.message || 'An unexpected error occurred';
+    
+        this.overlayService.showOverLay_Without_ConfirmationMode(errorMessage);
+      }
+    });
+    
+  }
+
+  resetForm() {
+    this.user.usernameOrEmail = '';
+    this.user.password = '';
   }
 }

@@ -10,7 +10,7 @@ export const LoginGuard = () => {
     const router = inject(Router);  // Inject the Router
     
     // if user is not already signed uout 
-    const allowToGoToLoginPage = !authService.isLogged
+    const allowToGoToLoginPage = true
     
     
     

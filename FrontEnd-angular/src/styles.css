@@ -88,6 +88,17 @@ body {
   transition: transform 0.3s ease; /* Smooth transition */
 }
 
+.btn-hover-disabled:hover{
+  transform: none !important;/* Moves the button 5px up */
+  transition: none !important; /* Smooth transition */
+}
+
+  .disabled-btn {
+    background-color: gray !important;
+    cursor: not-allowed;
+}
+
+
 .active-link {
   font-weight: bolder !important;
 
