@@ -3,6 +3,7 @@ import { ProductSelectedInfoComponent } from "../../Components/product-selected-
 import { ReviewSectionComponent } from "../../Components/review-section/review-section.component";
 import { RelatedProductsComponent } from "../../Components/related-products/related-products.component";
 import { ActivatedRoute } from '@angular/router';
+import { Subscription } from 'rxjs';
 
 @Component({
   selector: 'selected-product-info-page',
@@ -16,7 +17,7 @@ export class SelectedProductInfoPageComponent implements OnInit,OnDestroy{
   //ActiveRoute!:ActivatedRoute;
   courseId!:number ;
  
-  private routeSub!:any
+  private routeSub!:Subscription
   constructor(private activatedRoute:ActivatedRoute){}
  
   ngOnInit(): void {
@@ -33,7 +34,7 @@ export class SelectedProductInfoPageComponent implements OnInit,OnDestroy{
 
     ngOnDestroy(): void {
       
-      this.routeSub.unsbsrcibe()
+     if(this.routeSub) this.routeSub.unsubscribe()
        
     }
   

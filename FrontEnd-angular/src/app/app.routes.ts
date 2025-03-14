@@ -6,7 +6,7 @@ import { ProductComponent } from './SharedComponents/product/product.component';
 import { ProductsComponent } from './Pages/Home/Components/products/products.component';
 import { SelectedProductInfoPageComponent } from './Pages/SelectedProductInfo/SelectedProductInfoPage/selected-product-info-page/selected-product-info-page.component';
 import { LoginPageComponent } from './Pages/Login/login-page/login-page.component';
-import { LoginGuard } from './LoginGuard.guard';
+import { DashboardGuard } from './DashboardGuard.guard';
 import { CheckoutPageComponent } from './Pages/Checkout/checkout-page/checkout-page.component';
 import { ChekoutGuard } from './CheckoutGuard.guard';
 import { ContactGuard } from './Contact.guard';
@@ -23,8 +23,8 @@ export const routes: Routes = [
   { path: 'Checkout', component: CheckoutPageComponent,canActivate:[ChekoutGuard] },
   { path: 'SignUp', component: SignUpPageComponent },
   { path: 'Login', component: LoginPageComponent },
-  { path: 'Products/Product/:id', component: SelectedProductInfoPageComponent },  
-  { path: 'Dashboard', component: ProductAndCategoryPageComponent },  
+  { path: 'Products/Product/:id', component: SelectedProductInfoPageComponent },   
+  { path: 'Dashboard', component: ProductAndCategoryPageComponent , canActivate : [DashboardGuard]},  
   { path: '', redirectTo: 'Home', pathMatch: 'full' } // Default route
 ];
 

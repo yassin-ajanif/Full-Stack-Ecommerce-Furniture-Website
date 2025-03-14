@@ -1,7 +1,8 @@
 import { CommonModule } from '@angular/common';
-import { Component, Inject } from '@angular/core';
+import { Component, inject, Inject, OnInit } from '@angular/core';
 import { FormsModule } from '@angular/forms';
 import { ActivatedRoute, Router } from '@angular/router';
+import { ProductService } from '../../../../Services/product.service';
 
 @Component({
   selector: 'products-cart',
@@ -9,14 +10,17 @@ import { ActivatedRoute, Router } from '@angular/router';
   templateUrl: './products-cart.component.html',
   styleUrl: './products-cart.component.css'
 })
-export class ProductsCartComponent {
+export class ProductsCartComponent implements OnInit {
 
+  cartItems: { id: number, name: string, image: string, price: number, quantity: number }[] = [];
+  productService = inject(ProductService)
+
+  ngOnInit(){
+
+  }
+
+ 
   
-
-  cartItems = [
-    { id: 1, name: 'Product 1', image: 'Assets/Shared/image 1.png', price: 25, quantity: 1 },
-    { id: 2, name: 'Product 2', image: 'Assets/Shared/image 2.png', price: 40, quantity: 1 }
-  ];
 
   updateSubtotal(item: any): number {
     return item.quantity * item.price;

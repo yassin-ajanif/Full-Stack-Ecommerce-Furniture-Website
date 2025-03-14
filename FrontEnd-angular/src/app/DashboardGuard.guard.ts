@@ -4,16 +4,15 @@ import { CanActivate, CanActivateFn, Router } from '@angular/router';
 import { AuthServiceService } from './Services/auth-service.service';
 
 
-export const LoginGuard = () => {
+export const DashboardGuard = () => {
 
     const authService = inject(AuthServiceService);  // Inject the AuthService
-    const router = inject(Router);  // Inject the Router
-    
+    const router = inject(Router)
     // if user is not already signed uout 
-    const allowToGoToLoginPage = true
+    const allowToGoToDashboard = authService.isAdmin
     
     
-    
-    return allowToGoToLoginPage
+    if(!allowToGoToDashboard) router.navigate(['/Home'])
+    return allowToGoToDashboard
     
   };

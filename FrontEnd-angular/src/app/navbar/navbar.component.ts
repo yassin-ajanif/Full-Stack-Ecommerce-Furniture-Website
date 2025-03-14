@@ -3,6 +3,7 @@ import { ShoppingCartComponent } from "./Components/shopping-cart/shopping-cart.
 import { CommonModule } from '@angular/common';
 import { RouterLink, RouterLinkActive, RouterOutlet } from '@angular/router';
 import { AuthServiceService } from '../Services/auth-service.service';
+import { cartService } from '../Services/cartService.service';
 
 @Component({
   selector: 'navbar',
@@ -15,6 +16,7 @@ export class NavbarComponent {
  
   cartVisible: boolean = false;  // Initially, the cart is hidden
   authService = inject(AuthServiceService)
+  cartService = inject(cartService)
 
   constructor(private renderer:Renderer2){}
   // Function to toggle the cart visibility

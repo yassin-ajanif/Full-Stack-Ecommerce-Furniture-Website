@@ -118,6 +118,13 @@ export class ProductService  {
     
       return this.httpClient.get<getProductDTO[]>(url);
     }
+
+    searchProductById(id:number):Observable<getProductDTO>{
+
+      const url = `${this.baseUrl}/products/${id}`;
+    
+      return this.httpClient.get<getProductDTO>(url);
+    }
     
     
     getProductImageById(productId: number): Observable<Blob> {

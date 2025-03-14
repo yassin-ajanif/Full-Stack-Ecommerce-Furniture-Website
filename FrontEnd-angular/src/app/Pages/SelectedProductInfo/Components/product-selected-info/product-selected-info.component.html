@@ -15,8 +15,8 @@
 
     <!-- Right Column: Product Details -->
     <div class="right-column">
-        <h1 class="product-name">Product Name</h1>
-        <p class="product-price">$99.99</p>
+        <h1 class="product-name">{{productToAddToCart.name}}</h1>
+        <p class="product-price">${{productToAddToCart.price}}</p>
         <div class="product-reviews">
             ★★★★☆ <span class="review-count"> | &nbsp; 123 reviews</span>
         </div>
@@ -31,7 +31,7 @@
                 <input type="number" [(ngModel)]="quantity" [min]="1" [max]="maxQuantity" />
                 <button type="button" class="increase" (click)="increase()">+</button>
             </div>
-            <button class="add-to-cart" >Add To Cart </button>
+            <button class="add-to-cart" (click)="OnAddToCart(productToAddToCart)">Add To Cart </button>
             
     </div>
     <hr class="product-divider">

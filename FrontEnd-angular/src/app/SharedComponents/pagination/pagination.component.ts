@@ -42,7 +42,7 @@ export class PaginationComponent implements OnChanges,OnDestroy{
 
   ngOnDestroy(): void {
 
-    this.BtnPageSubscription.unsubscribe()
+    if(this.BtnPageSubscription) this.BtnPageSubscription.unsubscribe()
     
   }
   

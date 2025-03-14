@@ -69,6 +69,12 @@ body {
   justify-content: center;
 }
 
+.icon {
+  position: relative;
+  display: inline-block;
+}
+
+
 .navbar-icon-img {
   width: 1.5rem;    /* Adjust size */
   height: 1.5rem;   /* Adjust size */
@@ -78,6 +84,27 @@ body {
 .navbar-icon-img:hover {
   opacity: 0.7;   /* Optional: add hover effect for icons */
 }
+
+
+.navbar-icon-img {
+  width: 30px; /* Size of the cart icon */
+  height: 30px;
+}
+
+.cart-item-count {
+  position: absolute;
+  top: -5px;
+  right: -11px;
+  background-color: red;
+  color: white;
+  border-radius: 50%;
+  padding: 0px 6px;
+  font-size: 11px;
+  font-weight: bold;
+  /* min-width: 15px; */
+  text-align: center;
+}
+
 
 .overlay {
   position: fixed;
@@ -95,3 +122,4 @@ body {
   cursor: pointer;
   color:var(--btn-brown)
 }
+
