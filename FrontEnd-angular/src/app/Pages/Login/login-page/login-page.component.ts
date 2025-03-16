@@ -1,6 +1,6 @@
 import { Component, ElementRef, inject, Renderer2, ViewChild } from '@angular/core';
 import { AuthServiceService } from '../../../Services/auth-service.service';
-import { Router, RouterOutlet, RouterLink, RouterLinkActive } from '@angular/router';
+import { Router, RouterOutlet, RouterLink, RouterLinkActive, ActivatedRoute } from '@angular/router';
 import { logedUser } from '../../../Dtos/logedUser.dto';
 import { overLayService } from '../../../Services/overLayService.service';
 import { SpinnerService } from '../../../Services/spinner-service.service';
@@ -17,6 +17,7 @@ export class LoginPageComponent {
 
   authService: AuthServiceService = inject(AuthServiceService);
   router: Router = inject(Router);
+  activatedRoute: ActivatedRoute = inject(ActivatedRoute);
   overlayService = inject(overLayService);
   spinnerService = inject(SpinnerService);
   
@@ -41,8 +42,8 @@ export class LoginPageComponent {
         this.authService.storeTokenInLocalStorage(userToken)
         
         this.authService.autoLogout()
-        this.router.navigate(['/Home']);
-
+        //this.router.navigate(['/Home']);
+        this.login()
       },
       error: (err) => {   
         this.spinnerService.hideSpinner();
@@ -52,6 +53,16 @@ export class LoginPageComponent {
       }
     });
     
+  }
+
+  login(): void {
+    
+    const returnUrl = localStorage.getItem('UrlToRedirect') || '/';  // Default to home page if no returnUrl
+    
+    if(!returnUrl) this.router.navigate(['/Home']);
+  
+    localStorage.removeItem('UrlToRedirect');
+    this.router.navigate([returnUrl]);
   }
 
   resetForm() {

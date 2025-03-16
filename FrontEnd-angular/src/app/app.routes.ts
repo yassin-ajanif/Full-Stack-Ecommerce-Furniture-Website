@@ -24,7 +24,7 @@ export const routes: Routes = [
   { path: 'SignUp', component: SignUpPageComponent },
   { path: 'Login', component: LoginPageComponent },
   { path: 'Products/Product/:id', component: SelectedProductInfoPageComponent },   
-  { path: 'Dashboard', component: ProductAndCategoryPageComponent , canActivate : [DashboardGuard]},  
+  { path: 'Dashboard', component: ProductAndCategoryPageComponent , canActivate : [DashboardGuard]},   
   { path: '', redirectTo: 'Home', pathMatch: 'full' } // Default route
 ];
 

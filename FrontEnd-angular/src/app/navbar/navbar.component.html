@@ -31,7 +31,7 @@
 
       
       <a  class="icon">
-        <img src="Assets/Home/CartIcon.png" alt="Cart" (click)="DisplayCart()" 
+        <img src="Assets/Home/CartIcon.png" alt="Cart" (click)="cartService.isCartNotEmpty() && DisplayCart()" 
         class="navbar-icon-img">
         <span *ngIf="cartService.isCartNotEmpty()" 
           class="cart-item-count">{{ cartService.getCartItemCount() }}</span>

@@ -70,9 +70,23 @@ export class ShoppingCartComponent implements OnInit {
  }
 
 
-  goToCheckoutPage(){
- 
-    this.route.navigate(['/Checkout'])
+ goToCheckoutPage() {
+  
+  const userToken = localStorage.getItem('userToken');  // Check if the user token exists
+  this.closeCart();
+
+  if(!this.cartItems.length) return
+
+  if (userToken) {
+    // If the user is logged in, navigate to the Checkout page
+    this.route.navigate(['/Checkout']);
     
+  } else {
+    // If the user is not logged in, store the target URL (checkout page)
+    localStorage.setItem('UrlToRedirect', '/Checkout');
+    // Redirect to the login page to authenticate the user
+    this.route.navigate(['/Login']);
   }
+}
+
 }
