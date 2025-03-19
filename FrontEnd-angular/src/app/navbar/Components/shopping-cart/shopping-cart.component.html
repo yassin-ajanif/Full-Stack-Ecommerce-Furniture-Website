@@ -10,8 +10,10 @@
             </button>
         </div>
         <hr class="headline-line">
+
+        <div class="cart-items">
         <div class="cart-item" *ngFor="let cartItem of cartItems">
-            <img [src]="cartItem.image" alt="Product Image">
+            <img [src]="cartItem.image" class="item-image"  alt="Product Image">
 
             <div class="cart-item-details">
              
@@ -33,13 +35,14 @@
                 </div>
             
         </div>
-        
+        </div>
+
         <div class="cart-summary">
             Subtotal: <span>${{getSubtotal()}}</span>
         </div>
         <hr>
         <div class="cart-actions">
-            <button class="cart-btn">View Cart</button>
+            
             <button class="checkout-btn" 
             (click)="goToCheckoutPage()">Checkout</button>
         </div>

@@ -1,45 +1,68 @@
 
+
 <div *ngIf="cartVisible" class="overlay no-scroll " (click)="closeCart()"></div>
+<div *ngIf="cartVisible" class="cart-container">
+  <shopping-cart (closeCartEvent)="closeCart()"></shopping-cart>
+</div>
 
 <nav class="navbar">
-    <!-- Logo Section -->
-    <div class="logo-container" >
-      <img src="Assets/Home/logo.png" alt="Logo" class="logo">
-      <span class="brand-name">Furniro</span>
-    </div>
+  <!-- Logo Section -->
+  <div class="logo-container">
+    <img src="Assets/Home/logo.png" alt="Logo" class="logo">
+    <span class="brand-name">Furniro</span>
+  </div>
 
-    <!-- Navigation Links -->
-    <ul class="navbar-links">
-      <li><a routerLink="Home"    routerLinkActive="active-link">Home</a></li>
-      <li><a routerLink="Shop"    routerLinkActive="active-link">Shop</a></li>
-      <li><a routerLink="About"   routerLinkActive="active-link">About</a></li>
-      <li><a routerLink="Contact" routerLinkActive="active-link">Contact</a></li>
-    </ul>
+  <!-- Desktop Navigation Links -->
+  <ul class="navbar-links desktop">
+    <li><a routerLink="Home" routerLinkActive="active-link">Home</a></li>
+    <li><a routerLink="Shop" routerLinkActive="active-link">Shop</a></li>
+    <li><a routerLink="About" routerLinkActive="active-link">About</a></li>
+    <li><a routerLink="Contact" routerLinkActive="active-link">Contact</a></li>
+  </ul>
 
 
-    <!-- Icons -->
-    <div class="navbar-icons">
-      <a  class="icon">
-        <img *ngIf="!authService.userToken" src="Assets/Home/logIcon.png" alt="LogIn" class="navbar-icon-img"
-        routerLink="Login">
-        <h4 class ="logOut" *ngIf="authService.userToken" (click)="authService.logOut()">Log out</h4>
-      </a>
+ <div class="menu-icon mobile" (click)="toggleMenu()">
+  
+  <img class ='menuIcon' src="Assets/Home/menuIcon.png"/>
 
-      <h4 style='cursor: pointer;' *ngIf="authService.userToken && authService.isAdmin"
-          routerLink="/Dashboard"
-      >DashBoard</h4>
-
-      
-      <a  class="icon">
-        <img src="Assets/Home/CartIcon.png" alt="Cart" (click)="cartService.isCartNotEmpty() && DisplayCart()" 
-        class="navbar-icon-img">
-        <span *ngIf="cartService.isCartNotEmpty()" 
-          class="cart-item-count">{{ cartService.getCartItemCount() }}</span>
-      </a>
-    </div>
-    
-  </nav>
-
-  <div *ngIf="cartVisible" class="cart-container">
-    <shopping-cart (closeCartEvent)="closeCart()"></shopping-cart>
 </div>
+
+  
+
+  <!-- Mobile Navigation Links (dedicated for screens <1024px) -->
+  <ul class="navbar-links mobile" [ngClass]="{'active': mobileMenuVisible}">
+    <li><a routerLink="Home" routerLinkActive="active-link" (click)="toggleMenu()">Home</a></li>
+    <li><a routerLink="Shop" routerLinkActive="active-link" (click)="toggleMenu()">Shop</a></li>
+    <li><a routerLink="About" routerLinkActive="active-link" (click)="toggleMenu()">About</a></li>
+    <li><a routerLink="Contact" routerLinkActive="active-link" (click)="toggleMenu()">Contact</a></li>
+     <h4 style="cursor: pointer;" *ngIf="authService.userToken && authService.isAdmin" (click)="toggleMenu()"
+     routerLink="/Dashboard">
+      DashBoard
+    </h4>
+  </ul>
+
+  <!-- Icons Section (common for both views) -->
+  <div class="navbar-icons">
+    <a class="icon">
+      <img *ngIf="!authService.userToken" src="Assets/Home/logIcon.png" alt="LogIn" class="navbar-icon-img"
+           routerLink="Login">
+      <h4 class="logOut" *ngIf="authService.userToken" (click)="authService.logOut()">Log out</h4>
+    </a>
+
+    <h4 
+  class="dashboard-link"
+  style="cursor: pointer;" 
+  *ngIf="authService.userToken && authService.isAdmin" 
+  routerLink="/Dashboard">
+  DashBoard
+</h4>
+
+
+    <a class="icon">
+      <img src="Assets/Home/CartIcon.png" alt="Cart" (click)="cartService.isCartNotEmpty() && DisplayCart()"
+           class="navbar-icon-img">
+      <span *ngIf="cartService.isCartNotEmpty()"
+            class="cart-item-count">{{ cartService.getCartItemCount() }}</span>
+    </a>
+  </div>
+</nav>

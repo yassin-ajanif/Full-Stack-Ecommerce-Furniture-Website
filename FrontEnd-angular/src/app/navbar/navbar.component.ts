@@ -1,4 +1,4 @@
-import { Component, inject, Renderer2 } from '@angular/core';
+import { AfterViewChecked, Component, ElementRef, HostListener, inject, Renderer2 } from '@angular/core';
 import { ShoppingCartComponent } from "./Components/shopping-cart/shopping-cart.component";
 import { CommonModule } from '@angular/common';
 import { RouterLink, RouterLinkActive, RouterOutlet } from '@angular/router';
@@ -12,13 +12,28 @@ import { cartService } from '../Services/cartService.service';
   templateUrl: './navbar.component.html',
   styleUrl: './navbar.component.css'
 })
-export class NavbarComponent {
+export class NavbarComponent  {
  
   cartVisible: boolean = false;  // Initially, the cart is hidden
   authService = inject(AuthServiceService)
   cartService = inject(cartService)
 
-  constructor(private renderer:Renderer2){}
+  @HostListener('document:click', ['$event'])
+  handleClick(event: MouseEvent): void {
+    // If click happens outside of the navbar, close the mobile menu.
+    if (!this._eref.nativeElement.contains(event.target)) {
+      this.mobileMenuVisible = false;
+    }
+  }
+  constructor(private renderer:Renderer2 , private _eref: ElementRef){}
+
+ 
+
+  mobileMenuVisible: boolean = false;
+
+  toggleMenu(): void {
+    this.mobileMenuVisible = !this.mobileMenuVisible;
+  }
   // Function to toggle the cart visibility
   DisplayCart(): void {
     this.cartVisible = true;
