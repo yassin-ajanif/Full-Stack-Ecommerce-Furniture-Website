@@ -1,4 +1,4 @@
-.rooms-inspiration {
+.rooms-inspiration-desktop {
     display: grid;
     grid-template-columns: 1fr 1fr 1fr; /* Three equal columns */
     gap: 20px; /* Space between the columns */
@@ -228,4 +228,129 @@ font-size: 1.5rem;
 
 .overlay .close-btn:hover {
   background-color: #ccc;
+}
+
+.rooms-inspiration-tablet-mobile{
+
+  display: none;
+}
+
+@media (max-width: 1100px) {
+
+  .rooms-inspiration-desktop{
+
+    display: none;
+  }
+
+  .rooms-inspiration-tablet-mobile{
+
+    display: block;
+  }
+
+
+  /* Horizontal slider setup */
+  .images-container {
+    display: flex;
+    flex-direction: row;
+    gap: 10px;
+    overflow-x: auto;
+    scroll-behavior: smooth;
+    /* Optionally hide scrollbar if desired */
+    -ms-overflow-style: none;  /* Internet Explorer 10+ */
+    scrollbar-width: none;  /* Firefox */
+    
+  }
+
+ 
+  .container {
+    width: 100%;
+    margin: auto;
+    margin-bottom: 3rem;
+  }
+
+
+  .images-container {
+    width: 100%;
+    display: flex;
+    flex-direction: row;
+    gap: 10px;
+    overflow-x: auto;
+    scroll-behavior: smooth;
+    /* Hiding scrollbars */
+    -ms-overflow-style: none;  /* IE 10+ */
+    scrollbar-width: none;  /* Firefox */
+    /*max-width: 35rem; */
+    
+  }
+
+  .images-container::-webkit-scrollbar {
+    display: none;  /* Safari and Chrome */
+  }
+  
+  
+  .images-container img {
+    flex-shrink: 0;
+    width: 100%;
+    max-width: 15rem;  /* Adjust or remove if you want fluid scaling */
+    height: auto;
+    object-fit: cover;
+    position: relative;
+   
+  }
+  /* Each image styling for the slider */
+    .image-container{
+      width: 90%;
+      height: 100%;
+      background-color: #ccc;
+      position: relative;
+      margin-inline: auto;
+      max-width: 30rem;
+    }
+
+    .column {
+
+      display: grid
+      ;
+              text-align: center;
+              justify-content: center;
+    }
+  /* Positioning the next (arrow) button */
+  .next-btn {
+    border: none;
+    width: 3rem;
+    height: 3rem;
+    cursor: pointer;
+    
+    border-radius: 50%;
+    /* Updated shadow for a deeper, floating look */
+    box-shadow: 0 8px 20px rgba(0, 0, 0, 0.35);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    background-color: var(--btn-brown);
+    transition: transform 0.3s ease, box-shadow 0.3s ease;
+    position: absolute;
+    right: 0;
+    bottom: 0;
+    margin: 0.5rem;
+  }
+  
+  .next-btn:hover {
+    transform: translateY(-3px);
+    box-shadow: 0 12px 28px rgba(0, 0, 0, 0.45);
+  }
+  
+  
+ .info-bar{
+
+  left: 5%;
+  transform: none;
+ }
+  
+  
+  
+ 
+  
+
+
 }

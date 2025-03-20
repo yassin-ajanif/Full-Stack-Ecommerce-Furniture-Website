@@ -34,6 +34,7 @@
     
     margin-right: 0; /* Align box to the right */
     right: 1rem;
+    margin-top: 5rem;
    
   }
   
@@ -82,5 +83,47 @@
     outline-offset: 2px; /* Add space between the button and outline */
 }
 
+/* Existing styles above ... */
+@media (max-width: 900px) {
+  .cta-box h1 {
+    font-size: 2.5rem; /* Reduced from 3rem */
+  }
+  .new-arrival {
+    font-size: 0.9rem; /* Slightly smaller than the original 1rem */
+  }
+  .cta-box p {
+    font-size: 0.95rem; /* Adjust paragraph size if needed */
+  }
+}
 
+@media (max-width: 768px) {
+  .hero-section {
+    height: auto; /* Allow the section to adjust based on content */
+    padding: 1rem;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center; /* Center the content */
+  }
   
+  .cta-box {
+    max-width: 90%; /* Increase width for small screens */
+    margin: 5rem;
+    padding: 1.5rem;
+    text-align: center; /* Center-align text for a cleaner mobile look */
+    right: auto; /* Remove right offset */
+  }
+  
+  .cta-box h1 {
+    font-size: 2rem; /* Adjust header size */
+  }
+  
+  .cta-box p {
+    font-size: 0.9rem; /* Slightly smaller text for descriptions */
+  }
+  
+  .cta-btn {
+    padding: 1rem 2.5rem; /* Adjust padding for the button */
+    font-size: 0.9rem; /* Scale down the button text */
+  }
+}

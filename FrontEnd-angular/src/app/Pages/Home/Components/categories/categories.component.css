@@ -48,3 +48,56 @@
     
   }
   
+  /* Existing styles above ... */
+
+@media (max-width: 900px) {
+  .categories-section {
+    padding: 2rem 3rem;
+  }
+  
+  .grid-container {
+    grid-template-columns: repeat(2, 1fr); /* Change to 2 columns for tablets */
+    gap: 1.5rem; /* Slightly reduce gap if needed */
+  }
+  
+  .section-title {
+    font-size: 1.8rem; /* Adjust title size for tablets */
+  }
+  
+  .section-description {
+    font-size: 0.95rem;
+  }
+}
+
+@media (max-width: 600px) {
+  .categories-section {
+    padding: 2rem 1rem;
+  }
+  
+  .section-title {
+    font-size: 1.5rem; /* Smaller title on mobile */
+  }
+  
+  .section-description {
+    font-size: 0.9rem; /* Smaller description text */
+  }
+  
+  .grid-container {
+    grid-template-columns: 1fr; /* Single column layout for mobile */
+    gap: 1rem;
+  }
+  
+  .grid-item {
+    width: 100%;   /* Allow grid items to fill the container width */
+    margin: 0;     /* Remove centering margin */
+  }
+  
+  .category-image {
+    width: 100%;   /* Make the image span the full width of its container */
+    height: 22rem;
+    max-height: none;  /* Remove any height restrictions if applied */
+    object-fit: cover; /* Ensures the image covers the area without distortion */
+  }
+}
+
+

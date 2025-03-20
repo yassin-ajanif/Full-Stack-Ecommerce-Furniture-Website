@@ -1,11 +1,14 @@
 
-<section class="rooms-inspiration">
+<section class="rooms-inspiration-desktop">
     <div class="column first-colum">
       <h2>50+ Beautifaul Rooms Inspiration</h2>
       <p>Our designer already made a lot of prototypes of rooms that inspire you</p>
-      <button class="btn-Bronw-background btn-inspire" >Explore More</button>
+     
     </div>
+   
     
+    <!--<div class="image-gallery-container"></div>-->
+
     <div class="column">
       <div class="container">
        
@@ -82,6 +85,7 @@
     </div>
 
     
+    
   
     <div  *ngIf = "UserWantOExpandImage" class="overlay" >
       <img src={{actualImageUrlToDisplay}} alt="Expanded Image">
@@ -90,3 +94,78 @@
     
 
   </section>
+
+  <section class="rooms-inspiration-tablet-mobile">
+  
+    <div class="column first-colum--tablet-mobile">
+      <h2>50+ Beautiful Rooms Inspiration</h2>
+      <p>Our designer already made a lot of prototypes of rooms that inspire you</p>
+      
+    </div>
+    
+   
+
+    <!-- Main image & info remain unchanged -->
+<div class="column--tablet-mobile">
+  
+  <div class="container">
+    
+    <div class="image-container">
+      <img [src]="actualImageUrlToDisplay"  alt="Main Room Image">
+      
+     
+      <button class="next-btn" (click)="OnscrollImages()">
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 28 24" width="16" height="16" style="transform: rotate(90deg);">
+          <polyline points="3,4 11,12 3,20" fill="none" stroke="#FFFFFF" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"/>
+          <polyline points="17,4 25,12 17,20" fill="none" stroke="#FFFFFF" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"/>
+        </svg>
+      </button>
+   
+      <div class="info-bar">
+      <div class="info-square">
+        <span class="room-title">
+          01
+          <hr style="border: none; border-top: 2px solid black; width: 30px; margin: 0 10px;">
+          Bed Room
+        </span>
+        <span class="room-description">Inner Peace</span>
+      </div>
+      <button class="expand-btn" (click)="OnExpandImage()">
+        <div class="search-icon">
+          <!-- SVG Icon -->
+          <svg xmlns="http://www.w3.org/2000/svg" 
+               viewBox="0 0 24 24" 
+               fill="none" 
+               stroke="white" 
+               stroke-width="2" 
+               stroke-linecap="round" 
+               stroke-linejoin="round">
+            <circle cx="11" cy="11" r="8" />
+            <line x1="16.5" y1="16.5" x2="22" y2="22" />
+          </svg>
+        </div>
+      </button>
+      </div> 
+        
+    </div>
+
+
+    
+   
+
+  </div>
+</div>
+
+  
+ 
+  
+
+<!-- Overlay for expanded image -->
+<div *ngIf="UserWantOExpandImage" class="overlay">
+  <img [src]="actualImageUrlToDisplay" alt="Expanded Image">
+  <button class="close-btn" (click)="OnCloseExpandedImage()">X</button>
+</div>
+
+
+  </section>
+  

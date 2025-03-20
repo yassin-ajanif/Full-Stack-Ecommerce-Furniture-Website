@@ -84,4 +84,137 @@
 }
 
 
+
+@media (max-width: 768px) {
+
+  .image-gallery {
+    position: relative; /* Set the container to relative for positioning of child elements */
+    width: 100%; /* Full width of the container */
+    height: 100vh; /* Use the full height of the viewport */
+    overflow: hidden;
+  }
+  /* Adjust the center text sizes */
+  .center-div h4 {
+    font-size: 16px; /* Reduced from 20px */
+  }
+  .center-div h1 {
+    font-size: 28px; /* Reduced from 40px */
+  }
+
+  /* Scale down images and reposition them */
+  .image-gallery img {
+    /* Apply a uniform scale if needed */
+    transform: scale(0.7);
+  }
+
+  /* Update each image's position by roughly multiplying original values by 0.7 */
+  .image1 {
+    top: 52px;    /* 75px * 0.7 ≈ 52px */
+    left: -132px; /* -189px * 0.7 ≈ -132px */
+  }
   
+  .image2 {
+    top: 417px;   /* 595px * 0.7 ≈ 417px */
+    left: -131px; /* -187px * 0.7 ≈ -131px */
+  }
+  
+  .image3 {
+    top: 189px;   /* 270px * 0.7 ≈ 189px */
+    left: 71px;   /* 101px * 0.7 ≈ 71px */
+  }
+  
+  .image4 {
+    top: 417px;   /* 595px * 0.7 ≈ 417px */
+    left: 141px;  /* 201px * 0.7 ≈ 141px */
+  }
+  
+  .image5 {
+    top: 158px;   /* 225px * 0.7 ≈ 158px */
+    left: 398px;  /* 568px * 0.7 ≈ 398px */
+  }
+  
+  .image6 {
+    top: 210px;   /* 300px * 0.7 ≈ 210px */
+    left: 614px;  /* 877px * 0.7 ≈ 614px */
+  }
+  
+  .image7 {
+    top: 459px;   /* 656px * 0.7 ≈ 459px */
+    left: 614px;  /* 877px * 0.7 ≈ 614px */
+  }
+  
+  .image8 {
+    top: 15px;    /* 21px * 0.7 ≈ 15px */
+    left: 826px;  /* 1180px * 0.7 ≈ 826px */
+  }
+  
+  .image9 {
+    top: 482px;   /* 689px * 0.7 ≈ 482px */
+    left: 759px;  /* 1084px * 0.7 ≈ 759px */
+  }
+}
+
+  
+@media (max-width: 480px) {
+  /* Adjust center text sizes for mobile */
+
+  
+
+  .center-div h4 {
+    font-size: 14px; /* Reduced from 16px on tablet */
+  }
+  .center-div h1 {
+    font-size: 22px; /* Reduced from 28px on tablet */
+  }
+  
+  /* Scale down all images to 50% of their original size */
+  .image-gallery img {
+    transform: scale(0.5);
+  }
+  
+  /* Recalculate positions for each image based on a 0.5 scale factor */
+  .image1 {
+    top: 70px;
+    left: -95px;
+  }
+  
+  .image2 {
+    top: 298px;  /* 595px * 0.5 */
+    left: -94px; /* -187px * 0.5 */
+  }
+  
+  .image3 {
+    top: 135px;
+    left: 5px;
+  }
+  
+  .image4 {
+    top: 320px;
+    left: 112px;
+  }
+  
+  .image5 {
+    top: 80px;
+    left: 272px;
+  }
+  
+  .image6 {
+    top: 150px;  /* 300px * 0.5 */
+    left: 439px; /* 877px * 0.5 */
+  }
+  
+  .image7 {
+    top: 328px;  /* 656px * 0.5 */
+    left: 439px; /* 877px * 0.5 */
+  }
+  
+  .image8 {
+    top: 11px;   /* 21px * 0.5 */
+    left: 590px; /* 1180px * 0.5 */
+  }
+  
+  .image9 {
+    top: 345px;  /* 689px * 0.5 */
+    left: 542px; /* 1084px * 0.5 */
+  }
+}
