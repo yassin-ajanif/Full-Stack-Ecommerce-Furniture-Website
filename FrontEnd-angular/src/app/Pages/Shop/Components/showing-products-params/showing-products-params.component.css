@@ -6,7 +6,7 @@
   .navbar {
     display: flex;
     justify-content: space-between;  /* Distributes space evenly */
-    height: 4rem;
+   
   }
 
   .wrap-componenet{
@@ -29,20 +29,17 @@
     display: flex;
     gap: 0.2rem;
     align-items: center;
+    justify-content: center;
   }
   .filters-wrapper{
 
     display: flex;
-    gap: 2rem;
-    align-items: center;
+        align-items: center;
+        justify-content: space-between;
+        width: 100%;
   }
 
-  
-
-
-  
-  
-  
+ 
   .product-info {
    margin-top: .3rem;
   }
@@ -100,3 +97,43 @@
     
   }
   
+  @media (max-width:728px) {
+
+
+    
+
+    .filters-wrapper {
+      display: grid;
+      justify-content: center;
+      gap: 1rem;
+    }
+  
+    .category-filter {
+      justify-content: end;
+    }
+  
+    /* Resize the search product element on smaller screens */
+    .product-search-section {
+      margin: 1rem;
+      padding: 1rem;
+    }
+
+    .search-input {
+      padding: 0.8rem;
+      font-size: .9rem;
+      border: 1px solid #ccc;
+      color:#9F9F9F;
+      width: 80%;
+      border: none;
+      outline: none;
+    }
+
+    .search-btn{
+      padding: 0.76rem 1.2rem;
+    }
+
+    label{
+
+      font-size: 1.02rem;
+    }
+  }

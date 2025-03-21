@@ -1,9 +1,11 @@
 <div class="login-page">
     <div class="login-container">
+     
+      
         <div class="login-box">
             <h2 class="login-title">Sign Up</h2>
             <form class="login-form" #signupForm="ngForm" (ngSubmit)="onSubmit(signupForm)">
-                
+             <!---->   
             <div class="form-group-inline ">
                 <div class="form-group">
                     <label class="form-label" for="username">Username</label>
@@ -66,8 +68,12 @@
         [disabled]="signupForm.invalid">Sign Up</button>
             </form>
 
+            
             <p class="signup-text">Already have an account? 
-                <a routerLink="/Login" class="signup-link">Log in</a></p>
+                <a routerLink="/Login" class="signup-link">Log in</a>
+            </p>
+            
+
         </div>
     </div>
 </div>

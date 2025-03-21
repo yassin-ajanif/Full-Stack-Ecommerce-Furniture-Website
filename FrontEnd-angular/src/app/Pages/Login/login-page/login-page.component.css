@@ -107,3 +107,34 @@
 .error-message{
   color:red
 }
+
+/* Mobile adjustments */
+@media (max-width: 480px) {
+  .login-container {
+    padding: 1rem;
+    margin: 2rem;
+    margin-block: 7rem;
+  }
+  
+  .login-title {
+    font-size: 1.5rem;
+  }
+  
+  .form-label {
+    font-size: 0.875rem;
+  }
+  
+  .form-input {
+    padding: 0.5rem;
+    font-size: 0.875rem;
+  }
+  
+  .btn-Bronw-background {
+    padding: 0.5rem 1rem;
+    font-size: 0.875rem;
+  }
+  
+  .signup-text {
+    font-size: 0.75rem;
+  }
+}

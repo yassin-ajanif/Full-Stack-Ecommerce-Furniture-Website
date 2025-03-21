@@ -126,7 +126,7 @@ font-size: 1.5rem;
     cursor: pointer;
 }
 
-.search-icon :hover{
+.search-icon:hover {
   transition: transform 0.5s ease;
   transform: scale(1.25);
 }
@@ -207,7 +207,7 @@ font-size: 1.5rem;
 
 .overlay .close-btn {
   position: absolute;
-  top: 20px;
+  top: 70px;
   right: 20px;
   background-color: white;
   border: none;

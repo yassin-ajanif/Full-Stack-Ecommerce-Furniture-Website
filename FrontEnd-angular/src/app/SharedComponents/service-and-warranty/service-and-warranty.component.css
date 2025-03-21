@@ -1,9 +1,10 @@
 .features {
-    display: grid;
-    grid-template-columns: repeat(4, 1fr); /* Two columns */
-    gap: 20px;
-    background-color: #FAF3EA;
-    padding: 3rem 2rem;
+      display: flex;
+      gap: 20px;
+      background-color: #FAF3EA;
+      padding: 3rem 2rem;
+      flex-wrap: wrap;
+      justify-content: center;
   }
   
   .feature-block {

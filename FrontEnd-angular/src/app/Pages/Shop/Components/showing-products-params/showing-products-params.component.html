@@ -6,26 +6,31 @@
 
      <div class="filters-wrapper">
  
-  <div class="category-filter">
 
-     <label>Categories :</label>
 
-     <dropdown label="Filter by" 
-          [options]="productCategoryNames"
-          [selectedOption]="selectedCategoryName"
-          (optionSelected)="getSelectedCategoryName_From_DropDownMenu($event)"
-          widthInRem="10rem" 
-          heightInRem="1.5rem"
-          labelWidthInRem="1.1rem">
-</dropdown>
-</div>
-
-<div class="search-container">
+    <div class="search-container">
     <input type="text" id="productSearch" class="search-input" 
     placeholder="Search for products..." #searchInput/>
     <button class="search-btn" 
     (click)="searchProduct(searchInput.value)">Search</button>
-  </div>
+    </div>
+
+  <div class="category-filter">
+
+    <label>Categories :</label>
+
+    <dropdown label="Filter-by-desktop" class="Filter-by-desktop" 
+         [options]="productCategoryNames"
+         [selectedOption]="selectedCategoryName"
+         (optionSelected)="getSelectedCategoryName_From_DropDownMenu($event)"
+         widthInRem="10rem" 
+         heightInRem="1.5rem"
+         labelWidthInRem="1.1rem">
+   </dropdown>
+
+
+
+</div>
 
 </div>
 
@@ -33,8 +38,6 @@
       
     </div>
   
-    <div class="product-list">
-      <!-- Product cards go here -->
-    </div>
+   
   </section>
   
