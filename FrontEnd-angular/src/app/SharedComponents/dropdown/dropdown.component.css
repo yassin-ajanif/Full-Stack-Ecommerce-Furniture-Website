@@ -59,15 +59,16 @@ margin-right: 0.625rem;
     
 }
 
-.dropdown-menus{
+
+.dropdown-menus {
     background-color: white;
-    position: absolute;
+    
     z-index: 10;
     width: fit-content;
     max-height: 13rem;
     overflow-y: auto;
     scrollbar-width: none;
-}
+  }
 
 /* Dropdown options */
 .dropdown-option {

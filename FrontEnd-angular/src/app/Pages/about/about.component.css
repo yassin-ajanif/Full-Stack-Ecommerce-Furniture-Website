@@ -1,0 +1,108 @@
+body {
+    font-family: Arial, sans-serif;
+    margin: 0;
+    padding: 0;
+    background-color: #fff;
+    color: var(--product-title);
+    line-height: 1.6;
+  }
+  
+  .page-header {
+    background-image: url('../../../../public/Assets/Shop/shopHeroImage.png'); 
+    background-size: cover;
+    background-position: center;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    text-align: center;
+    height: 19rem;
+
+  }
+  
+  .page-header .page-title {
+    font-size: 3rem;
+    margin: 0;
+    font-weight: 500;
+  }
+  
+  .page-header .breadcrumb {
+    display: flex
+;
+    font-size: 1rem;
+    font-weight: normal;
+    gap: .7rem;
+  }
+  
+  .page-header .breadcrumb a {
+    color: black;
+    text-decoration: none;
+  }
+  
+  .page-header .breadcrumb .current {
+    color: black;
+  }
+  
+  .content {
+    
+  }
+  
+  .content p {
+    margin-block: 45px;
+    color: var(--product-category);
+    margin-inline: 8rem;
+
+  }
+  
+  .btn {
+    display: block;
+    padding: 13px 25px;
+    background-color: var(--btn-brown);
+    color: var(--btn-white);
+    text-decoration: none;
+    border-radius: 5px;
+    transition: transform 0.3s ease, background-color 0.3s ease;
+    border: none;
+    font-size: 1rem;
+    font-weight: 600;
+    margin: auto;
+    margin-bottom: 2rem;
+    font-family: "Poppins", sans-serif;
+    cursor: pointer;
+  }
+  
+  .btn:hover {
+    transform: translateY(-5px);
+    background-color: #a57627;
+  }
+
+  /* Responsive Styles */
+
+/* Tablet Devices */
+@media (max-width: 768px) {
+    .content p {
+      margin-inline: 3rem;
+      margin-block: 30px;
+    }
+    
+    
+    
+    .page-header .page-title {
+      
+    }
+    
+    .page-header .breadcrumb {
+      font-size: 0.9rem;
+    }
+  }
+  
+  /* Mobile Devices */
+  @media (max-width: 480px) {
+    .content p {
+      margin-inline: 1rem;
+      margin-block: 20px;
+    }
+    
+    
+  }
+  

@@ -38,10 +38,10 @@ export class DropdownComponent implements AfterViewInit {
 
  
   // Method to toggle dropdown visibility
-  toggleDropdown() {
+ /* toggleDropdown() {
     this.isOpen = !this.isOpen;
     
-  }
+  }*/
 
   // Method to handle option selection
   selectOption(option: string) {
@@ -68,4 +68,15 @@ export class DropdownComponent implements AfterViewInit {
      
     } 
   }
+
+  @ViewChild('dropdownMenu') dropdownMenu!: ElementRef;
+
+// In toggleDropdown(), call adjustDropdownPosition() when opening the menu:
+toggleDropdown(): void {
+  this.isOpen = !this.isOpen;
+  
+}
+
+
+
 }

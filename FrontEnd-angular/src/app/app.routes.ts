@@ -12,6 +12,7 @@ import { ChekoutGuard } from './CheckoutGuard.guard';
 import { ContactGuard } from './Contact.guard';
 import { SignUpPageComponent } from './Pages/Login/sign-up-page/sign-up-page.component';
 import { ProductAndCategoryPageComponent } from './Pages/ProductAndCategoryPage/product-and-category-page/product-and-category-page.component';
+import { AboutComponent } from './Pages/about/about.component';
 
 
 export const routes: Routes = [
@@ -25,6 +26,7 @@ export const routes: Routes = [
   { path: 'Login', component: LoginPageComponent },
   { path: 'Products/Product/:id', component: SelectedProductInfoPageComponent },   
   { path: 'Dashboard', component: ProductAndCategoryPageComponent , canActivate : [DashboardGuard]},   
+  { path: 'About', component: AboutComponent },   
   { path: '', redirectTo: 'Home', pathMatch: 'full' } // Default route
 ];
 

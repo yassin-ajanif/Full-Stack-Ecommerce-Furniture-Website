@@ -23,12 +23,12 @@
 
   label{
     font-size: 1.15rem;
+    margin-top: 0.5rem;
   }
 
   .category-filter{
     display: flex;
     gap: 0.2rem;
-    align-items: center;
     justify-content: center;
   }
   .filters-wrapper{
@@ -135,5 +135,6 @@
     label{
 
       font-size: 1.02rem;
+      
     }
   }

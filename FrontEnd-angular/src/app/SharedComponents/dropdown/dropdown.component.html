@@ -8,7 +8,7 @@
       <span class="arrow"></span>
     </div>
       
-    <div *ngIf="isOpen" class="dropdown-menus" [style.width]="width ">
+    <div *ngIf="isOpen" class="dropdown-menus" [style.width]="width " #dropdownMenu>
          
         <div *ngFor="let option of options" class="dropdown-option" (click)="selectOption(option)">
         {{ option }}

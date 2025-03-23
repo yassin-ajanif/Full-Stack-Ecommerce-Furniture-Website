@@ -271,4 +271,71 @@
       margin: auto;
     }
     
-    
+    /* Responsive Styles for Mobile Devices (max-width: 480px) */
+@media (max-width: 480px) {
+  /* Adjust search container grid */
+  .search-container {
+    grid-template-columns: 1fr;
+  }
+  .search-input {
+    width: 100%;
+    justify-self: center;
+  }
+  
+  /* Adjust add product container and related sections */
+  .add-product-container {
+    padding: 1rem;
+  }
+  .category-management-grid {
+    flex-direction: column;
+    gap: 0.5rem;
+    padding: 0.5rem;
+  }
+  .btns-grid {
+    flex-direction: column;
+    gap: 0.5rem;
+  }
+  .toggle-btn {
+    width: 100%;
+    font-size: 0.85rem;
+    height: auto;
+    padding: 0.5rem;
+  }
+  
+  /* For product CRUD operations: stack label and input */
+  .form-group {
+    flex-direction: column;
+    align-items: flex-start;
+  }
+  .form-label {
+    width: 100%;
+    margin-right: 0;
+    margin-bottom: 0.5rem;
+  }
+  .form-input {
+    width: 100%;
+    padding: 0.5rem;
+  }
+  
+  /* Adjust category group select */
+  .category-group select {
+    width: 100%;
+    padding: 0.5rem;
+  }
+  
+  /* Adjust action buttons */
+  .btn-add, .btn-update, .btn-delete {
+    width: 100%;
+    font-size: 0.9rem;
+  }
+  
+  /* Adjust upload section and image preview */
+  .upload-content {
+    width: 100%;
+    padding: 0.5rem;
+  }
+  .image-preview {
+    max-width: 100%;
+    height: auto;
+  }
+}
