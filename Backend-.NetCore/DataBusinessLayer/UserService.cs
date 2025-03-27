@@ -30,20 +30,33 @@ namespace DataBusinessLayer
         }
 
         // Register a new user
-        public async Task<IdentityResult> AddUserAsync(AddUserDto userToAddDto)
+
+        public async Task<object> AddUserAsync(AddUserDto userToAddDto)
         {
             var user = new User
             {
                 UserName = userToAddDto.Username,
-                Email = userToAddDto.Email,
-                
+                Email = userToAddDto.Email
             };
 
             // Create the user in the system
             var result = await _userManager.CreateAsync(user, userToAddDto.Password);
 
-            return result;
+            // If the user creation fails, return the error result
+            if (!result.Succeeded)
+            {
+                return result;
+            }
+
+            // Generate a token for the newly created user
+            var token = await GenerateTokenWithExpirationAsync(user);
+
+            return new
+            {
+                Token = token
+            };
         }
+
 
         // Log in an existing user
         public async Task<object> LoginAsync(LoginUserDto loginDto)
@@ -61,8 +74,15 @@ namespace DataBusinessLayer
             // Validate the user's password
             var result = await _signInManager.PasswordSignInAsync(user, loginDto.Password, false, false);
 
+            if(!result.Succeeded) { return null; }
+
             // Return the sign-in result and the user object
-            return await GenerateTokenWithExpirationAsync(user);
+            var token = await GenerateTokenWithExpirationAsync(user);
+
+            return new
+            {
+                Token = token
+            };
         }
 
         private async Task<List<Claim>> BuildPayloadClaimsAsync(User user)
@@ -104,7 +124,7 @@ namespace DataBusinessLayer
             // Create the JWT token
             var token = new JwtSecurityToken(
                 claims: claims,
-                expires: DateTime.UtcNow.AddHours(1),  // Adjust token expiry as needed
+                expires: DateTime.UtcNow.AddMinutes(60),  // Adjust token expiry as needed
                 signingCredentials: credentials
             );
 
@@ -118,6 +138,56 @@ namespace DataBusinessLayer
                 ExpirationDate = token.ValidTo // This is the expiration date of the token
             };
         }
+
+        public async Task<bool> CheckEmailExistsAsync(string email)
+        {
+            var user = await _userManager.FindByEmailAsync(email);
+            return user != null; // If the user is found, return true (email exists)
+        }
+
+        public async Task<bool> CheckUserNameExistsAsync(string username)
+        {
+            var user = await _userManager.FindByNameAsync(username);
+            return user != null;
+        }
+
+        public async Task<bool> ValidateTokenAsync(TokenDto tokenDto)
+        {
+            if (tokenDto == null || string.IsNullOrEmpty(tokenDto.Token))
+                return false;
+
+            // Check if token is expired
+            if (tokenDto.IsExpired())
+                return false; // Token is expired
+
+            var tokenHandler = new JwtSecurityTokenHandler();
+            try
+            {
+                // Read the secret key from configuration asynchronously
+                var secretKey = await Task.Run(() => _configuration["JwtSettings:SecretKey"]);
+
+                // Directly convert the secret key to a byte array (no Base64 decoding needed)
+                var key = new SymmetricSecurityKey(Encoding.UTF8.GetBytes(secretKey));
+
+                // Validate the JWT token using the TokenValidationParameters
+                var principal = tokenHandler.ValidateToken(tokenDto.Token, new TokenValidationParameters
+                {
+                    ValidateIssuerSigningKey = true,
+                    IssuerSigningKey = key,
+                    ValidateIssuer = false,
+                    ValidateAudience = false,
+                    ClockSkew = TimeSpan.Zero // No tolerance for expired tokens
+                }, out var validatedToken);
+
+                // If we are here, the token is valid
+                return true;
+            }
+            catch (Exception)
+            {
+                return false; // Invalid or expired token
+            }
+        }
+
 
     }
 }

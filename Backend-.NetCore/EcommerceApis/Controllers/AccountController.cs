@@ -1,6 +1,7 @@
 ﻿using DataBusinessLayer;
 using DataBusinessLayer.Interfaces;
 using Microsoft.AspNetCore.Authorization;
+using Microsoft.AspNetCore.Identity;
 using Microsoft.AspNetCore.Mvc;
 using SharedLayer.Dtos;
 
@@ -19,30 +20,55 @@ namespace EcommerceApis.Controllers
             _userService = userService;
         }
 
-        // POST: api/account/signup
         [HttpPost("signup")]
         public async Task<IActionResult> SignUp([FromBody] AddUserDto registerDto)
         {
-
             if (!ModelState.IsValid)
             {
-                // Extract validation errors from ModelState
-                var errors = ModelState.Values.SelectMany(v => v.Errors).Select(e => e.ErrorMessage);
-                return BadRequest(new { Errors = errors }); // Return 400 with validation errors
+                var errors = ModelState.Values
+                    .SelectMany(v => v.Errors)
+                    .Select(e => e.ErrorMessage);
+                return BadRequest(new { Errors = errors });
             }
 
-            // Call the user service to create the user
+            // Check if the email already exists
+            var emailExists = await _userService.CheckEmailExistsAsync(registerDto.Email);
+            // Check if the username already exists
+            var userNameExists = await _userService.CheckUserNameExistsAsync(registerDto.Username);
+
+            List<IdentityError> allErrors = new List<IdentityError>();
+
+            if (emailExists)
+            {
+                // Add the email duplication error to the error list
+                allErrors.Add(new IdentityError
+                {
+                    Description = "Email already exists."
+                });
+            }
+
+            else if (userNameExists)
+            {
+                // Add the username duplication error to the error list
+                allErrors.Add(new IdentityError
+                {
+                    Description = "Username already exists."
+                });
+            }
+
+            // If any email or username error exists, return them in the response
+            if (allErrors.Any())
+            {
+                return BadRequest(allErrors.Select(e => e.Description));
+            }
+
+            // Attempt to add the user
             var result = await _userService.AddUserAsync(registerDto);
 
-            if (result.Succeeded)
-            {
-                // If user creation succeeded, return a success response (you could return a user or token, etc.)
-                return Ok(new { Message = "User registered successfully." });
-            }
-
-            // If the result failed, return a bad request with errors
-            return BadRequest(result.Errors.Select(e => e.Description));
+            // Otherwise, return the generated token
+            return Ok(result);
         }
+
 
         [HttpPost("login")]
         public async Task<IActionResult> Login([FromBody] LoginUserDto loginDto)
@@ -66,7 +92,29 @@ namespace EcommerceApis.Controllers
             return Ok(tokenObject);
         }
 
+   
+        // POST: api/token/validate
+        [HttpPost("validate")]
+        public async Task<IActionResult> ValidateToken([FromBody] TokenDto tokenDto)
+        {
+            if (tokenDto == null || string.IsNullOrEmpty(tokenDto.Token))
+            {
+                return BadRequest("Token is required.");
+            }
 
+            var isValid = await _userService.ValidateTokenAsync(tokenDto);
 
+            if (isValid)
+            {
+                return Ok(new { message = "Token is valid." });
+            }
+            else
+            {
+                return Unauthorized(new { message = "Invalid or expired token." });
+            }
+        }
     }
+
+
 }
+

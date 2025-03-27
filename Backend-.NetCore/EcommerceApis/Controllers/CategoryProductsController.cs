@@ -13,7 +13,7 @@ namespace EcommerceApis.Controllers
 {
     [Route("api/[controller]")]
     [ApiController]
-    [Authorize]
+   
     public class CategoryProductsController : ControllerBase
     {
         private readonly IProductCategoryService _productCategoryService;
@@ -73,6 +73,7 @@ namespace EcommerceApis.Controllers
         [ProducesResponseType(StatusCodes.Status200OK, Type = typeof(CategoryProductDTO))]
         [ProducesResponseType(StatusCodes.Status400BadRequest)]
         [ProducesResponseType(StatusCodes.Status404NotFound)] // Add proper response
+    
         [ProducesResponseType(StatusCodes.Status500InternalServerError)]
         public async Task<ActionResult> UpdateProductCategoryAsync([FromBody] CategoryProductDTO categoryDto)
         {

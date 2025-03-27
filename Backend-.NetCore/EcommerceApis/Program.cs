@@ -77,6 +77,9 @@ builder.Services.AddScoped<IProductCategoryService, CategoryProductsService>();
 
 builder.Services.AddScoped<IUserService, UserService>();
 
+builder.Services.AddScoped<ICheckoutService, CheckoutService>();
+builder.Services.AddScoped<ICheckoutRepository, CheckoutRepository>();
+
 
 var app = builder.Build();
 

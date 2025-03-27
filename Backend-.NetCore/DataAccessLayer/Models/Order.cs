@@ -39,9 +39,9 @@ namespace DataAccessLayer.Models
         public Payment Payment { get; set; }
 
         // Constructor without validation logic
-        public Order(/*string userID,*/ int orderStatusID, DateTime orderDate, decimal totalAmount, int stockQuantity)
+        public Order(string userID, int orderStatusID, DateTime orderDate, decimal totalAmount, int stockQuantity)
         {
-            /*UserID = userID;*/
+            UserID = userID;
             OrderStatusID = orderStatusID;
             OrderDate = orderDate;
             TotalAmount = totalAmount;

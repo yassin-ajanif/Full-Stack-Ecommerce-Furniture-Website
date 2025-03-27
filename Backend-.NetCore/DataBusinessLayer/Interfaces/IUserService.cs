@@ -12,11 +12,16 @@ namespace DataBusinessLayer.Interfaces
     public interface IUserService
     {
         // Register a new user with provided registration details
-        Task<IdentityResult> AddUserAsync(AddUserDto userToAddDto);
+        Task<Object> AddUserAsync(AddUserDto userToAddDto);
 
         // Log in an existing user
         Task<Object> LoginAsync(LoginUserDto loginDto);
 
+        Task<bool> CheckEmailExistsAsync(string email);
+
+        Task<bool> CheckUserNameExistsAsync(string username);
+
+        Task<bool> ValidateTokenAsync(TokenDto tokenDto);
         // Change a user's password
         /*Task<IdentityResult> ChangePasswordAsync(IdentityUser user, string oldPassword, string newPassword);
 
