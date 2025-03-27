@@ -1,5 +1,5 @@
 import { inject, Injectable } from '@angular/core';
-import { catchError, map, Observable, Subscription, throwError } from 'rxjs';
+import { BehaviorSubject, catchError, map, Observable, Subscription, throwError } from 'rxjs';
 import { UserToken } from '../Dtos/userToken.dto';
 import { HttpClient } from '@angular/common/http';
 import { signedUser } from '../Dtos/signedUser.dto';
@@ -17,6 +17,7 @@ export class AuthServiceService {
   verifyTokenSubsrption! : Subscription
   timerFunction : any
   isAdmin : boolean = false;
+  isLoggedSubject  = new BehaviorSubject<Boolean|null>(null)
 
   private singUpEndPoint = 'https://localhost:7023/api/Account/signup';  // Endpoint for sign-up
   private logInEndPoint =  'https://localhost:7023/api/Account/login'; 
@@ -56,6 +57,7 @@ export class AuthServiceService {
         map(response => {
           const token = response.token.token;
           const expirationDate = new Date(response.token.expirationDate);
+          this.isLoggedSubject.next(true)
           return new UserToken(token, expirationDate);
         })
       );
@@ -69,16 +71,18 @@ export class AuthServiceService {
 
   logOut(){
 
+    this.isLoggedSubject.next(false) 
     this.userToken = null;
     this.deletePreviousTokenIfUserSignedBefore()
     if(this.isAdmin) this.router.navigate(['/Home'])
   }
 
-  autoLogin() {
+  autoLogin()  {
 
     const getstoredTokenFromLocalStorage = localStorage.getItem("userToken");
 
     if (!getstoredTokenFromLocalStorage) {
+      
       return; // No token found, user is not logged in
     }
   
@@ -89,22 +93,26 @@ export class AuthServiceService {
 
       const userToken = new UserToken(userTokenData.token, new Date(userTokenData.tokenExpiresIn));
       
-      if(userToken.isExpired()) this.logOut()
+      if(userToken.isExpired()) { this.logOut(); }
     
       this.verifyTokenSubsrption = this.verifyToken(userToken).subscribe({
         next: (isValid) => {
-  
+            
+            this.isLoggedSubject.next(true)
             this.setUserTokenToBeSeenFromAnyAppCompnt(userToken);
             // get excuted when the token is expired
             this.autoLogout()
+            
         },
         error: () => {
+          this.isLoggedSubject.next(false)
           this.logOut(); 
           this.router.navigate(['/Login']);// Logout on any verification error
         }
       });
 
     } catch (error) {
+      this.isLoggedSubject.next(false)
       this.logOut(); // If parsing fails, log the user out
       this.router.navigate(['/Login']);
     }

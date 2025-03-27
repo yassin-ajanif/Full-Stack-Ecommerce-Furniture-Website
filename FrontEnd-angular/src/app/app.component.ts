@@ -1,5 +1,5 @@
 import { AfterViewChecked, AfterViewInit, Component, inject, Input, OnChanges, OnInit, SimpleChanges } from '@angular/core';
-import { RouterLink, RouterLinkActive, RouterOutlet, Routes } from '@angular/router';
+import { Router, RouterLink, RouterLinkActive, RouterOutlet, Routes } from '@angular/router';
 import { NavbarComponent } from './navbar/navbar.component';
 import { CommonModule } from '@angular/common';
 import { FooterComponent } from "./footer/footer.component";
@@ -21,7 +21,8 @@ import { overLayService } from './Services/overLayService.service';
 import { FullPageSpinnerComponent } from "./SharedComponents/full-page-spinner/full-page-spinner.component";
 import { SignUpPageComponent } from "./Pages/Login/sign-up-page/sign-up-page.component";
 import { AuthServiceService } from './Services/auth-service.service';
-
+import { NavigationEnd } from '@angular/router';
+import { filter } from 'rxjs';
 
 @Component({
   selector: 'app-root',
@@ -44,16 +45,33 @@ export class AppComponent implements OnInit{
  
   title = 'EcommerceWebApp';
   authService = inject(AuthServiceService)
-
+  router = inject(Router)
   ngOnInit(){
 
     this.title = 'EcommerceWebApp';
     // we auto login if user has already signed up or logged up before
     this.authService.autoLogin()
-  }
-  
-  
- 
 
+    
+    this.OnScrollingUpToPageWhenUserClickToLink()
+  
+
+}
+
+OnScrollingUpToPageWhenUserClickToLink(){
+      
+  this.router.events
+  .pipe(filter(event => event instanceof NavigationEnd))
+  .subscribe(() => {
+  
+    //   smooth scrolling:
+     window.scroll({
+       top: 0,
+       left: 0,
+      behavior: 'smooth'
+     });
+  });
+
+}
 
 }

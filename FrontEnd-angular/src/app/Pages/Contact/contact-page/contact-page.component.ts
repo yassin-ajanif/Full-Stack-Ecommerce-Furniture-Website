@@ -1,8 +1,10 @@
-import { Component } from '@angular/core';
+import { Component, inject } from '@angular/core';
 import { FormGroup, FormControl, Validators, ReactiveFormsModule, FormsModule } from '@angular/forms';
 import { ServiceAndWarrantyComponent } from "../../../SharedComponents/service-and-warranty/service-and-warranty.component";
 import { ShopHeroComponent } from "../../../SharedComponents/shop-hero/shop-hero.component";
 import { CommonModule } from '@angular/common';
+import { overLayService } from '../../../Services/overLayService.service';
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'contact-page',
@@ -15,6 +17,9 @@ import { CommonModule } from '@angular/common';
 })
 export class ContactPageComponent {
  
+  overlayService = inject(overLayService)
+  router = inject(Router)
+
   contactForm = new FormGroup({
     name: new FormControl('', Validators.required),
     email: new FormControl('', [Validators.required, Validators.email]),
@@ -31,10 +36,14 @@ export class ContactPageComponent {
   onSubmit() {
 
     if (this.contactForm.valid) {
-      console.log('Form Submitted:', this.contactForm.value);
-      // Handle submission logic
+      
+      this.overlayService.showOverLay_Without_ConfirmationMode("thank you for your submition, we will contact you soon")
+      this.contactForm.reset();
+      this.router.navigate(['Shop'])
     } else {
-      console.log('Form is invalid');
+
+      this.overlayService.showOverLay_Without_ConfirmationMode("your data is invalid")
+
     }
   }
 

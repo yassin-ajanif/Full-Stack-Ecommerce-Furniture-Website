@@ -2,9 +2,8 @@
 .dropDowContainer{
 
   display: flex;
-
   z-index: 10;
-  
+  position: relative;
 }
 
 .dropDowContainer label{
@@ -28,7 +27,7 @@ margin-right: 0.625rem;
     display: flex;
     justify-content: space-between;
     align-items: center;
-  
+   
 }
 
 /* Arrow icon */
@@ -62,13 +61,29 @@ margin-right: 0.625rem;
 
 .dropdown-menus {
     background-color: white;
-    
     z-index: 10;
     width: fit-content;
     max-height: 13rem;
     overflow-y: auto;
-    scrollbar-width: none;
-  }
+    right: 0; /* Anchors the menu to the right edge */
+    box-shadow: 0px 9px 6px rgba(0, 0, 0, 0.15); /* Added box shadow */
+}
+
+/* Webkit scrollbar styling for small scrollbar */
+.dropdown-menus::-webkit-scrollbar {
+    width: 6px; /* Small scrollbar width */
+}
+
+.dropdown-menus::-webkit-scrollbar-track {
+    background: transparent;
+}
+
+.dropdown-menus::-webkit-scrollbar-thumb {
+    background-color: #ccc; /* Thumb color */
+    border-radius: 10px;
+    border: 1px solid transparent;
+}
+
 
 /* Dropdown options */
 .dropdown-option {

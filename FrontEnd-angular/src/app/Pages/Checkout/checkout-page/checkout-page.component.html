@@ -1,104 +1,225 @@
+<shop-hero pageName="Checkout" ActualPageName="Checkout"></shop-hero>
 
-<shop-hero pageName="Checkout"></shop-hero>
+<form #checkoutForm="ngForm" class="container" (ngSubmit)="PlaceOrder()">
+  <div class="billing-section">
+    <h2>Billing details</h2>
 
-<div class="container">
-    <div class="billing-section">
-        <h2>Billing details</h2>
-
-        <div class="form-group half">
-          
-            <div class="form-field">
-                <label for="first-name">First Name</label>
-                <input type="text" id="first-name">
-            </div>
-            <div class="form-field">
-                <label for="last-name">Last Name</label>
-                <input type="text" id="last-name">
-            </div>
+    <div class="form-group half">
+      <div class="form-field">
+        <label for="first-name">First Name</label>
+        <input 
+          type="text" 
+          id="first-name" 
+          name="firstName" 
+          required 
+          [(ngModel)]="checkoutData.firstName" 
+          #firstName="ngModel">
+        <div *ngIf="firstName.invalid && (firstName.dirty || firstName.touched)" class="error-message">
+          First name is required.
         </div>
-        
-
-        <div class="form-group">
-            <label for="company-name">Company Name (Optional)</label>
-            <input type="text" id="company-name">
+      </div>
+      <div class="form-field">
+        <label for="last-name">Last Name</label>
+        <input 
+          type="text" 
+          id="last-name" 
+          name="lastName" 
+          required 
+          [(ngModel)]="checkoutData.lastName" 
+          #lastName="ngModel">
+        <div *ngIf="lastName.invalid && (lastName.dirty || lastName.touched)" class="error-message">
+          Last name is required.
         </div>
-        <div class="form-group">
-            <label for="country">Country</label>
-            <select id="country">
-                <option>Sri Lanka</option>
-            </select>
-        </div>
-        <div class="form-group">
-            <label for="street-address">Street address</label>
-            <input type="text" id="street-address">
-        </div>
-        <div class="form-group">
-            <label for="city">Town / City</label>
-            <input type="text" id="city">
-        </div>
-        <div class="form-group">
-            <label for="province">Province</label>
-            <select id="province">
-                <option>Western Province</option>
-            </select>
-        </div>
-        <div class="form-group">
-            <label for="zip-code">ZIP code</label>
-            <input type="text" id="zip-code">
-        </div>
-        <div class="form-group">
-            <label for="phone">Phone</label>
-            <input type="text" id="phone">
-        </div>
-        <div class="form-group">
-            <label for="email">Email address</label>
-            <input type="email" id="email">
-        </div>
-        <div class="form-group">
-            <label for="additional-info">Additional Information</label>
-            <textarea id="additional-info"></textarea>
-        </div>
+      </div>
     </div>
 
+    <div class="form-group">
+      <label for="company-name">Company Name (Optional)</label>
+      <input type="text" id="company-name" name="companyName" [(ngModel)]="checkoutData.companyName">
+    </div>
+
+    <div class="form-group">
+      <label for="country">Country</label>
+      <select 
+        id="country" 
+        name="country" 
+        required 
+        [(ngModel)]="checkoutData.country" 
+        #country="ngModel">
+        <option value="">Select a country</option>
+        <option *ngFor="let c of countries" [value]="c">{{ c }}</option>
+      </select>
+      <div *ngIf="country.invalid && (country.dirty || country.touched)" class="error-message">
+        Country is required.
+      </div>
+    </div>
+
+    <div class="form-group">
+      <label for="street-address">Street address</label>
+      <input 
+        type="text" 
+        id="street-address" 
+        name="streetAddress" 
+        required 
+        [(ngModel)]="checkoutData.streetAddress" 
+        #streetAddress="ngModel">
+      <div *ngIf="streetAddress.invalid && (streetAddress.dirty || streetAddress.touched)" class="error-message">
+        Street address is required.
+      </div>
+    </div>
+
+    <div class="form-group">
+      <label for="city">Town / City</label>
+      <input 
+        type="text" 
+        id="city" 
+        name="city" 
+        required 
+        [(ngModel)]="checkoutData.city" 
+        #city="ngModel">
+      <div *ngIf="city.invalid && (city.dirty || city.touched)" class="error-message">
+        City is required.
+      </div>
+    </div>
+
+    <div class="form-group">
+      <label for="province">Province</label>
+      <select 
+        id="province" 
+        name="province" 
+        required 
+        [(ngModel)]="checkoutData.province" 
+        #province="ngModel">
+        <option value="">Select a province</option>
+        <option value="Western Province">Western Province</option>
+      </select>
+      <div *ngIf="province.invalid && (province.dirty || province.touched)" class="error-message">
+        Province is required.
+      </div>
+    </div>
+
+    <div class="form-group">
+      <label for="zip-code">ZIP code</label>
+      <input 
+        type="text" 
+        id="zip-code" 
+        name="zipCode" 
+        required 
+        [(ngModel)]="checkoutData.zipCode" 
+        #zipCode="ngModel">
+      <div *ngIf="zipCode.invalid && (zipCode.dirty || zipCode.touched)" class="error-message">
+        ZIP code is required.
+      </div>
+    </div>
+
+    <div class="form-group">
+      <label for="phone">Phone</label>
+      <input 
+        type="text" 
+        id="phone" 
+        name="phone" 
+        required 
+        [(ngModel)]="checkoutData.phone" 
+        #phone="ngModel">
+      <div *ngIf="phone.invalid && (phone.dirty || phone.touched)" class="error-message">
+        Phone is required.
+      </div>
+    </div>
+
+    <div class="form-group">
+      <label for="email">Email address</label>
+      <input 
+        type="email" 
+        id="email" 
+        name="email" 
+        required 
+        [(ngModel)]="checkoutData.email" 
+        #email="ngModel">
+      <div *ngIf="email.invalid && (email.dirty || email.touched)" class="error-message">
+        A valid email is required.
+      </div>
+    </div>
+
+    <div class="form-group">
+      <label for="additional-info">Additional Information</label>
+      <textarea 
+        id="additional-info" 
+        name="additionalInfo" 
+        [(ngModel)]="checkoutData.additionalInfo"></textarea>
+    </div>
+  </div>
+
+  <div class="order-summary">
+    
     <div class="order-summary">
-        
-    <div class="product-subtotal">
-        <h2>Product </h2>
-        <h2>Subtotal</h2>
-    </div>
-
-    <div class="product-name">
-        <div class="product-details">
-            <span class="assigned-sale">Assigned sale</span>
-            <span class="quantity">X 1</span>
+        <div class="product-subtotal">
+          <h2>Product</h2>
+          <h2>Subtotal</h2>
         </div>
-        <span class="price">Rs. 250,000.00</span>
-    </div>    
-        
-        <p class="Subtotal">Subtotal <span>Rs. 250,000.00</span></p>
-
-    <div class="product-subtotal bold-500">
-         <h3 class="totalLable">Total </h3>
-         <h3 class="totalToPay">Rs. 250,000.00</h3>
-    </div>
-        
-
-        <hr>
-        <div class="payment-method">
-            <label><input type="radio" name="payment"> Direct Bank Transfer</label>
-            <p class="payment-info">
-                Make your payment directly into our bank account. Please use your Order ID as the payment reference. 
-                Your order will not be shipped until the funds have cleared in our account.
-            </p>
-            <label><input type="radio" name="payment"> Cash On Delivery</label>
+      
+        <!-- Iterate over each item in the cart -->
+        <div *ngFor="let item of cartItems">
+          <div class="product-name">
+            <div class="product-details">
+              <!-- Display the product name and quantity -->
+              <span class="assigned-sale">{{ item.name }}</span>
+              <span class="quantity">X {{ item.quantity }}</span>
+            </div>
+            <!-- Display the subtotal for this item (price * quantity) -->
+            <span class="price">Rs. {{ item.price * item.quantity }}</span>
+          </div>
         </div>
-        
-        <p class="privacy-policy">
-            Your personal data will be used to support your experience throughout this website, to manage access to your account,
-             and for other purposes described in our privacy policy.
+      
+        <!-- Display the overall subtotal -->
+        <p class="Subtotal">
+          Subtotal <span>Rs. {{ getSubtotal() }}</span>
         </p>
-        <button class="place-order" (click)="PlaceOrder()">Place order</button>
+      
+        <div class="product-subtotal bold-500">
+          <h3 class="totalLable">Total</h3>
+          <h3 class="totalToPay">Rs. {{ getSubtotal() }}</h3>
+        </div>
+      </div>
+
+    <hr>
+    <div class="payment-method">
+      <label>
+        <input 
+          type="radio" 
+          name="payment" 
+          required 
+          [(ngModel)]="checkoutData.payment" 
+          #payment="ngModel"
+          value="bank">
+        Direct Bank Transfer
+      </label>
+      <p class="payment-info">
+        Make your payment directly into our bank account. Please use your Order ID as the payment reference.
+        Your order will not be shipped until the funds have cleared in our account.
+      </p>
+      <label>
+        <input 
+          type="radio" 
+          name="payment" 
+          required 
+          [(ngModel)]="checkoutData.payment" 
+          value="cod">
+        Cash On Delivery
+      </label>
+      <div *ngIf="payment.invalid && (payment.dirty || payment.touched)" class="error-message">
+        Please select a payment method.
+      </div>
     </div>
+
+    <p class="privacy-policy">
+      Your personal data will be used to support your experience throughout this website, to manage access to your account,
+      and for other purposes described in our privacy policy.
+    </p>
+    <button class="place-order" type="submit" [disabled]="!checkoutForm.valid">Place order</button>
+  
+
+
 </div>
+</form>
 
 <service-and-warranty></service-and-warranty>

@@ -1,0 +1,67 @@
+/* Returns container styling */
+.returns-container {
+    max-width: 800px;
+    margin: 2rem auto;
+    padding: 2rem;
+    background-color: var(--btn-white);
+    font-family: 'Poppins', sans-serif;
+    color: var(--product-title);
+    line-height: 1.6;
+    border: 1px solid #e0e0e0;
+    border-radius: 8px;
+  }
+  
+  /* Heading styles */
+  .returns-container h1 {
+    font-size: 2.5rem;
+    color: var(--product-title);
+    margin-bottom: 1rem;
+  }
+  
+  .returns-container h2 {
+    font-size: 1.75rem;
+    color: var(--product-category);
+    margin-top: 1.5rem;
+    margin-bottom: 0.5rem;
+  }
+  
+  /* Paragraph and list styling */
+  .returns-container p,
+  .returns-container ul {
+    font-size: 1rem;
+    margin-bottom: 1rem;
+  }
+  
+  .returns-container ul {
+    list-style-type: disc;
+    margin-left: 1.5rem;
+  }
+  
+  /* Effective date styling */
+  .effective-date {
+    font-style: italic;
+    color: var(--product-category);
+    margin-bottom: 2rem;
+  }
+  
+  /* Link styling */
+  .returns-container a {
+    color: var(--btn-brown);
+    text-decoration: none;
+    transition: color 0.3s ease;
+  }
+  
+  .returns-container a:hover {
+    text-decoration: underline;
+    color: var(--btn-brown);
+  }
+  
+  /* Responsive header resizing for screens less than 480px */
+  @media (max-width: 480px) {
+    .returns-container h1 {
+      font-size: 2rem;
+    }
+    .returns-container h2 {
+      font-size: 1.5rem;
+    }
+  }

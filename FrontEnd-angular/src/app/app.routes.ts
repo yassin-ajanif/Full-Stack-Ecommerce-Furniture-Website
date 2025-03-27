@@ -13,7 +13,12 @@ import { ContactGuard } from './Contact.guard';
 import { SignUpPageComponent } from './Pages/Login/sign-up-page/sign-up-page.component';
 import { ProductAndCategoryPageComponent } from './Pages/ProductAndCategoryPage/product-and-category-page/product-and-category-page.component';
 import { AboutComponent } from './Pages/about/about.component';
-
+import { NotFoundPageComponent } from './Pages/not-found-page/not-found-page.component';
+import { bootstrapApplication } from '@angular/platform-browser';
+import { AppComponent } from './app.component';
+import { provideRouter, withInMemoryScrolling } from '@angular/router';
+import { PrivacyPolicyComponent } from './Pages/privacy-policy/privacy-policy.component';
+import { ReturnsComponent } from './Pages/returns/returns.component';
 
 export const routes: Routes = [
   { path: 'Home', component: HomePageComponent },
@@ -27,6 +32,12 @@ export const routes: Routes = [
   { path: 'Products/Product/:id', component: SelectedProductInfoPageComponent },   
   { path: 'Dashboard', component: ProductAndCategoryPageComponent , canActivate : [DashboardGuard]},   
   { path: 'About', component: AboutComponent },   
-  { path: '', redirectTo: 'Home', pathMatch: 'full' } // Default route
+  { path: '', redirectTo: 'Home', pathMatch: 'full' } ,// Default route
+  { path: 'privacy-policy', component: PrivacyPolicyComponent },
+  { path: 'returns', component: ReturnsComponent },
+  { path: '**', component: NotFoundPageComponent }, // Not Found route
+  
 ];
+
+
 

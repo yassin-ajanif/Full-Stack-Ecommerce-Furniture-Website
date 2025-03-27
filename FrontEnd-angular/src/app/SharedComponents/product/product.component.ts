@@ -2,7 +2,7 @@ import { Component, inject, Input } from '@angular/core';
 import {ProductDTO} from '../../Dtos/product.dto';
 import { ActivatedRoute, Router, RouterLink, RouterLinkActive, RouterOutlet } from '@angular/router';
 import { ImageLoaderComponent } from "../image-loader/image-loader.component";
-import { CommonModule } from '@angular/common';
+import { CommonModule, ViewportScroller } from '@angular/common';
 import { getProductDTO } from '../../Dtos/getProduct.dto';
 import { displayProductDTO } from '../../Dtos/displayProduct.dto';
 import { FormsModule } from '@angular/forms';
@@ -20,13 +20,14 @@ export class ProductComponent {
    @Input() product!: displayProductDTO 
    cartService = inject(cartService)
 
-   constructor(private activatedRoute:ActivatedRoute,private route:Router) {
+   constructor(private route:Router,private viewportScroller: ViewportScroller) {
     
    }
 
    goToProductPage(productClickedID:number){
 
-    this.route.navigate(['/Products/Product/', productClickedID]);
+    this.route.navigate(['/Products/Product/', productClickedID])
+    .then(() => this.viewportScroller.scrollToPosition([0, 0]));
     
    }
 

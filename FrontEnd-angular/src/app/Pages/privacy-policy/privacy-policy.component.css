@@ -1,0 +1,68 @@
+/* Container styling using the project's variables and font */
+.privacy-container {
+    max-width: 800px;
+    margin: 5rem 2rem;
+    padding: 2rem;
+    background-color: var(--btn-white);
+    font-family: "Poppins", sans-serif;
+    color: var(--product-title);
+    line-height: 1.6;
+    border: 1px solid #e0e0e0;
+    border-radius: 8px;
+    display: grid
+;
+    /* justify-content: center; */
+    justify-self: center;
+  }
+  
+  /* Heading styles */
+  .privacy-container h1 {
+    font-size: 2.5rem;
+    color: var(--product-title);
+    margin-bottom: 1rem;
+  }
+  
+  .privacy-container h2 {
+    font-size: 1.75rem;
+    color: var(--product-category);
+    margin-top: 1.5rem;
+    margin-bottom: 0.5rem;
+  }
+  
+  /* Paragraph styling */
+  .privacy-container p {
+    font-size: 1rem;
+    margin-bottom: 1rem;
+  }
+  
+  /* Effective date styling */
+  .effective-date {
+    font-style: italic;
+    color: var(--product-category);
+    margin-bottom: 2rem;
+  }
+  
+  /* Link styling following your theme */
+  .privacy-container a {
+    color: var(--btn-brown);
+    text-decoration: none;
+    transition: color 0.3s ease;
+  }
+  
+  .privacy-container a:hover {
+    text-decoration: underline;
+    color: var(--btn-brown);
+  }
+  
+
+  /* Responsive header resizing for screens less than 480px */
+@media (max-width: 480px) {
+    .privacy-container h1 {
+      font-size: 2rem; /* reduced from 2.5rem */
+    }
+    .privacy-container h2 {
+      font-size: 1.5rem; /* reduced from 1.75rem */
+    }
+
+    p{ font-size: .9rem !important;}
+  }
