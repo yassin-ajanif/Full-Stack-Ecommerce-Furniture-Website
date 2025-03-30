@@ -11,7 +11,7 @@ import { Router } from '@angular/router';
   standalone: true,
   imports: [ReactiveFormsModule,
      ServiceAndWarrantyComponent, 
-     ShopHeroComponent,FormsModule,CommonModule], // ✅ Add ReactiveFormsModule
+     ShopHeroComponent,FormsModule,CommonModule], 
   templateUrl: './contact-page.component.html',
   styleUrl: './contact-page.component.css'
 })
