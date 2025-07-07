@@ -25,9 +25,8 @@ export class NavbarComponent  {
       this.mobileMenuVisible = false;
     }
   }
-  constructor(private renderer:Renderer2 , private _eref: ElementRef){}
 
- 
+  constructor(private renderer:Renderer2 , private _eref: ElementRef){}
 
   mobileMenuVisible: boolean = false;
 

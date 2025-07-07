@@ -23,6 +23,7 @@ import { SignUpPageComponent } from "./Pages/Login/sign-up-page/sign-up-page.com
 import { AuthServiceService } from './Services/auth-service.service';
 import { NavigationEnd } from '@angular/router';
 import { filter } from 'rxjs';
+import { UserDashboardComponent } from "./Pages/UserDashboard/user-dashboard.component";
 
 @Component({
   selector: 'app-root',
@@ -32,7 +33,12 @@ import { filter } from 'rxjs';
     CartComponent, CheckoutPageComponent, CheckoutPageComponent,
     ContactPageComponent, LoginPageComponent, ProductAndCategoryPageComponent,
     HttpClientModule, ProductSelectedInfoComponent,
-    UpdateCategoryProductComponent, AutoCompleteSearchBoxComponent, OverlayMessageComponent, FullPageSpinnerComponent, SignUpPageComponent],
+    UpdateCategoryProductComponent, 
+    AutoCompleteSearchBoxComponent, 
+    OverlayMessageComponent, 
+    FullPageSpinnerComponent, 
+    SignUpPageComponent, 
+    UserDashboardComponent,UserDashboardComponent],
 
   
   templateUrl: './app.component.html',

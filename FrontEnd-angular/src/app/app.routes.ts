@@ -19,6 +19,7 @@ import { AppComponent } from './app.component';
 import { provideRouter, withInMemoryScrolling } from '@angular/router';
 import { PrivacyPolicyComponent } from './Pages/privacy-policy/privacy-policy.component';
 import { ReturnsComponent } from './Pages/returns/returns.component';
+import { UserDashboardComponent } from './Pages/UserDashboard/user-dashboard.component';
 
 export const routes: Routes = [
   { path: 'Home', component: HomePageComponent },
@@ -35,6 +36,7 @@ export const routes: Routes = [
   { path: '', redirectTo: 'Home', pathMatch: 'full' } ,// Default route
   { path: 'privacy-policy', component: PrivacyPolicyComponent },
   { path: 'returns', component: ReturnsComponent },
+  { path: 'UserDashboard', component: UserDashboardComponent },
   { path: '**', component: NotFoundPageComponent }, // Not Found route
   
 ];

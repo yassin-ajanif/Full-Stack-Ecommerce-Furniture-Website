@@ -1,7 +1,6 @@
 C:\Users\yassin\source\repos\FullStackEcommerceWebsite\Backend-.NetCore\SharedLayer\bin\Debug\net8.0\SharedLayer.deps.json
 C:\Users\yassin\source\repos\FullStackEcommerceWebsite\Backend-.NetCore\SharedLayer\bin\Debug\net8.0\SharedLayer.dll
 C:\Users\yassin\source\repos\FullStackEcommerceWebsite\Backend-.NetCore\SharedLayer\bin\Debug\net8.0\SharedLayer.pdb
-C:\Users\yassin\source\repos\FullStackEcommerceWebsite\Backend-.NetCore\SharedLayer\obj\Debug\net8.0\SharedLayer.csproj.AssemblyReference.cache
 C:\Users\yassin\source\repos\FullStackEcommerceWebsite\Backend-.NetCore\SharedLayer\obj\Debug\net8.0\SharedLayer.GeneratedMSBuildEditorConfig.editorconfig
 C:\Users\yassin\source\repos\FullStackEcommerceWebsite\Backend-.NetCore\SharedLayer\obj\Debug\net8.0\SharedLayer.AssemblyInfoInputs.cache
 C:\Users\yassin\source\repos\FullStackEcommerceWebsite\Backend-.NetCore\SharedLayer\obj\Debug\net8.0\SharedLayer.AssemblyInfo.cs

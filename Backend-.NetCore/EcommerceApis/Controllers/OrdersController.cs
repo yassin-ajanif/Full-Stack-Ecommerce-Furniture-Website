@@ -1,0 +1,45 @@
+using DataBusinessLayer.Interfaces;
+using Microsoft.AspNetCore.Mvc;
+using SharedLayer.Dtos;
+using System.Collections.Generic;
+using System.Threading.Tasks;
+
+namespace EcommerceApis.Controllers
+{
+    [Route("api/[controller]")]
+    [ApiController]
+    public class OrdersController : ControllerBase
+    {
+        private readonly IOrderService _orderService;
+
+        public OrdersController(IOrderService orderService)
+        {
+            _orderService = orderService;
+        }
+
+       
+        [HttpGet("AllOrders")]
+        [ProducesResponseType(typeof(IEnumerable<OrderDto>), 200)]
+        [ProducesResponseType(500)]
+        public async Task<IActionResult> GetAllOrders()
+        {
+            var orders = await _orderService.GetAllOrdersAsync();
+            return Ok(orders);
+        }
+
+        
+        [HttpGet("productsPer/{orderId}")]
+        [ProducesResponseType(typeof(IEnumerable<OrderedProductDto>), 200)]
+        [ProducesResponseType(404)]
+        [ProducesResponseType(500)]
+        public async Task<IActionResult> GetProductsByOrderId(string orderId)
+        {
+            var products = await _orderService.GetProductsByOrderIdAsync(orderId);
+            if (products == null || !products.Any())
+            {
+                return NotFound(new { Message = "No products found for the given order ID." });
+            }
+            return Ok(products);
+        }
+    }
+}

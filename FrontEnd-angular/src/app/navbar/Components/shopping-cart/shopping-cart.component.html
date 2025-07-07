@@ -12,7 +12,7 @@
         <hr class="headline-line">
 
         <div class="cart-items">
-        <div class="cart-item" *ngFor="let cartItem of cartItems">
+        <div class="cart-item" *ngFor="let cartItem of cartService.cartItems">
             <img [src]="cartItem.image" class="item-image"  alt="Product Image">
 
             <div class="cart-item-details">
@@ -31,7 +31,9 @@
                           
                           </div>
                 </div>
-                <button class="removeProduct" (click)="removeProduct(cartItem.id)">&times;</button>
+                <button class="removeProduct" 
+                (click)="cartService.removeProductAndGetUpdatedList
+                (cartItem.id,cartService.cartItems)">&times;</button>
                 </div>
             
         </div>

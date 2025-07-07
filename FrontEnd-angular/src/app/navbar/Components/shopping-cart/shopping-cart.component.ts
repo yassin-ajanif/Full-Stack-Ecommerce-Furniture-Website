@@ -17,57 +17,25 @@ export class ShoppingCartComponent implements OnInit {
    productService = inject(ProductService)
    cartService = inject(cartService)
 
-   cartItems: { id: number, name: string, image: string, price: number, quantity: number }[] = [];
-
    ngOnInit(){
  
-     this.getProductCartsAddedByUserFromLocalStorage()
-     this.loadProductImages()
+     //this.getProductCartsAddedByUserFromLocalStorage()
+     this.cartService.copyProductsCartsFromLocalStorageToCartItems()
+     this.cartService.loadProductImagesOfCartItemsFromDbByThierIDS()
    }
  
-   getProductCartsAddedByUserFromLocalStorage(){
- 
- // Retrieve cart data from localStorage
-    const storedCart = localStorage.getItem('cart');
- 
-    if (storedCart) {
-     // If cart exists in localStorage, parse and assign to cartItems
-     this.cartItems = JSON.parse(storedCart);
-    }
- 
-   }
 
-
-  loadProductImages(): void {
-        this.cartItems.forEach(item => {
-          // Assuming getProductImageById returns a Blob or URL of the image
-          this.productService.getProductImageById(item.id).subscribe(
-            imageBlob => {          
-              
-                const imageUrl = URL.createObjectURL(imageBlob);
-                item.image = imageUrl; // Set the image URL to the item
-              
-            }
-          );
-        });
-      }
-
-
+   
   closeCart(): void {
     this.closeCartEvent.emit(); // Emit event when closeCart is called
   }
+  
   // Function to calculate the subtotal
   getSubtotal(): number {
-    return this.cartItems.reduce((subtotal, item) => {
+    return this.cartService.cartItems.reduce((subtotal, item) => {
       return subtotal + item.price * item.quantity;
     }, 0);
   }
-
-  // Function to remove a product from the cart
-  removeProduct(productToRemoveID: number) {
-
-    this.cartItems = this.cartService.removeProductAndGetUpdatedList(productToRemoveID,this.cartItems)
- }
 
 
  goToCheckoutPage() {
@@ -75,7 +43,7 @@ export class ShoppingCartComponent implements OnInit {
   const userToken = localStorage.getItem('userToken');  // Check if the user token exists
   this.closeCart();
 
-  if(!this.cartItems.length) return
+  if(!this.cartService.cartItems.length) return
 
   if (userToken) {
     // If the user is logged in, navigate to the Checkout page

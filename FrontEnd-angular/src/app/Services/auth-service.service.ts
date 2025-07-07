@@ -52,7 +52,8 @@ export class AuthServiceService {
 
       this.isAdmin = logedUser.usernameOrEmail==='admin'
 
-    return this.http.post<{ token: { token: string, expirationDate: string } }>(this.logInEndPoint, payload)
+    return this.http.post<{ token: { token: string, expirationDate: string } 
+  }>(this.logInEndPoint, payload)
       .pipe(
         map(response => {
           const token = response.token.token;
@@ -75,6 +76,10 @@ export class AuthServiceService {
     this.userToken = null;
     this.deletePreviousTokenIfUserSignedBefore()
     if(this.isAdmin) this.router.navigate(['/Home'])
+    // If user is on Checkout or UserDashboard, redirect to Login
+    if (this.WeAreAtPage('/Checkout') || this.WeAreAtPage('/UserDashboard')) {
+      this.router.navigate(['/Login']);
+    }
   }
 
   autoLogin()  {
@@ -145,6 +150,7 @@ export class AuthServiceService {
   
   }
   
+  
 
   storeTokenInLocalStorage(userToken: UserToken): void {
         
@@ -198,7 +204,35 @@ export class AuthServiceService {
   }
 }
 
+  // Returns true if the current route matches the provided route string
+  WeAreAtPage(route: string): boolean {
+    return this.router.url === route || this.router.url === '/' + route;
+  }
 
+  // Extracted username and user ID from JWT token
+  extractedUsernameFromToken: string | null = null;
+  extractedUserIdFromToken: string | null = null;
+
+  
+  extractUserInfoFromToken(): void {
+
+    if (!this.userToken || !this.userToken.token) return;
+    const jwtToken = this.userToken.token;
+    const tokenParts = jwtToken.split('.');
+    if (tokenParts.length !== 3) return;
+    try {
+      const base64Payload = tokenParts[1].replace(/-/g, '+').replace(/_/g, '/');
+      const paddedPayload = base64Payload.padEnd(base64Payload.length + (4 - base64Payload.length % 4) % 4, '=');
+      const decodedJson = atob(paddedPayload);
+      const payloadObj = JSON.parse(decodedJson);
+      // Use the full claim URIs as keys, as in your backend JWT
+      this.extractedUsernameFromToken = payloadObj['http://schemas.xmlsoap.org/ws/2005/05/identity/claims/name'] || null;
+      this.extractedUserIdFromToken = payloadObj['http://schemas.xmlsoap.org/ws/2005/05/identity/claims/nameidentifier'] || null;
+      // Optionally, extract roles if you add them in the backend
+    } catch (e) {
+      this.extractedUsernameFromToken = null;
+      this.extractedUserIdFromToken = null;
+    }
   }
   
-
+}

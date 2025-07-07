@@ -723,7 +723,10 @@
           "SharedLayer": "1.0.0"
         },
         "runtime": {
-          "DataAccessLayer.dll": {}
+          "DataAccessLayer.dll": {
+            "assemblyVersion": "1.0.0.0",
+            "fileVersion": "1.0.0.0"
+          }
         }
       },
       "SharedLayer/1.0.0": {
@@ -731,7 +734,10 @@
           "Microsoft.AspNetCore.Http": "2.3.0"
         },
         "runtime": {
-          "SharedLayer.dll": {}
+          "SharedLayer.dll": {
+            "assemblyVersion": "1.0.0.0",
+            "fileVersion": "1.0.0.0"
+          }
         }
       }
     }

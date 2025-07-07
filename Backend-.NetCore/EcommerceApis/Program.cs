@@ -1,4 +1,3 @@
-
 using DataAccessLayer;
 using DataAccessLayer.Interfaces;
 using DataAccessLayer.Models;
@@ -79,6 +78,11 @@ builder.Services.AddScoped<IUserService, UserService>();
 
 builder.Services.AddScoped<ICheckoutService, CheckoutService>();
 builder.Services.AddScoped<ICheckoutRepository, CheckoutRepository>();
+
+// Register Repository (Data Access Layer)
+builder.Services.AddScoped<IOrderRepository, OrderRepository>();
+// Register Service (Business Logic Layer)
+builder.Services.AddScoped<IOrderService, OrderService>();
 
 
 var app = builder.Build();

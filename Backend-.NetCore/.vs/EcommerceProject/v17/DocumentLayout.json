@@ -3,20 +3,20 @@
   "WorkspaceRootPath": "C:\\Users\\yassin\\source\\repos\\FullStackEcommerceWebsite\\Backend-.NetCore\\",
   "Documents": [
     {
-      "AbsoluteMoniker": "D:0:0:{1784F4AB-838A-40A1-A297-41B3A1B342DB}|DataBusinessLayer\\DataBusinessLayer.csproj|c:\\users\\yassin\\source\\repos\\fullstackecommercewebsite\\backend-.netcore\\databusinesslayer\\userservice.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
-      "RelativeMoniker": "D:0:0:{1784F4AB-838A-40A1-A297-41B3A1B342DB}|DataBusinessLayer\\DataBusinessLayer.csproj|solutionrelative:databusinesslayer\\userservice.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+      "AbsoluteMoniker": "D:0:0:{ED5648BB-11D0-4B65-9C50-AB958609788B}|EcommerceApis\\EcommerceApis.csproj|c:\\users\\yassin\\source\\repos\\fullstackecommercewebsite\\backend-.netcore\\ecommerceapis\\controllers\\productscontroller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{ED5648BB-11D0-4B65-9C50-AB958609788B}|EcommerceApis\\EcommerceApis.csproj|solutionrelative:ecommerceapis\\controllers\\productscontroller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
     },
     {
-      "AbsoluteMoniker": "D:0:0:{ED5648BB-11D0-4B65-9C50-AB958609788B}|EcommerceApis\\EcommerceApis.csproj|c:\\users\\yassin\\source\\repos\\fullstackecommercewebsite\\backend-.netcore\\ecommerceapis\\controllers\\checkoutcontroller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
-      "RelativeMoniker": "D:0:0:{ED5648BB-11D0-4B65-9C50-AB958609788B}|EcommerceApis\\EcommerceApis.csproj|solutionrelative:ecommerceapis\\controllers\\checkoutcontroller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+      "AbsoluteMoniker": "D:0:0:{ED5648BB-11D0-4B65-9C50-AB958609788B}|EcommerceApis\\EcommerceApis.csproj|c:\\users\\yassin\\source\\repos\\fullstackecommercewebsite\\backend-.netcore\\ecommerceapis\\controllers\\orderscontroller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{ED5648BB-11D0-4B65-9C50-AB958609788B}|EcommerceApis\\EcommerceApis.csproj|solutionrelative:ecommerceapis\\controllers\\orderscontroller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
     },
     {
-      "AbsoluteMoniker": "D:0:0:{4A0F326D-E6D9-4F1C-9192-9B84A69EEFC9}|SharedLayer\\SharedLayer.csproj|c:\\users\\yassin\\source\\repos\\fullstackecommercewebsite\\backend-.netcore\\sharedlayer\\dtos\\producttobuydto.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
-      "RelativeMoniker": "D:0:0:{4A0F326D-E6D9-4F1C-9192-9B84A69EEFC9}|SharedLayer\\SharedLayer.csproj|solutionrelative:sharedlayer\\dtos\\producttobuydto.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+      "AbsoluteMoniker": "D:0:0:{6CB273F8-A822-417F-92C9-979A4358685A}|DataAccessLayer\\DataAccessLayer.csproj|c:\\users\\yassin\\source\\repos\\fullstackecommercewebsite\\backend-.netcore\\dataaccesslayer\\orderrepository.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{6CB273F8-A822-417F-92C9-979A4358685A}|DataAccessLayer\\DataAccessLayer.csproj|solutionrelative:dataaccesslayer\\orderrepository.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
     },
     {
-      "AbsoluteMoniker": "D:0:0:{6CB273F8-A822-417F-92C9-979A4358685A}|DataAccessLayer\\DataAccessLayer.csproj|c:\\users\\yassin\\source\\repos\\fullstackecommercewebsite\\backend-.netcore\\dataaccesslayer\\checkoutrepository.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
-      "RelativeMoniker": "D:0:0:{6CB273F8-A822-417F-92C9-979A4358685A}|DataAccessLayer\\DataAccessLayer.csproj|solutionrelative:dataaccesslayer\\checkoutrepository.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+      "AbsoluteMoniker": "D:0:0:{4A0F326D-E6D9-4F1C-9192-9B84A69EEFC9}|SharedLayer\\SharedLayer.csproj|c:\\users\\yassin\\source\\repos\\fullstackecommercewebsite\\backend-.netcore\\sharedlayer\\dtos\\orderedproductdto.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{4A0F326D-E6D9-4F1C-9192-9B84A69EEFC9}|SharedLayer\\SharedLayer.csproj|solutionrelative:sharedlayer\\dtos\\orderedproductdto.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
     }
   ],
   "DocumentGroupContainers": [
@@ -26,7 +26,7 @@
       "DocumentGroups": [
         {
           "DockedWidth": 200,
-          "SelectedChildIndex": 4,
+          "SelectedChildIndex": 8,
           "Children": [
             {
               "$type": "Bookmark",
@@ -45,53 +45,59 @@
               "Name": "ST:0:0:{3ae79031-e1bc-11d0-8f78-00a0c9110057}"
             },
             {
-              "$type": "Document",
-              "DocumentIndex": 0,
-              "Title": "UserService.cs",
-              "DocumentMoniker": "C:\\Users\\yassin\\source\\repos\\FullStackEcommerceWebsite\\Backend-.NetCore\\DataBusinessLayer\\UserService.cs",
-              "RelativeDocumentMoniker": "DataBusinessLayer\\UserService.cs",
-              "ToolTip": "C:\\Users\\yassin\\source\\repos\\FullStackEcommerceWebsite\\Backend-.NetCore\\DataBusinessLayer\\UserService.cs",
-              "RelativeToolTip": "DataBusinessLayer\\UserService.cs",
-              "ViewState": "AQIAAG0AAAAAAAAAAAAQwH4AAAA2AAAA",
-              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2025-03-27T15:28:48.883Z",
-              "EditorCaption": ""
+              "$type": "Bookmark",
+              "Name": "ST:0:0:{40ea2e6b-2121-4bb8-a43e-c83c04b51041}"
             },
             {
               "$type": "Document",
               "DocumentIndex": 3,
-              "Title": "CheckoutRepository.cs",
-              "DocumentMoniker": "C:\\Users\\yassin\\source\\repos\\FullStackEcommerceWebsite\\Backend-.NetCore\\DataAccessLayer\\CheckoutRepository.cs",
-              "RelativeDocumentMoniker": "DataAccessLayer\\CheckoutRepository.cs",
-              "ToolTip": "C:\\Users\\yassin\\source\\repos\\FullStackEcommerceWebsite\\Backend-.NetCore\\DataAccessLayer\\CheckoutRepository.cs",
-              "RelativeToolTip": "DataAccessLayer\\CheckoutRepository.cs",
-              "ViewState": "AQIAABQAAAAAAAAAAAAswCcAAAAjAAAA",
+              "Title": "OrderedProductDto.cs",
+              "DocumentMoniker": "C:\\Users\\yassin\\source\\repos\\FullStackEcommerceWebsite\\Backend-.NetCore\\SharedLayer\\Dtos\\OrderedProductDto.cs",
+              "RelativeDocumentMoniker": "SharedLayer\\Dtos\\OrderedProductDto.cs",
+              "ToolTip": "C:\\Users\\yassin\\source\\repos\\FullStackEcommerceWebsite\\Backend-.NetCore\\SharedLayer\\Dtos\\OrderedProductDto.cs",
+              "RelativeToolTip": "SharedLayer\\Dtos\\OrderedProductDto.cs",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2025-03-16T15:31:42.133Z"
-            },
-            {
-              "$type": "Document",
-              "DocumentIndex": 2,
-              "Title": "ProductToBuyDto.cs",
-              "DocumentMoniker": "C:\\Users\\yassin\\source\\repos\\FullStackEcommerceWebsite\\Backend-.NetCore\\SharedLayer\\Dtos\\ProductToBuyDto.cs",
-              "RelativeDocumentMoniker": "SharedLayer\\Dtos\\ProductToBuyDto.cs",
-              "ToolTip": "C:\\Users\\yassin\\source\\repos\\FullStackEcommerceWebsite\\Backend-.NetCore\\SharedLayer\\Dtos\\ProductToBuyDto.cs",
-              "RelativeToolTip": "SharedLayer\\Dtos\\ProductToBuyDto.cs",
-              "ViewState": "AQIAAAAAAAAAAAAAAAAAABEAAAAaAAAA",
-              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2025-03-16T15:30:27.762Z"
+              "WhenOpened": "2025-07-06T21:27:26.166Z",
+              "EditorCaption": ""
             },
             {
               "$type": "Document",
               "DocumentIndex": 1,
-              "Title": "CheckoutController.cs",
-              "DocumentMoniker": "C:\\Users\\yassin\\source\\repos\\FullStackEcommerceWebsite\\Backend-.NetCore\\EcommerceApis\\Controllers\\CheckoutController.cs",
-              "RelativeDocumentMoniker": "EcommerceApis\\Controllers\\CheckoutController.cs",
-              "ToolTip": "C:\\Users\\yassin\\source\\repos\\FullStackEcommerceWebsite\\Backend-.NetCore\\EcommerceApis\\Controllers\\CheckoutController.cs",
-              "RelativeToolTip": "EcommerceApis\\Controllers\\CheckoutController.cs",
-              "ViewState": "AQIAABcAAAAAAAAAAAAgwCEAAAAAAAAA",
+              "Title": "OrdersController.cs",
+              "DocumentMoniker": "C:\\Users\\yassin\\source\\repos\\FullStackEcommerceWebsite\\Backend-.NetCore\\EcommerceApis\\Controllers\\OrdersController.cs",
+              "RelativeDocumentMoniker": "EcommerceApis\\Controllers\\OrdersController.cs",
+              "ToolTip": "C:\\Users\\yassin\\source\\repos\\FullStackEcommerceWebsite\\Backend-.NetCore\\EcommerceApis\\Controllers\\OrdersController.cs",
+              "RelativeToolTip": "EcommerceApis\\Controllers\\OrdersController.cs",
+              "ViewState": "AgIAABYAAAAAAAAAAAArwB0AAAAIAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2025-03-16T14:38:49.585Z",
+              "WhenOpened": "2025-07-06T18:29:32.752Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 2,
+              "Title": "OrderRepository.cs",
+              "DocumentMoniker": "C:\\Users\\yassin\\source\\repos\\FullStackEcommerceWebsite\\Backend-.NetCore\\DataAccessLayer\\OrderRepository.cs",
+              "RelativeDocumentMoniker": "DataAccessLayer\\OrderRepository.cs",
+              "ToolTip": "C:\\Users\\yassin\\source\\repos\\FullStackEcommerceWebsite\\Backend-.NetCore\\DataAccessLayer\\OrderRepository.cs",
+              "RelativeToolTip": "DataAccessLayer\\OrderRepository.cs",
+              "ViewState": "AgIAAB4AAAAAAAAAAAAowC4AAABJAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2025-07-06T17:01:46.127Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 0,
+              "Title": "ProductsController.cs",
+              "DocumentMoniker": "C:\\Users\\yassin\\source\\repos\\FullStackEcommerceWebsite\\Backend-.NetCore\\EcommerceApis\\Controllers\\ProductsController.cs",
+              "RelativeDocumentMoniker": "EcommerceApis\\Controllers\\ProductsController.cs",
+              "ToolTip": "C:\\Users\\yassin\\source\\repos\\FullStackEcommerceWebsite\\Backend-.NetCore\\EcommerceApis\\Controllers\\ProductsController.cs",
+              "RelativeToolTip": "EcommerceApis\\Controllers\\ProductsController.cs",
+              "ViewState": "AgIAALsAAAAAAAAAAADgv84AAAAMAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2025-07-06T11:41:39.722Z",
               "EditorCaption": ""
             }
           ]

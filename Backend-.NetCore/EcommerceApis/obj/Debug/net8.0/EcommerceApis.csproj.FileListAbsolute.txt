@@ -170,11 +170,6 @@ C:\Users\yassin\source\repos\FullStackEcommerceWebsite\Backend-.NetCore\Ecommerc
 C:\Users\yassin\source\repos\FullStackEcommerceWebsite\Backend-.NetCore\EcommerceApis\obj\Debug\net8.0\EcommerceApis.sourcelink.json
 C:\Users\yassin\source\repos\FullStackEcommerceWebsite\Backend-.NetCore\EcommerceApis\obj\Debug\net8.0\staticwebassets.build.json
 C:\Users\yassin\source\repos\FullStackEcommerceWebsite\Backend-.NetCore\EcommerceApis\obj\Debug\net8.0\staticwebassets.development.json
-C:\Users\yassin\source\repos\FullStackEcommerceWebsite\Backend-.NetCore\EcommerceApis\obj\Debug\net8.0\staticwebassets\msbuild.EcommerceApis.Microsoft.AspNetCore.StaticWebAssets.props
-C:\Users\yassin\source\repos\FullStackEcommerceWebsite\Backend-.NetCore\EcommerceApis\obj\Debug\net8.0\staticwebassets\msbuild.build.EcommerceApis.props
-C:\Users\yassin\source\repos\FullStackEcommerceWebsite\Backend-.NetCore\EcommerceApis\obj\Debug\net8.0\staticwebassets\msbuild.buildMultiTargeting.EcommerceApis.props
-C:\Users\yassin\source\repos\FullStackEcommerceWebsite\Backend-.NetCore\EcommerceApis\obj\Debug\net8.0\staticwebassets\msbuild.buildTransitive.EcommerceApis.props
-C:\Users\yassin\source\repos\FullStackEcommerceWebsite\Backend-.NetCore\EcommerceApis\obj\Debug\net8.0\staticwebassets.pack.json
 C:\Users\yassin\source\repos\FullStackEcommerceWebsite\Backend-.NetCore\EcommerceApis\obj\Debug\net8.0\scopedcss\bundle\EcommerceApis.styles.css
 C:\Users\yassin\source\repos\FullStackEcommerceWebsite\Backend-.NetCore\EcommerceApis\obj\Debug\net8.0\Ecommerc.6BE25DF7.Up2Date
 C:\Users\yassin\source\repos\FullStackEcommerceWebsite\Backend-.NetCore\EcommerceApis\obj\Debug\net8.0\EcommerceApis.dll
@@ -270,3 +265,11 @@ C:\Users\yassin\source\repos\FullStackEcommerceWebsite\Backend-.NetCore\Ecommerc
 C:\Users\yassin\source\repos\FullStackEcommerceWebsite\Backend-.NetCore\EcommerceApis\bin\Debug\net8.0\tr\Microsoft.CodeAnalysis.Workspaces.MSBuild.BuildHost.resources.dll
 C:\Users\yassin\source\repos\FullStackEcommerceWebsite\Backend-.NetCore\EcommerceApis\bin\Debug\net8.0\zh-Hans\Microsoft.CodeAnalysis.Workspaces.MSBuild.BuildHost.resources.dll
 C:\Users\yassin\source\repos\FullStackEcommerceWebsite\Backend-.NetCore\EcommerceApis\bin\Debug\net8.0\zh-Hant\Microsoft.CodeAnalysis.Workspaces.MSBuild.BuildHost.resources.dll
+C:\Users\yassin\source\repos\FullStackEcommerceWebsite\Backend-.NetCore\EcommerceApis\bin\Debug\net8.0\EcommerceApis.staticwebassets.endpoints.json
+C:\Users\yassin\source\repos\FullStackEcommerceWebsite\Backend-.NetCore\EcommerceApis\obj\Debug\net8.0\rpswa.dswa.cache.json
+C:\Users\yassin\source\repos\FullStackEcommerceWebsite\Backend-.NetCore\EcommerceApis\obj\Debug\net8.0\rjimswa.dswa.cache.json
+C:\Users\yassin\source\repos\FullStackEcommerceWebsite\Backend-.NetCore\EcommerceApis\obj\Debug\net8.0\rjsmrazor.dswa.cache.json
+C:\Users\yassin\source\repos\FullStackEcommerceWebsite\Backend-.NetCore\EcommerceApis\obj\Debug\net8.0\rjsmcshtml.dswa.cache.json
+C:\Users\yassin\source\repos\FullStackEcommerceWebsite\Backend-.NetCore\EcommerceApis\obj\Debug\net8.0\staticwebassets.build.json.cache
+C:\Users\yassin\source\repos\FullStackEcommerceWebsite\Backend-.NetCore\EcommerceApis\obj\Debug\net8.0\staticwebassets.build.endpoints.json
+C:\Users\yassin\source\repos\FullStackEcommerceWebsite\Backend-.NetCore\EcommerceApis\obj\Debug\net8.0\staticwebassets.upToDateCheck.txt

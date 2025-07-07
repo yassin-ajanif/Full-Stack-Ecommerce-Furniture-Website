@@ -1,5 +1,6 @@
 import { inject, Injectable } from '@angular/core';
 import { productToBuy } from '../Dtos/productToBuy.dto';
+import { ProductService } from './product.service';
 
 
 @Injectable({
@@ -8,7 +9,10 @@ import { productToBuy } from '../Dtos/productToBuy.dto';
 
 export class cartService {
 
-   
+  cartItems: { id: number, name: string, image: string, price: number, quantity: number }[] = [];
+  productService = inject(ProductService)
+  
+
 createCartInLocalStorage_If_User_Is_VistingWebsite_FirstTime() {
     
     if (!localStorage.getItem('cart')) {
@@ -25,7 +29,10 @@ createCartInLocalStorage_If_User_Is_VistingWebsite_FirstTime() {
     this.createCartInLocalStorage_If_User_Is_VistingWebsite_FirstTime();
 
     // Get existing cart data
-    let cart: productToBuy[] = JSON.parse(localStorage.getItem('cart') || '[]');
+    /*let cart: productToBuy[] = 
+    JSON.parse(localStorage.getItem('cart') || '[]');*/
+
+    let cart: productToBuy[] = this.getCartItemsFromLocalStorageName('cart')
 
     // Check if the product already exists in the cart
     let existingProduct = cart.find(p => p.id === product.id);
@@ -43,7 +50,23 @@ createCartInLocalStorage_If_User_Is_VistingWebsite_FirstTime() {
 
 }
 
+getCartItemsFromLocalStorageName(localStroageVariableName:string): productToBuy[] {
+      
+  return JSON.parse(localStorage.getItem(localStroageVariableName) || '[]') as productToBuy[];
 
+}
+
+copyProductsCartsFromLocalStorageToCartItems(){
+ 
+ // Retrieve cart data from localStorage
+    const storedCart = this.getCartItemsFromLocalStorageName('cart') as any;
+ 
+    if (storedCart) {
+     // If cart exists in localStorage, assign directly to cartItems
+     this.cartItems = storedCart;
+    }
+ 
+   }
 // Function to remove a product and return updated list of productToBuy objects
 removeProductAndGetUpdatedList(productToRemoveID: number, cartItems: productToBuy[]): any[] {
     // Find the index of the product to remove by matching the product ID
@@ -93,7 +116,22 @@ removeProductAndGetUpdatedList(productToRemoveID: number, cartItems: productToBu
     return 0;
   }
   
+  
+  loadProductImagesOfCartItemsFromDbByThierIDS(): void {
+   
+        this.cartItems.forEach(item => {
+          // Assuming getProductImageById returns a Blob or URL of the image
+          this.productService.getProductImageById(item.id).subscribe(
+            imageBlob => {          
+              
+                const imageUrl = URL.createObjectURL(imageBlob);
+                item.image = imageUrl; // Set the image URL to the item
+              
+            }
+          );
+        });
+      }
 
-
+   
 
 }

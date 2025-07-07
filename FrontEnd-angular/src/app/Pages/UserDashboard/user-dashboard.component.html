@@ -1,0 +1,91 @@
+<main class="user-dashboard">
+  <h1 class="dashboard-title">Hello {{authService.extractedUsernameFromToken}}</h1>
+  
+  <nav class="dashboard-tabs">
+    
+    <button class="tab" [class.active]="activeTab === DashboardTab.Orders"
+     (click)="setActiveTab(DashboardTab.Orders)">Orders</button>
+
+    <button class="tab" [class.active]="activeTab === DashboardTab.Wishlist" 
+    (click)="setActiveTab(DashboardTab.Wishlist)">Wishlist</button>
+
+    <button class="tab" [class.active]="activeTab === DashboardTab.AccountDetails" 
+    (click)="setActiveTab(DashboardTab.AccountDetails)">Account Details</button>
+
+    <button class="tab" [class.active]="activeTab === DashboardTab.Settings" 
+    (click)="setActiveTab(DashboardTab.Settings)">Settings</button>
+
+  </nav>
+  
+  <!-- Orders Table with Products Grouped by Order -->
+  @if (activeTab === DashboardTab.Orders) {
+    <section class="dashboard-table-container">
+      <table class="dashboard-table" aria-label="Order history">
+        <thead>
+          <tr>
+            <th scope="col">Order</th>
+            <th scope="col">Date</th>
+            <th scope="col">Status</th>
+            <th scope="col">Total</th>
+            <th scope="col">Details</th>
+          </tr>
+        </thead>
+        <tbody>
+          @for (order of orderService.orders; track order.id) {
+            <tr>
+              <td>{{ order.id }}</td>
+              <td>{{ order.date }}</td>
+              <td><span class="status" [ngClass]="order.status.toLowerCase()">{{ order.status }}</span></td>
+              <td>{{ order.total }}</td>
+              <td>
+                <button class="toggle-products-btn"
+                 (click)="toggleOrderProducts(order.id)">
+                  {{ isOrderExpanded(order.id) ? 'Hide Info' : 'More Info' }}
+                </button>
+              </td>
+            </tr>
+            @if (isOrderExpanded(order.id)) {
+              @for (product of order.products; track product.id) {
+                
+                <tr class="order-product-detail-row OrderProducts">
+                  <td></td>
+                  <td class="order-product-img-cell">
+                    <img [src]="product.image"
+                     [alt]="product.name" class="order-product-img" />
+                    </td>
+                  <td class="order-product-name-cell">{{ product.name }}</td>
+                  <td class="order-product-price-cell">{{ product.price }}</td>
+                  <td></td>
+                </tr>
+              }
+            }
+          }
+        </tbody>
+      </table>
+    </section>
+  }
+
+  <!-- Wishlist Grid -->
+  @else if (activeTab === DashboardTab.Wishlist) {
+    <section class="dashboard-table-container">
+      <div class="wishlist-grid">
+        @if (cartService.cartItems.length === 0) {
+          <p class="wishlist-empty">No items in your wishlist.</p>
+        }
+         @for (product of cartService.cartItems; track product.id) {
+          <article class="wishlist-item">
+            <button class="remove-wishlist-btn"
+             (click)="cartService.removeProductAndGetUpdatedList
+                (product.id,cartService.cartItems)"
+            title="Remove from wishlist">&times;</button>
+            <img [src]="product.image" [alt]="product.name" class="wishlist-img" />
+            <div class="wishlist-info">
+              <h3 class="wishlist-name">{{ product.name }}</h3>
+              <span class="wishlist-price">{{ product.price }}</span>
+            </div>
+        </article>
+        }
+      </div>
+    </section>
+  }
+</main>

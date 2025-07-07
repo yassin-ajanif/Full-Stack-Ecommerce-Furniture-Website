@@ -1,5 +1,3 @@
-
-
 <div *ngIf="cartVisible" class="overlay no-scroll " (click)="closeCart()"></div>
 <div *ngIf="cartVisible" class="cart-container">
   <shopping-cart (closeCartEvent)="closeCart()"></shopping-cart>
@@ -18,6 +16,8 @@
     <li><a routerLink="Shop" routerLinkActive="active-link">Shop</a></li>
     <li><a routerLink="About" routerLinkActive="active-link">About</a></li>
     <li><a routerLink="Contact" routerLinkActive="active-link">Contact</a></li>
+    <li *ngIf="authService.userToken">
+      <a routerLink="UserDashboard" routerLinkActive="active-link">My Dashboard</a></li>
   </ul>
 
 
@@ -37,7 +37,7 @@
     <li><a routerLink="Contact" routerLinkActive="active-link" (click)="toggleMenu()">Contact</a></li>
      <h4 style="cursor: pointer;" *ngIf="authService.userToken && authService.isAdmin" (click)="toggleMenu()"
      routerLink="/Dashboard">
-      DashBoard
+      Admin DashBoard
     </h4>
   </ul>
 
@@ -54,7 +54,7 @@
   style="cursor: pointer;" 
   *ngIf="authService.userToken && authService.isAdmin" 
   routerLink="/Dashboard">
-  DashBoard
+   Admin DashBoard
 </h4>
 
 
